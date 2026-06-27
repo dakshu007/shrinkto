@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -13,6 +14,8 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
+
+const GA_ID = "G-QDNJGVVZJ1";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -50,6 +53,19 @@ export default function RootLayout({
         <Footer />
         <OrganizationJsonLd />
         <ServiceWorker />
+
+        {/* Google Analytics (gtag.js) — loaded after the page is interactive
+            so it never blocks rendering or hurts Core Web Vitals. */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+        </Script>
       </body>
     </html>
   );
