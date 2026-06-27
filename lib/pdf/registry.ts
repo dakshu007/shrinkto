@@ -524,30 +524,10 @@ for (const [slug, def] of Object.entries(TOOL_MODULES)) {
   REGISTRY[slug] = { slug, ...def };
 }
 
-// Tools that still need richer UI than the shell provides (canvas editors) and
-// the optional AI tools — render the page + SEO with a clear "in progress" notice.
-const COMING_SOON: { slug: string; accept: string; note: string }[] = [
-  { slug: "edit-pdf", accept: PDF_MIME, note: "The visual PDF editor (text, images, shapes) is in active development." },
-  { slug: "pdf-forms", accept: PDF_MIME, note: "Interactive form filling & creation is in active development." },
-  { slug: "sign-pdf", accept: PDF_MIME, note: "Draw/type/upload signatures — in active development." },
-  { slug: "redact-pdf", accept: PDF_MIME, note: "Visual redaction & flatten — in active development." },
-  { slug: "compare-pdf", accept: PDF_MIME, note: "Side-by-side diff view — in active development." },
-  { slug: "pdf-summarizer", accept: PDF_MIME, note: "AI summary (Phase 2) — sends text to an AI provider; in active development." },
-  { slug: "translate-pdf", accept: PDF_MIME, note: "AI translation (Phase 2) — in active development." },
-];
-
-for (const cs of COMING_SOON) {
-  // Don't clobber a real implementation if one exists.
-  if (REGISTRY[cs.slug]?.process) continue;
-  REGISTRY[cs.slug] = {
-    slug: cs.slug,
-    accept: cs.accept,
-    multiple: false,
-    cta: "Coming soon",
-    comingSoon: true,
-    note: cs.note,
-  };
-}
+// The canvas-editor and AI tools (sign/redact/compare/edit/pdf-forms,
+// pdf-summarizer/translate) are rendered by their own interactive components
+// (see lib/pdf/interactive-slugs.ts), not the shell — so they need no registry
+// entry here.
 
 export function getPdfTool(slug: string): PdfToolDef | undefined {
   return REGISTRY[slug];

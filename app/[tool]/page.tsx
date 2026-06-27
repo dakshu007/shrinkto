@@ -13,6 +13,8 @@ import {
 } from "@/lib/content/tools";
 import { LANDING_PAGES, LANDING_BY_SLUG } from "@/lib/content/seo-map";
 import { getPdfTool } from "@/lib/pdf/registry";
+import { isInteractiveSlug, type InteractiveSlug } from "@/lib/pdf/interactive-slugs";
+import { InteractivePdfTool } from "@/components/pdf/InteractivePdfTool";
 import { getToolContent, getLandingContent } from "@/lib/content/tool-content";
 
 type Params = { params: Promise<{ tool: string }> };
@@ -82,6 +84,8 @@ export default async function ToolPage({ params }: Params) {
             ? "webp"
             : "auto";
     interactive = <Compressor initialTargetKb={200} initialFormat={initialFormat} />;
+  } else if (isInteractiveSlug(slug)) {
+    interactive = <InteractivePdfTool slug={slug as InteractiveSlug} />;
   } else {
     const def = getPdfTool(slug);
     interactive = <PdfToolShell slug={slug} cta={def?.cta ?? "Run"} />;

@@ -7,8 +7,7 @@ export type ToolCategory =
   | "optimize"
   | "convert"
   | "edit"
-  | "security"
-  | "intelligence";
+  | "security";
 
 export type ToolKind = "image" | "pdf";
 
@@ -43,7 +42,6 @@ export const CATEGORIES: CategoryMeta[] = [
   { key: "convert", label: "Convert PDF", accentVar: "--c-convert", blurb: "To and from PDF" },
   { key: "edit", label: "Edit PDF", accentVar: "--c-edit", blurb: "Rotate, watermark, sign & more" },
   { key: "security", label: "Security", accentVar: "--c-security", blurb: "Protect, unlock & redact" },
-  { key: "intelligence", label: "PDF AI", accentVar: "--c-security", blurb: "Summarize & translate (beta)" },
 ];
 
 export const TOOLS: Tool[] = [
@@ -68,40 +66,36 @@ export const TOOLS: Tool[] = [
   // ---- Optimize PDF ----
   { slug: "compress-pdf", label: "Compress PDF", description: "Reduce PDF size while keeping quality.", category: "optimize", kind: "pdf", icon: "Minimize2", accept: "application/pdf" },
   { slug: "repair-pdf", label: "Repair PDF", description: "Recover data from damaged PDF files.", category: "optimize", kind: "pdf", icon: "Wrench", accept: "application/pdf" },
-  { slug: "ocr-pdf", label: "OCR PDF", description: "Make scanned PDFs searchable & selectable.", category: "optimize", kind: "pdf", icon: "ScanLine", accept: "application/pdf", beta: true },
+  { slug: "ocr-pdf", label: "OCR PDF", description: "Make scanned PDFs searchable & selectable.", category: "optimize", kind: "pdf", icon: "ScanLine", accept: "application/pdf" },
 
   // ---- Convert to PDF ----
   { slug: "jpg-to-pdf", label: "JPG to PDF", description: "Turn images into a single PDF document.", category: "convert", kind: "pdf", icon: "FileText", accept: "image/*" },
-  { slug: "word-to-pdf", label: "Word to PDF", description: "Convert DOC/DOCX files to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".doc,.docx", beta: true },
-  { slug: "powerpoint-to-pdf", label: "PowerPoint to PDF", description: "Convert PPT/PPTX slides to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".ppt,.pptx", beta: true },
-  { slug: "excel-to-pdf", label: "Excel to PDF", description: "Convert XLS/XLSX spreadsheets to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".xls,.xlsx", beta: true },
-  { slug: "html-to-pdf", label: "HTML to PDF", description: "Convert a web page or HTML to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".html,.htm", beta: true },
+  { slug: "word-to-pdf", label: "Word to PDF", description: "Convert DOC/DOCX files to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".doc,.docx" },
+  { slug: "powerpoint-to-pdf", label: "PowerPoint to PDF", description: "Convert PPT/PPTX slides to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".ppt,.pptx" },
+  { slug: "excel-to-pdf", label: "Excel to PDF", description: "Convert XLS/XLSX spreadsheets to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".xls,.xlsx" },
+  { slug: "html-to-pdf", label: "HTML to PDF", description: "Convert a web page or HTML to PDF.", category: "convert", kind: "pdf", icon: "FileText", accept: ".html,.htm" },
 
   // ---- Convert from PDF ----
   { slug: "pdf-to-jpg", label: "PDF to JPG", description: "Convert each PDF page into a JPG image.", category: "convert", kind: "pdf", icon: "Image", accept: "application/pdf" },
-  { slug: "pdf-to-word", label: "PDF to Word", description: "Convert PDF to an editable Word document.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf", beta: true },
-  { slug: "pdf-to-powerpoint", label: "PDF to PowerPoint", description: "Convert PDF pages into PPTX slides.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf", beta: true },
-  { slug: "pdf-to-excel", label: "PDF to Excel", description: "Extract tables from PDF into Excel.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf", beta: true },
-  { slug: "pdf-to-pdfa", label: "PDF to PDF/A", description: "Convert to the PDF/A archival format.", category: "convert", kind: "pdf", icon: "FileText", accept: "application/pdf", beta: true },
+  { slug: "pdf-to-word", label: "PDF to Word", description: "Convert PDF to an editable Word document.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf" },
+  { slug: "pdf-to-powerpoint", label: "PDF to PowerPoint", description: "Convert PDF pages into PPTX slides.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf" },
+  { slug: "pdf-to-excel", label: "PDF to Excel", description: "Extract tables from PDF into Excel.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf" },
+  { slug: "pdf-to-pdfa", label: "PDF to PDF/A", description: "Convert to the PDF/A archival format.", category: "convert", kind: "pdf", icon: "FileText", accept: "application/pdf" },
 
   // ---- Edit PDF ----
   { slug: "rotate-pdf", label: "Rotate PDF", description: "Rotate one or all pages permanently.", category: "edit", kind: "pdf", icon: "RotateCw", accept: "application/pdf" },
   { slug: "add-page-numbers", label: "Add Page Numbers", description: "Insert page numbers with custom position.", category: "edit", kind: "pdf", icon: "Hash", accept: "application/pdf" },
   { slug: "watermark-pdf", label: "Watermark PDF", description: "Stamp text or an image watermark.", category: "edit", kind: "pdf", icon: "Droplet", accept: "application/pdf" },
-  { slug: "crop-pdf", label: "Crop PDF", description: "Trim PDF margins and crop pages.", category: "edit", kind: "pdf", icon: "Crop", accept: "application/pdf", beta: true },
-  { slug: "edit-pdf", label: "Edit PDF", description: "Add text, images and shapes to a PDF.", category: "edit", kind: "pdf", icon: "PenTool", accept: "application/pdf", beta: true },
-  { slug: "pdf-forms", label: "PDF Forms", description: "Fill and create interactive form fields.", category: "edit", kind: "pdf", icon: "PenTool", accept: "application/pdf", beta: true },
+  { slug: "crop-pdf", label: "Crop PDF", description: "Trim PDF margins and crop pages.", category: "edit", kind: "pdf", icon: "Crop", accept: "application/pdf" },
+  { slug: "edit-pdf", label: "Edit PDF", description: "Add text, images and shapes to a PDF.", category: "edit", kind: "pdf", icon: "PenTool", accept: "application/pdf" },
+  { slug: "pdf-forms", label: "PDF Forms", description: "Fill and create interactive form fields.", category: "edit", kind: "pdf", icon: "PenTool", accept: "application/pdf" },
 
   // ---- Security ----
   { slug: "unlock-pdf", label: "Unlock PDF", description: "Remove a known password from a PDF.", category: "security", kind: "pdf", icon: "Unlock", accept: "application/pdf" },
   { slug: "protect-pdf", label: "Protect PDF", description: "Encrypt a PDF with a password.", category: "security", kind: "pdf", icon: "Lock", accept: "application/pdf" },
-  { slug: "sign-pdf", label: "Sign PDF", description: "Draw, type or upload a signature.", category: "security", kind: "pdf", icon: "Signature", accept: "application/pdf", beta: true },
-  { slug: "redact-pdf", label: "Redact PDF", description: "Black out and flatten sensitive content.", category: "security", kind: "pdf", icon: "EyeOff", accept: "application/pdf", beta: true },
-  { slug: "compare-pdf", label: "Compare PDF", description: "Spot differences between two PDFs.", category: "security", kind: "pdf", icon: "GitCompare", accept: "application/pdf", beta: true },
-
-  // ---- PDF AI (Phase 2) ----
-  { slug: "pdf-summarizer", label: "AI PDF Summarizer", description: "Summarize long PDFs in seconds.", category: "intelligence", kind: "pdf", icon: "Sparkles", accept: "application/pdf", beta: true },
-  { slug: "translate-pdf", label: "Translate PDF", description: "Translate PDF text while keeping layout.", category: "intelligence", kind: "pdf", icon: "Sparkles", accept: "application/pdf", beta: true },
+  { slug: "sign-pdf", label: "Sign PDF", description: "Draw, type or upload a signature.", category: "security", kind: "pdf", icon: "Signature", accept: "application/pdf" },
+  { slug: "redact-pdf", label: "Redact PDF", description: "Black out and flatten sensitive content.", category: "security", kind: "pdf", icon: "EyeOff", accept: "application/pdf" },
+  { slug: "compare-pdf", label: "Compare PDF", description: "Spot differences between two PDFs.", category: "security", kind: "pdf", icon: "GitCompare", accept: "application/pdf" },
 ];
 
 export const TOOLS_BY_SLUG: Record<string, Tool> = Object.fromEntries(

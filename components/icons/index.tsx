@@ -58,6 +58,10 @@ export {
   Files,
   AlertCircle,
   CheckCircle2,
+  Type,
+  Square,
+  Pencil,
+  MousePointer2,
 } from "lucide-react";
 
 /** Map registry icon-name strings to components for dynamic rendering. */
