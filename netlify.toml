@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  # Allow bundling the heavier server deps used by route handlers.
+  node_bundler = "esbuild"

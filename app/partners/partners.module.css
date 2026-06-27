@@ -1,0 +1,90 @@
+.header {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+.h1 {
+  font-size: clamp(2rem, 4vw, var(--text-5xl));
+  letter-spacing: -0.03em;
+}
+.lede {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  color: var(--color-text);
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-3);
+  border-color: var(--color-border);
+  text-decoration: none;
+}
+.logoWrap {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-subtle);
+  overflow: hidden;
+}
+.logo {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+.logoFallback {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.name {
+  font-size: var(--text-xl);
+}
+.desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  flex: 1;
+}
+.visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary-active);
+}
+
+.empty {
+  text-align: center;
+  padding: var(--space-10) var(--space-5);
+  background: var(--color-bg-subtle);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-2xl);
+  color: var(--color-text-secondary);
+}
+.emptySub {
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  margin-top: var(--space-2);
+}
