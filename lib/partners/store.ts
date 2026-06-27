@@ -5,10 +5,6 @@ import type { Partner, PartnerStatus } from "./types";
 
 const KEY = "registry";
 
-function onNetlify(): boolean {
-  return Boolean(process.env.NETLIFY || process.env.NETLIFY_BLOBS_CONTEXT);
-}
-
 // ---- Netlify Blobs backend -------------------------------------------------
 
 async function blobRead(): Promise<Partner[]> {
@@ -47,12 +43,24 @@ async function fileWrite(list: Partner[]): Promise<void> {
 
 // ---- Public API ------------------------------------------------------------
 
+// Try Netlify Blobs first (works in the deployed function runtime with the
+// auto-injected context). Locally — `next dev` — getStore has no context and
+// throws, so we fall back to a JSON file. Detecting "am I on Netlify" via env
+// vars is unreliable in the function runtime, so we probe by attempting Blobs.
 async function readAll(): Promise<Partner[]> {
-  return onNetlify() ? blobRead() : fileRead();
+  try {
+    return await blobRead();
+  } catch {
+    return fileRead();
+  }
 }
 
 async function writeAll(list: Partner[]): Promise<void> {
-  return onNetlify() ? blobWrite(list) : fileWrite(list);
+  try {
+    await blobWrite(list);
+  } catch {
+    await fileWrite(list);
+  }
 }
 
 export async function listPartners(status?: PartnerStatus): Promise<Partner[]> {
