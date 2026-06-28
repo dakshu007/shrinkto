@@ -7,7 +7,7 @@
   background: radial-gradient(70% 60% at 50% -10%, var(--color-primary-light), transparent 70%);
 }
 /* `.container` is a global class, so it must be wrapped in :global() to match
-   inside this CSS module — otherwise this flex-centering silently never applies. */
+   inside this CSS module - otherwise this flex-centering silently never applies. */
 .hero :global(.container) {
   display: flex;
   flex-direction: column;

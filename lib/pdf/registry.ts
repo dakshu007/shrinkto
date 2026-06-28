@@ -494,7 +494,7 @@ export const REGISTRY: Record<string, PdfToolDef> = {
       const { PDFDocument } = await getCantoo();
       const doc = await PDFDocument.load(await files[0].arrayBuffer());
       const bytes = await doc.save({
-        // @ts-expect-error — @cantoo/pdf-lib accepts an encryption option.
+        // @ts-expect-error - @cantoo/pdf-lib accepts an encryption option.
         encrypt: { userPassword: password, ownerPassword: password },
       });
       return [{ name: `${baseName(files[0].name)}-protected.pdf`, blob: pdfBlob(bytes) }];
@@ -526,7 +526,7 @@ for (const [slug, def] of Object.entries(TOOL_MODULES)) {
 
 // The canvas-editor and AI tools (sign/redact/compare/edit/pdf-forms,
 // pdf-summarizer/translate) are rendered by their own interactive components
-// (see lib/pdf/interactive-slugs.ts), not the shell — so they need no registry
+// (see lib/pdf/interactive-slugs.ts), not the shell - so they need no registry
 // entry here.
 
 export function getPdfTool(slug: string): PdfToolDef | undefined {

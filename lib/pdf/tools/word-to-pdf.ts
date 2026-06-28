@@ -1,4 +1,4 @@
-// word-to-pdf — convert a .doc/.docx file to a paginated A4 PDF.
+// word-to-pdf - convert a .doc/.docx file to a paginated A4 PDF.
 // mammoth (browser build) turns the docx into HTML; we render that HTML in an
 // off-screen element with html2canvas, then slice the tall canvas into A4 pages
 // and stamp each slice onto a jsPDF page. All main-thread / browser only.
@@ -56,15 +56,15 @@ export const def: ToolModule = {
   accept: ".doc,.docx",
   multiple: false,
   cta: "Convert to PDF",
-  note: "Word documents are converted in your browser — formatting is preserved on a best-effort basis.",
+  note: "Word documents are converted in your browser - formatting is preserved on a best-effort basis.",
   async process(files: File[], _opts: OptionValues): Promise<PdfOutput[]> {
     const file = files[0];
     if (!file) throw new Error("Please choose a Word document.");
     if (!/\.docx?$/i.test(file.name)) throw new Error("Please upload a .doc or .docx file.");
 
-    // Browser entry point — avoids mammoth's node-targeted default. The browser
+    // Browser entry point - avoids mammoth's node-targeted default. The browser
     // build ships no .d.ts, so we borrow the typed node entry's shape.
-    // @ts-expect-error — "mammoth/mammoth.browser" has no declaration file.
+    // @ts-expect-error - "mammoth/mammoth.browser" has no declaration file.
     const mammoth = (await import("mammoth/mammoth.browser")) as MammothModule;
     const arrayBuffer = await file.arrayBuffer();
     const result = await mammoth.convertToHtml({ arrayBuffer });

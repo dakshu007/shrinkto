@@ -1,4 +1,4 @@
-// Central tool registry — drives the mega-menu, all-tools grid, sitemap,
+// Central tool registry - drives the mega-menu, all-tools grid, sitemap,
 // related-tools sections, and per-tool routing metadata.
 
 export type ToolCategory =
@@ -110,7 +110,7 @@ export function categoryAccent(category: ToolCategory): string {
   return CATEGORIES.find((c) => c.key === category)?.accentVar ?? "--color-primary";
 }
 
-/** Related tools for a given slug — same category first, then fill from kind. */
+/** Related tools for a given slug - same category first, then fill from kind. */
 export function relatedTools(slug: string, limit = 4): Tool[] {
   const tool = TOOLS_BY_SLUG[slug];
   if (!tool) return [];

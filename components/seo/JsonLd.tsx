@@ -1,6 +1,6 @@
 import { SITE } from "@/lib/content/seo-map";
 
-/** Render a JSON-LD <script> block. Server component — safe, no hydration. */
+/** Render a JSON-LD <script> block. Server component - safe, no hydration. */
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script

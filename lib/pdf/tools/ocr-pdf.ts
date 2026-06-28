@@ -1,4 +1,4 @@
-// ocr-pdf — run Tesseract OCR over every page of a (typically scanned) PDF and
+// ocr-pdf - run Tesseract OCR over every page of a (typically scanned) PDF and
 // emit a searchable PDF: the original page image stays as the visible layer and
 // the recognized words are drawn as an invisible text overlay so the result is
 // selectable and searchable. Everything runs on-device in the browser.
@@ -11,7 +11,7 @@ export const def: ToolModule = {
   accept: "application/pdf",
   multiple: false,
   cta: "Make searchable",
-  note: "OCR runs fully on-device in your browser — nothing is uploaded. Large or multi-page documents can take a while.",
+  note: "OCR runs fully on-device in your browser - nothing is uploaded. Large or multi-page documents can take a while.",
   options: [
     {
       key: "lang",
@@ -39,7 +39,7 @@ export const def: ToolModule = {
     const { PDFDocument, StandardFonts } = await import("pdf-lib");
     const { createWorker } = await import("tesseract.js");
 
-    // Tesseract.js bundles its own CDN-less worker/core/lang defaults — no paths.
+    // Tesseract.js bundles its own CDN-less worker/core/lang defaults - no paths.
     const worker = await createWorker(lang);
     const out = await PDFDocument.create();
     const font = await out.embedFont(StandardFonts.Helvetica);
@@ -67,7 +67,7 @@ export const def: ToolModule = {
                 const wordHeight = Math.max(1, y1 - y0);
                 const wordWidth = Math.max(1, x1 - x0);
                 // Start from a font size near the glyph height, then shrink it so
-                // the invisible text never overruns the visible word's width —
+                // the invisible text never overruns the visible word's width -
                 // keeps the selection region aligned with what the user sees.
                 let size = wordHeight;
                 const naturalWidth = font.widthOfTextAtSize(text, size);

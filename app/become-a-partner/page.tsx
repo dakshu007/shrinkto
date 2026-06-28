@@ -31,7 +31,7 @@ export default function BecomePartnerPage() {
           <h1 className={styles.h1}>Become a ShrinkTo partner</h1>
           <p className={styles.lede}>
             Partner with ShrinkTo to reach a global audience of people who care about fast, private
-            file tools. Apply below — once we approve your brand, you&apos;ll be featured in our{" "}
+            file tools. Apply below - once we approve your brand, you&apos;ll be featured in our{" "}
             <Link href="/partners">partner directory</Link>.
           </p>
           <div className={styles.heroCta}>
@@ -64,7 +64,7 @@ export default function BecomePartnerPage() {
       <section className={`container ${styles.section}`}>
         <div className={styles.cta}>
           <h2 className={styles.ctaTitle}>Ready to partner with ShrinkTo?</h2>
-          <p>Tell us about your brand — it only takes a minute.</p>
+          <p>Tell us about your brand - it only takes a minute.</p>
           <BecomePartnerCta />
         </div>
       </section>

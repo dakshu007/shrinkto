@@ -11,19 +11,19 @@ export default function AboutPage() {
     <>
       <Prose
         title="About ShrinkTo"
-        lede="ShrinkTo is a privacy-first toolkit for compressing images and working with PDFs — and it all runs entirely in your browser."
+        lede="ShrinkTo is a privacy-first toolkit for compressing images and working with PDFs - and it all runs entirely in your browser."
       >
         <h2>Privacy by architecture</h2>
         <p>
           Most online file tools upload your documents to a server, process them there, and send
-          them back. ShrinkTo doesn&apos;t. Every operation — compression, conversion, merging,
-          editing — happens locally on your own device using modern WebAssembly codecs and browser
+          them back. ShrinkTo doesn&apos;t. Every operation - compression, conversion, merging,
+          editing - happens locally on your own device using modern WebAssembly codecs and browser
           APIs. <strong>Your files never leave your computer.</strong> You can verify it yourself:
           open your browser&apos;s Network tab and watch it stay empty while you work.
         </p>
         <p>
           Because there&apos;s no server doing the heavy lifting, there&apos;s no server cost to
-          recover — which is why ShrinkTo is free, unlimited, and needs no signup.
+          recover - which is why ShrinkTo is free, unlimited, and needs no signup.
         </p>
 
         <h2>What you can do</h2>
@@ -31,7 +31,7 @@ export default function AboutPage() {
           <li>Compress JPG, PNG, WebP and AVIF images to an exact file size.</li>
           <li>Merge, split, rotate, watermark, number, compress and convert PDFs.</li>
           <li>Convert images to and from PDF, and between image formats.</li>
-          <li>Protect and unlock PDFs with a password — all without uploading anything.</li>
+          <li>Protect and unlock PDFs with a password - all without uploading anything.</li>
         </ul>
 
         <h2>Who builds it</h2>

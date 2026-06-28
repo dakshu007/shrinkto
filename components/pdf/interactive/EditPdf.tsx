@@ -156,7 +156,7 @@ export function EditPdf() {
       } catch (e) {
         setError(
           e instanceof Error
-            ? `Could not open this PDF — ${e.message}`
+            ? `Could not open this PDF - ${e.message}`
             : "Could not open this PDF.",
         );
         setStatus("idle");
@@ -484,7 +484,7 @@ export function EditPdf() {
       setStatus("ready");
     } catch (e) {
       setError(
-        e instanceof Error ? `Could not save — ${e.message}` : "Could not save the PDF.",
+        e instanceof Error ? `Could not save - ${e.message}` : "Could not save the PDF.",
       );
       setStatus("ready");
     }

@@ -406,6 +406,6 @@ function saveHistory(name: string, original: number, compressed: number) {
     list.unshift({ name, original, compressed, at: Date.now() });
     localStorage.setItem(key, JSON.stringify(list.slice(0, 50)));
   } catch {
-    // localStorage may be unavailable (private mode) — ignore.
+    // localStorage may be unavailable (private mode) - ignore.
   }
 }

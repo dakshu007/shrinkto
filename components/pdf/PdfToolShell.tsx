@@ -33,7 +33,7 @@ export function PdfToolShell({ slug, cta }: { slug: string; cta: string }) {
         <h2>In active development</h2>
         <p>{tool.note}</p>
         <p className={styles.soonSub}>
-          Meanwhile, explore the tools that are ready below — they all run 100% in your browser.
+          Meanwhile, explore the tools that are ready below - they all run 100% in your browser.
         </p>
         <Button href="/all-tools" variant="secondary">
           Browse working tools
@@ -203,7 +203,7 @@ export function PdfToolShell({ slug, cta }: { slug: string; cta: string }) {
       {status === "done" && results.length > 0 && (
         <div className={styles.results}>
           <p className={styles.resultsHead}>
-            <CheckCircle2 size={18} aria-hidden /> Done — {results.length} file
+            <CheckCircle2 size={18} aria-hidden /> Done - {results.length} file
             {results.length > 1 ? "s" : ""} ready
           </p>
           <div className={styles.resultList}>

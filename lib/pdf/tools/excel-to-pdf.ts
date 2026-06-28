@@ -1,4 +1,4 @@
-// excel-to-pdf — convert a .xls/.xlsx/.csv workbook to a paginated A4 PDF.
+// excel-to-pdf - convert a .xls/.xlsx/.csv workbook to a paginated A4 PDF.
 // SheetJS reads the workbook and renders each sheet to an HTML table; we lay the
 // tables out in an off-screen element, rasterize with html2canvas, and slice the
 // tall canvas into A4 (landscape) pages stamped onto a jsPDF. Browser only.

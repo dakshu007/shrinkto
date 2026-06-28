@@ -26,12 +26,12 @@ const FEATURES = [
   {
     icon: ShieldCheck,
     title: "100% private",
-    text: "Every image is processed in your browser with WASM codecs. Nothing is ever uploaded — open DevTools and watch the Network tab stay empty.",
+    text: "Every image is processed in your browser with WASM codecs. Nothing is ever uploaded - open DevTools and watch the Network tab stay empty.",
   },
   {
     icon: Minimize2,
     title: "Exact-KB targeting",
-    text: "Need exactly 100 KB? A binary search on quality hits your target on the first try — something TinyPNG and Squoosh can't do.",
+    text: "Need exactly 100 KB? A binary search on quality hits your target on the first try - something TinyPNG and Squoosh can't do.",
   },
   {
     icon: Gauge,
@@ -52,7 +52,7 @@ const STEPS = [
 ];
 
 const COMPARISON: { label: string; shrinkto: boolean; others: boolean | string }[] = [
-  { label: "No upload — files stay on your device", shrinkto: true, others: false },
+  { label: "No upload - files stay on your device", shrinkto: true, others: false },
   { label: "Exact KB-size targeting", shrinkto: true, others: false },
   { label: "Unlimited images, no daily cap", shrinkto: true, others: "20/day" },
   { label: "AVIF & WebP output", shrinkto: true, others: "Paid" },
@@ -63,15 +63,15 @@ const COMPARISON: { label: string; shrinkto: boolean; others: boolean | string }
 const FAQS = [
   {
     q: "Is ShrinkTo really free?",
-    a: "Yes — completely free with no limits and no signup. Because everything runs in your browser on your own device, there's no server cost for us to recover, so there's nothing to charge for.",
+    a: "Yes - completely free with no limits and no signup. Because everything runs in your browser on your own device, there's no server cost for us to recover, so there's nothing to charge for.",
   },
   {
     q: "Are my images uploaded to a server?",
-    a: "No. Every compression happens locally in your browser using WebAssembly codecs. Your files never leave your device — you can verify this by opening your browser's Network tab while you compress.",
+    a: "No. Every compression happens locally in your browser using WebAssembly codecs. Your files never leave your device - you can verify this by opening your browser's Network tab while you compress.",
   },
   {
     q: "How does compressing to an exact size work?",
-    a: "We run a binary search on encoder quality (and downscale only if needed) until the output lands within 5% of your target size. This hits an exact KB target reliably — most other tools only let you pick a vague quality slider.",
+    a: "We run a binary search on encoder quality (and downscale only if needed) until the output lands within 5% of your target size. This hits an exact KB target reliably - most other tools only let you pick a vague quality slider.",
   },
   {
     q: "Which formats are supported?",
@@ -79,7 +79,7 @@ const FAQS = [
   },
   {
     q: "Is there a limit on file size or how many images I can do?",
-    a: "No limits. Compress one image or hundreds at once, of any size your device can handle — there's no daily cap and no per-file ceiling.",
+    a: "No limits. Compress one image or hundreds at once, of any size your device can handle - there's no daily cap and no per-file ceiling.",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function HomePage() {
             <h1 className={styles.h1}>{seo.h1}</h1>
             <p className={styles.lede}>
               Drop a photo, pick a size, download. ShrinkTo compresses JPG, PNG, WebP and AVIF to an
-              exact KB target right in your browser — no upload, no signup, no limits.
+              exact KB target right in your browser - no upload, no signup, no limits.
             </p>
           </div>
           <Compressor initialTargetKb={100} />
@@ -192,7 +192,7 @@ export default function HomePage() {
             A complete file toolkit
           </h2>
           <p className={styles.sectionLede}>
-            Everything iLovePDF offers — merge, split, convert, edit, protect — plus a best-in-class
+            Everything iLovePDF offers - merge, split, convert, edit, protect - plus a best-in-class
             image compressor. All free, all in your browser.
           </p>
           <Button href="/all-tools" variant="secondary">
@@ -224,7 +224,7 @@ export default function HomePage() {
       </section>
 
       <p className={styles.builtBy}>
-        Built by <Link href="/about">{SITE.author}</Link> — privacy-first file tools for everyone.
+        Built by <Link href="/about">{SITE.author}</Link> - privacy-first file tools for everyone.
       </p>
     </>
   );

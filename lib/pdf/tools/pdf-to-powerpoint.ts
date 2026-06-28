@@ -1,4 +1,4 @@
-// pdf-to-powerpoint — render each PDF page to an image and drop it full-bleed
+// pdf-to-powerpoint - render each PDF page to an image and drop it full-bleed
 // onto its own slide. High fidelity: every slide is the rasterized page.
 
 import type { ToolModule } from "@/lib/pdf/types";

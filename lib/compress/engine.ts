@@ -1,4 +1,4 @@
-// Image compression engine — runs inside a Web Worker (or on the main thread
+// Image compression engine - runs inside a Web Worker (or on the main thread
 // as a fallback). Implements the exact-KB binary-search targeting that is the
 // product's signature feature. Uses OffscreenCanvas as the reliable baseline
 // encoder and lazily upgrades JPEG to MozJPEG (jSquash WASM) when available.
@@ -51,7 +51,7 @@ function scaleImageData(src: ImageData, scale: number): ImageData {
   return drawScaled(src, w, h);
 }
 
-/** Composite onto white — JPEG has no alpha channel. */
+/** Composite onto white - JPEG has no alpha channel. */
 function flattenOntoWhite(src: ImageData): ImageData {
   const canvas = new OffscreenCanvas(src.width, src.height);
   const ctx = canvas.getContext("2d")!;
@@ -172,7 +172,7 @@ export async function compressImage(
       if (!smallest || bytes.byteLength < smallest.outSize) smallest = candidate;
       if (bytes.byteLength <= targetBytes) return candidate;
     }
-    return smallest!; // best effort — flag reachedTarget=false
+    return smallest!; // best effort - flag reachedTarget=false
   }
 
   // JPEG / WebP / AVIF → binary search on quality, then downscale if needed.
@@ -217,6 +217,6 @@ export async function compressImage(
   }
 
   if (best) return best;
-  // Could not reach target at any scale — return the smallest we produced.
+  // Could not reach target at any scale - return the smallest we produced.
   return { ...smallest!, reachedTarget: false };
 }

@@ -20,7 +20,7 @@ const GA_ID = "G-QDNJGVVZJ1";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — ${SITE.tagline}`,
+    default: `${SITE.name} - ${SITE.tagline}`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
@@ -54,7 +54,7 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <ServiceWorker />
 
-        {/* Google Analytics (gtag.js) — loaded after the page is interactive
+        {/* Google Analytics (gtag.js) - loaded after the page is interactive
             so it never blocks rendering or hurts Core Web Vitals. */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}

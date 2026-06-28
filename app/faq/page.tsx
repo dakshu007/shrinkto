@@ -7,7 +7,7 @@ export const metadata: Metadata = metadataFor("/faq");
 const FAQS = [
   {
     q: "Is ShrinkTo free?",
-    a: "Yes — every tool is completely free, with no daily limits, no file-size caps, and no signup. Because all processing happens on your own device, there's no server cost for us to recover.",
+    a: "Yes - every tool is completely free, with no daily limits, no file-size caps, and no signup. Because all processing happens on your own device, there's no server cost for us to recover.",
   },
   {
     q: "Do my files get uploaded?",

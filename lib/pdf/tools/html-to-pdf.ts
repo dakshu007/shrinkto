@@ -1,4 +1,4 @@
-// html-to-pdf — render an uploaded HTML (or plain-text) file into an off-screen
+// html-to-pdf - render an uploaded HTML (or plain-text) file into an off-screen
 // A4-width element, rasterize with html2canvas, then paginate the tall canvas
 // into A4 image slices placed on jsPDF pages.
 
@@ -32,7 +32,7 @@ export const def: ToolModule = {
         html,
       )}</pre>`;
     } else {
-      // Defensively strip scripts (and their content) — we only render markup.
+      // Defensively strip scripts (and their content) - we only render markup.
       html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
     }
 

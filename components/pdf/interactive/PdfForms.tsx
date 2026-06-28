@@ -168,7 +168,7 @@ export function PdfForms() {
       } catch (e) {
         setError(
           e instanceof Error
-            ? `Could not read this PDF — it may be corrupted or password-protected. (${e.message})`
+            ? `Could not read this PDF - it may be corrupted or password-protected. (${e.message})`
             : "Could not read this PDF.",
         );
         setStatus("error");
@@ -451,7 +451,7 @@ function FieldControl({
           value={typeof field.value === "string" ? field.value : ""}
           onChange={(e) => onChange(field.name, e.target.value)}
         >
-          <option value="">— none —</option>
+          <option value="">- none -</option>
           {field.options.map((o) => (
             <option key={o} value={o}>
               {o}

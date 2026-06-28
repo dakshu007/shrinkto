@@ -1,4 +1,4 @@
-// pdf-to-word — extract a PDF's text and rebuild it as an editable .docx.
+// pdf-to-word - extract a PDF's text and rebuild it as an editable .docx.
 // Formatting is intentionally simplified: each detected line becomes a
 // paragraph, with a page break between source pages.
 
@@ -10,7 +10,7 @@ export const def: ToolModule = {
   accept: "application/pdf",
   multiple: false,
   cta: "Convert to Word",
-  note: "Text is extracted and rebuilt as editable paragraphs — original layout, fonts and images are not preserved.",
+  note: "Text is extracted and rebuilt as editable paragraphs - original layout, fonts and images are not preserved.",
   async process(files) {
     const { Document, Packer, Paragraph, TextRun } = await import("docx");
 

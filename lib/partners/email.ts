@@ -1,5 +1,5 @@
 // Notifies the site owner when a partner applies. Uses Resend's REST API if
-// RESEND_API_KEY is set — otherwise it's a no-op and approval happens via the
+// RESEND_API_KEY is set - otherwise it's a no-op and approval happens via the
 // admin page. No SDK needed; we just POST to the API.
 
 import type { Partner } from "./types";
@@ -44,7 +44,7 @@ export async function notifyOwnerOfApplication(partner: Partner): Promise<boolea
       body: JSON.stringify({
         from: FROM,
         to: [OWNER_EMAIL],
-        subject: `New partner application — ${partner.brandName}`,
+        subject: `New partner application - ${partner.brandName}`,
         html,
       }),
     });

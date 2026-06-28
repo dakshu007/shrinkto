@@ -1,7 +1,7 @@
 // PowerPoint → PDF (powerpoint-to-pdf). A .pptx is a ZIP of XML parts; we read
 // it with jszip, pull each slide's text runs (<a:t>) grouped by paragraph
 // (<a:p>), associate embedded media via the slide's rels, and lay everything out
-// on landscape pages with jsPDF. Best-effort text + image extraction — NOT a
+// on landscape pages with jsPDF. Best-effort text + image extraction - NOT a
 // pixel-perfect renderer (positions, fonts, shapes, charts are not preserved).
 
 import type { ToolModule, PdfOutput, OptionValues } from "@/lib/pdf/types";
@@ -114,7 +114,7 @@ export const def: ToolModule = {
   accept: ".ppt,.pptx",
   multiple: false,
   cta: "Convert to PDF",
-  note: "Best-effort conversion: text and embedded images are extracted from each slide and laid out on landscape pages. Exact fonts, positions, shapes, charts and animations are not preserved. Legacy binary .ppt files are not supported — please save as .pptx.",
+  note: "Best-effort conversion: text and embedded images are extracted from each slide and laid out on landscape pages. Exact fonts, positions, shapes, charts and animations are not preserved. Legacy binary .ppt files are not supported - please save as .pptx.",
   async process(files: File[], _opts: OptionValues): Promise<PdfOutput[]> {
     const file = files[0];
     if (!file) throw new Error("Please choose a PowerPoint file.");

@@ -22,7 +22,7 @@ const RENDER_SCALE = 2;
 /** A redaction rectangle stored in normalized (0..1) coordinates of the page. */
 interface Redaction {
   id: string;
-  /** left, top, width, height — all fractions of the page dimension. */
+  /** left, top, width, height - all fractions of the page dimension. */
   x: number;
   y: number;
   w: number;
@@ -282,7 +282,7 @@ export function RedactPdf() {
         <AlertCircle size={18} aria-hidden />
         <span>
           Redaction is permanent. Each page is flattened to an image with the black
-          boxes baked in, so the hidden text and content are removed entirely — they
+          boxes baked in, so the hidden text and content are removed entirely - they
           cannot be recovered from the output file.
         </span>
       </p>

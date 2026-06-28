@@ -372,7 +372,7 @@ export function ComparePdf() {
         {status === "done" && avgDiff !== null && (
           <>
             <CheckCircle2 size={16} aria-hidden />
-            {`Comparison ready — ${comparable.length} page${
+            {`Comparison ready - ${comparable.length} page${
               comparable.length === 1 ? "" : "s"
             } compared, average ${avgDiff.toFixed(2)}% changed.`}
           </>
@@ -465,10 +465,10 @@ export function ComparePdf() {
                     </span>
                   ) : p.a ? (
                     <span className={`${styles.tag} ${styles.tagRemoved}`}>
-                      Removed — only in A
+                      Removed - only in A
                     </span>
                   ) : (
-                    <span className={`${styles.tag} ${styles.tagAdded}`}>Added — only in B</span>
+                    <span className={`${styles.tag} ${styles.tagAdded}`}>Added - only in B</span>
                   )}
                 </header>
 

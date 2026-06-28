@@ -44,7 +44,7 @@ async function fileWrite(list: Partner[]): Promise<void> {
 // ---- Public API ------------------------------------------------------------
 
 // Try Netlify Blobs first (works in the deployed function runtime with the
-// auto-injected context). Locally — `next dev` — getStore has no context and
+// auto-injected context). Locally - `next dev` - getStore has no context and
 // throws, so we fall back to a JSON file. Detecting "am I on Netlify" via env
 // vars is unreliable in the function runtime, so we probe by attempting Blobs.
 async function readAll(): Promise<Partner[]> {

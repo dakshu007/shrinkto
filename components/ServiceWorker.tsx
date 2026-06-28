@@ -9,7 +9,7 @@ export function ServiceWorker() {
     if (!("serviceWorker" in navigator)) return;
     const onLoad = () => {
       navigator.serviceWorker.register("/sw.js").catch(() => {
-        // Registration failures are non-fatal — the app works without it.
+        // Registration failures are non-fatal - the app works without it.
       });
     };
     window.addEventListener("load", onLoad);

@@ -21,7 +21,7 @@ export function Footer() {
               ShrinkTo
             </Link>
             <p className={styles.tagline}>
-              Private, in-browser image &amp; PDF tools. No upload, no signup, no limits — your
+              Private, in-browser image &amp; PDF tools. No upload, no signup, no limits - your
               files never leave your device.
             </p>
           </div>

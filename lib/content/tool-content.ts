@@ -21,7 +21,7 @@ export interface ToolContent {
 const PRIVACY_FAQS: QA[] = [
   {
     q: "Are my files uploaded to a server?",
-    a: "No. Everything runs locally in your browser — your files never leave your device. You can confirm this by opening your browser's Network tab while you use the tool.",
+    a: "No. Everything runs locally in your browser - your files never leave your device. You can confirm this by opening your browser's Network tab while you use the tool.",
   },
   {
     q: "Is it free? Do I need to sign up?",
@@ -39,7 +39,7 @@ function imageSteps(verb: string): Step[] {
 
 function pdfSteps(verb: string): Step[] {
   return [
-    { name: "Add your PDF", text: "Drag a file in or click to browse — it stays on your device." },
+    { name: "Add your PDF", text: "Drag a file in or click to browse - it stays on your device." },
     { name: "Set options", text: `Adjust the options if you like, then ShrinkTo ${verb} right in your browser.` },
     { name: "Download", text: "Save your finished file. Nothing was ever uploaded." },
   ];
@@ -49,7 +49,7 @@ export function getToolContent(tool: Tool): ToolContent {
   const name = tool.label.toLowerCase();
   const isImage = tool.kind === "image";
   return {
-    answer: `To ${name}, drop your ${isImage ? "image" : "file"} below — it's processed instantly in your browser, free, with no upload and no signup.`,
+    answer: `To ${name}, drop your ${isImage ? "image" : "file"} below - it's processed instantly in your browser, free, with no upload and no signup.`,
     steps: isImage ? imageSteps("processes it") : pdfSteps("does the rest"),
     faqs: [
       {
@@ -58,7 +58,7 @@ export function getToolContent(tool: Tool): ToolContent {
       },
       {
         q: `Is the ${name} tool safe to use?`,
-        a: `Yes — it's one of the most private options available, because your file is processed entirely on your own device and is never sent to any server.`,
+        a: `Yes - it's one of the most private options available, because your file is processed entirely on your own device and is never sent to any server.`,
       },
       ...PRIVACY_FAQS,
     ],
@@ -69,7 +69,7 @@ export function getLandingContent(landing: LandingPage): ToolContent {
   const kb = landing.targetKb;
   const sizeLabel = kb ? (kb >= 1024 ? `${kb / 1024} MB` : `${kb} KB`) : "your target size";
   return {
-    answer: `To ${landing.h1.toLowerCase()}, drop your image below — ShrinkTo hits ${sizeLabel} exactly using a quality binary search, free and entirely in your browser.`,
+    answer: `To ${landing.h1.toLowerCase()}, drop your image below - ShrinkTo hits ${sizeLabel} exactly using a quality binary search, free and entirely in your browser.`,
     steps: imageSteps(`compresses it to ${sizeLabel}`),
     faqs: [
       {

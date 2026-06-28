@@ -25,7 +25,7 @@
   transform: none;
 }
 
-/* Sizes — all keep ≥44px tap target at md/lg */
+/* Sizes - all keep ≥44px tap target at md/lg */
 .sm {
   font-size: var(--text-sm);
   padding: 8px 14px;

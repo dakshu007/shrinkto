@@ -217,7 +217,7 @@ export function SignPdf() {
     }
     const url = trimToTransparentPng(canvas);
     if (!url) {
-      setError("Nothing to save — the pad looks empty.");
+      setError("Nothing to save - the pad looks empty.");
       return;
     }
     setError("");

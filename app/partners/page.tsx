@@ -7,7 +7,7 @@ import styles from "./partners.module.css";
 
 export const metadata: Metadata = metadataFor("/partners");
 
-// Reflect approvals immediately — render per request.
+// Reflect approvals immediately - render per request.
 export const dynamic = "force-dynamic";
 
 export default async function PartnersPage() {
@@ -31,7 +31,7 @@ export default async function PartnersPage() {
       {partners.length === 0 ? (
         <div className={styles.empty}>
           <p>Our partner directory is just getting started.</p>
-          <p className={styles.emptySub}>Be one of the first — apply above.</p>
+          <p className={styles.emptySub}>Be one of the first - apply above.</p>
         </div>
       ) : (
         <div className={styles.grid}>

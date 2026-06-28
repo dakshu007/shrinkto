@@ -9,7 +9,7 @@ export const SITE = {
   url: "https://shrinkto.com",
   tagline: "Free, private, in-browser file tools",
   description:
-    "Compress images to an exact size and run a full PDF tool suite — 100% in your browser. No upload, no signup, no limits.",
+    "Compress images to an exact size and run a full PDF tool suite - 100% in your browser. No upload, no signup, no limits.",
   author: "Dakshesh B",
   authorUrl: "https://dakshesh.co.in",
   twitter: "@shrinkto",
@@ -30,7 +30,7 @@ export interface SeoEntry {
 // Explicit, hand-tuned entries for the highest-traffic pages.
 const EXPLICIT: Record<string, SeoEntry> = {
   "/": {
-    title: "Compress Images to an Exact Size — Free, No Upload | ShrinkTo",
+    title: "Compress Images to an Exact Size - Free, No Upload | ShrinkTo",
     description:
       "Compress JPG, PNG, WebP or AVIF to an exact KB size in your browser. No upload, no signup, unlimited. Your files never leave your device.",
     focusKeyword: "image compressor",
@@ -44,7 +44,7 @@ const EXPLICIT: Record<string, SeoEntry> = {
     h1: "Compress images to an exact size",
   },
   "/compress-image": {
-    title: "Compress Image — To Exact KB, Free & Private | ShrinkTo",
+    title: "Compress Image - To Exact KB, Free & Private | ShrinkTo",
     description:
       "Compress JPG, PNG, WebP and AVIF to an exact file size. In-browser, no upload, no signup, unlimited and free.",
     focusKeyword: "compress image",
@@ -52,7 +52,7 @@ const EXPLICIT: Record<string, SeoEntry> = {
     h1: "Compress Image",
   },
   "/compress-pdf": {
-    title: "Compress PDF — Reduce PDF Size Free, No Upload | ShrinkTo",
+    title: "Compress PDF - Reduce PDF Size Free, No Upload | ShrinkTo",
     description:
       "Compress PDF files and reduce size while keeping quality. 100% in-browser, no upload, unlimited and free. Beat email size limits in seconds.",
     focusKeyword: "compress pdf",
@@ -60,7 +60,7 @@ const EXPLICIT: Record<string, SeoEntry> = {
     h1: "Compress PDF",
   },
   "/pdf-to-word": {
-    title: "PDF to Word Converter — Free & Private | ShrinkTo",
+    title: "PDF to Word Converter - Free & Private | ShrinkTo",
     description:
       "Convert PDF to editable Word (DOC/DOCX) free in your browser. No upload, no signup, no watermark. Files never leave your device.",
     focusKeyword: "pdf to word converter",
@@ -68,7 +68,7 @@ const EXPLICIT: Record<string, SeoEntry> = {
     h1: "PDF to Word Converter",
   },
   "/merge-pdf": {
-    title: "Merge PDF — Combine PDF Files Free, No Upload | ShrinkTo",
+    title: "Merge PDF - Combine PDF Files Free, No Upload | ShrinkTo",
     description:
       "Merge multiple PDFs into one in your browser. Reorder before combining. No upload, no signup, unlimited and free.",
     focusKeyword: "merge pdf",
@@ -93,7 +93,7 @@ export const LANDING_PAGES: LandingPage[] = [
     targetKb: kb,
     kind: "image" as const,
     title: `Compress Image to ${kb}KB Online Free | ShrinkTo`,
-    description: `Compress JPG, PNG or WebP to exactly ${kb}KB in your browser. Hit the exact size on the first try — no upload, no signup, unlimited.`,
+    description: `Compress JPG, PNG or WebP to exactly ${kb}KB in your browser. Hit the exact size on the first try - no upload, no signup, unlimited.`,
     focusKeyword: `compress image to ${kb}kb`,
     secondaryKeywords: [`reduce image to ${kb}kb`, `${kb}kb photo compressor`, `compress jpg to ${kb}kb`, `image to ${kb}kb online`],
     h1: `Compress Image to ${kb} KB`,
@@ -124,7 +124,7 @@ export const LANDING_PAGES: LandingPage[] = [
     width: 600,
     height: 600,
     kind: "image",
-    title: "Passport Photo Resizer — Free, Any Size | ShrinkTo",
+    title: "Passport Photo Resizer - Free, Any Size | ShrinkTo",
     description: "Resize and compress a passport photo to any required size and dimensions, free in your browser. No upload, no signup.",
     focusKeyword: "passport photo resizer",
     secondaryKeywords: ["passport photo size", "resize passport photo", "passport photo compressor", "passport photo maker"],
@@ -136,7 +136,7 @@ export const LANDING_PAGES: LandingPage[] = [
     width: 413,
     height: 531,
     kind: "image",
-    title: "Resume Photo Compressor — Free & Private | ShrinkTo",
+    title: "Resume Photo Compressor - Free & Private | ShrinkTo",
     description: "Compress and resize a photo for job applications and resumes to any size limit, free in your browser. No upload.",
     focusKeyword: "resume photo compressor",
     secondaryKeywords: ["compress photo for resume", "resume photo size", "job application photo compressor"],
@@ -148,7 +148,7 @@ export const LANDING_PAGES: LandingPage[] = [
     width: 400,
     height: 400,
     kind: "image",
-    title: "Profile Picture Resizer — LinkedIn, X & More | ShrinkTo",
+    title: "Profile Picture Resizer - LinkedIn, X & More | ShrinkTo",
     description: "Resize and compress a profile picture for LinkedIn, X, Instagram and more, free in your browser. No upload, no signup.",
     focusKeyword: "profile picture resizer",
     secondaryKeywords: ["resize profile picture", "linkedin photo size", "social profile photo compressor"],
@@ -163,28 +163,28 @@ export const LANDING_BY_SLUG: Record<string, LandingPage> = Object.fromEntries(
 // Static pages.
 const STATIC: Record<string, SeoEntry> = {
   "/all-tools": {
-    title: "All Tools — Free Image & PDF Toolkit | ShrinkTo",
+    title: "All Tools - Free Image & PDF Toolkit | ShrinkTo",
     description: "Every ShrinkTo tool in one place: compress images, merge and split PDFs, convert files and more. All free, all in your browser.",
     focusKeyword: "free pdf and image tools",
     secondaryKeywords: ["online pdf tools", "image tools", "free file tools", "browser pdf tools"],
     h1: "All Tools",
   },
   "/convert": {
-    title: "Convert Files — Image & PDF Converters Free | ShrinkTo",
+    title: "Convert Files - Image & PDF Converters Free | ShrinkTo",
     description: "Convert images and PDFs in your browser: PDF to Word, JPG to PDF, HEIC to JPG and more. No upload, no signup.",
     focusKeyword: "file converter",
     secondaryKeywords: ["pdf converter", "image converter", "convert pdf online", "free file converter"],
     h1: "Convert",
   },
   "/about": {
-    title: "About ShrinkTo — Private, Browser-Based File Tools",
+    title: "About ShrinkTo - Private, Browser-Based File Tools",
     description: "ShrinkTo is a privacy-first, 100% in-browser image and PDF toolkit built by Dakshesh B. No upload, no signup, no limits.",
     focusKeyword: "about shrinkto",
     secondaryKeywords: ["shrinkto privacy", "browser file tools", "no upload pdf tools"],
     h1: "About ShrinkTo",
   },
   "/faq": {
-    title: "FAQ — ShrinkTo Image & PDF Tools",
+    title: "FAQ - ShrinkTo Image & PDF Tools",
     description: "Answers about ShrinkTo: is it free, is it private, do files get uploaded, are there limits? Everything you need to know.",
     focusKeyword: "shrinkto faq",
     secondaryKeywords: ["is shrinkto free", "is shrinkto safe", "shrinkto privacy"],
@@ -212,7 +212,7 @@ const STATIC: Record<string, SeoEntry> = {
     h1: "Contact",
   },
   "/blog": {
-    title: "Blog — Image & PDF Guides | ShrinkTo",
+    title: "Blog - Image & PDF Guides | ShrinkTo",
     description: "Practical guides on compressing images, shrinking PDFs, file formats, privacy and more.",
     focusKeyword: "image and pdf guides",
     secondaryKeywords: ["compress image guide", "pdf tips", "image format guide"],
@@ -239,8 +239,8 @@ function generatedToolEntry(slug: string): SeoEntry | null {
   const tool = TOOLS.find((t) => t.slug === slug);
   if (!tool) return null;
   return {
-    title: `${tool.label} — Free, No Upload, No Signup | ShrinkTo`,
-    description: `${tool.description} 100% in your browser — no upload, no signup, unlimited and free.`,
+    title: `${tool.label} - Free, No Upload, No Signup | ShrinkTo`,
+    description: `${tool.description} 100% in your browser - no upload, no signup, unlimited and free.`,
     focusKeyword: tool.label.toLowerCase(),
     secondaryKeywords: [
       `${tool.label.toLowerCase()} online`,
@@ -264,7 +264,7 @@ export function getSeo(path: string): SeoEntry {
   const gen = generatedToolEntry(slug);
   if (gen) return gen;
   return {
-    title: `${SITE.name} — ${SITE.tagline}`,
+    title: `${SITE.name} - ${SITE.tagline}`,
     description: SITE.description,
     focusKeyword: SITE.name.toLowerCase(),
     secondaryKeywords: [],

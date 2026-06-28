@@ -1,4 +1,4 @@
-// pdf-to-excel — best-effort table reconstruction. Text items from each PDF
+// pdf-to-excel - best-effort table reconstruction. Text items from each PDF
 // page are clustered into rows (by y) and columns (by x start), producing a
 // 2D grid that's written as one worksheet per page in an .xlsx workbook.
 
@@ -89,7 +89,7 @@ export const def: ToolModule = {
 
     if (!extractedAny) {
       throw new Error(
-        "No selectable text found — this looks like a scanned PDF. Try OCR PDF first, then convert.",
+        "No selectable text found - this looks like a scanned PDF. Try OCR PDF first, then convert.",
       );
     }
 
