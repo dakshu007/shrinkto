@@ -2,11 +2,13 @@
   padding-bottom: var(--space-8);
 }
 .hero {
-  padding: var(--space-10) 0 var(--space-8);
+  padding: var(--space-8) 0 var(--space-5);
   text-align: center;
   background: radial-gradient(70% 60% at 50% -10%, var(--color-primary-light), transparent 70%);
 }
-.hero .container {
+/* `.container` is a global class, so it must be wrapped in :global() to match
+   inside this CSS module — otherwise this flex-centering silently never applies. */
+.hero :global(.container) {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,11 +28,20 @@
 .h1 {
   font-size: clamp(2rem, 4vw, var(--text-5xl));
   letter-spacing: -0.03em;
+  line-height: 1.1;
+  text-wrap: balance;
 }
 .lede {
   font-size: var(--text-lg);
+  line-height: 1.6;
   color: var(--color-text-secondary);
-  max-width: 620px;
+  max-width: 580px;
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
+}
+.heroCta {
+  margin-top: var(--space-2);
 }
 
 .section {

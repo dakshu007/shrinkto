@@ -34,7 +34,9 @@ export default function BecomePartnerPage() {
             file tools. Apply below — once we approve your brand, you&apos;ll be featured in our{" "}
             <Link href="/partners">partner directory</Link>.
           </p>
-          <BecomePartnerCta />
+          <div className={styles.heroCta}>
+            <BecomePartnerCta />
+          </div>
         </div>
       </section>
 
