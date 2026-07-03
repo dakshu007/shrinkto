@@ -8,7 +8,7 @@ import { Faq } from "@/components/Faq";
 import { Toc } from "@/components/blog/Toc";
 import { Button } from "@/components/ui/Button";
 import { JsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
-import { ChevronRight } from "@/components/icons";
+import { ChevronRight, ArrowRight } from "@/components/icons";
 import styles from "../blog.module.css";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -148,7 +148,9 @@ function renderBlock(block: Block, i: number) {
         <aside key={i} className={styles.ctaBox}>
           <p className={styles.ctaBoxTitle}>{block.title}</p>
           <p className={styles.ctaBoxText}>{renderInline(block.text)}</p>
-          <Button href={block.href}>{block.label}</Button>
+          <Link href={block.href} className={styles.ctaBtn}>
+            {block.label} <ArrowRight size={18} aria-hidden />
+          </Link>
         </aside>
       );
   }
