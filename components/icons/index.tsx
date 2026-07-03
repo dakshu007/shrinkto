@@ -40,6 +40,7 @@ export {
   // UI / actions
   Upload,
   Download,
+  Search,
   Clipboard,
   X,
   Check,

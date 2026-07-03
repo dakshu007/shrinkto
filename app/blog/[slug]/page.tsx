@@ -35,8 +35,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       url,
       publishedTime: post.date,
       authors: [SITE.author],
+      images: [{ url: `${SITE.url}${post.image}`, width: 960, height: 504 }],
     },
-    twitter: { card: "summary_large_image", title: post.title, description: post.description },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [`${SITE.url}${post.image}`],
+    },
   };
 }
 
@@ -196,6 +202,7 @@ export default async function BlogPostPage({ params }: Params) {
           "@type": "BlogPosting",
           headline: post.title,
           description: post.description,
+          image: `${SITE.url}${post.image}`,
           datePublished: post.date,
           dateModified: post.date,
           mainEntityOfPage: url,

@@ -14,6 +14,8 @@ export interface BlogPost {
   description: string;
   date: string; // ISO
   readMins: number;
+  /** Animated banner (public path). */
+  image: string;
   tags: string[];
   /** Internal links to relevant tools. */
   relatedTools: string[];
@@ -24,6 +26,7 @@ export interface BlogPost {
 export const POSTS: BlogPost[] = [
   {
     slug: "compress-image-to-exact-file-size",
+    image: "/blog/compress-image-to-exact-file-size.gif",
     title: "How to compress an image to an exact file size (complete guide)",
     description:
       "A practical guide to hitting an exact KB target - 20 KB, 100 KB, 1 MB - without trial and error, and without uploading your photos.",
@@ -56,6 +59,7 @@ export const POSTS: BlogPost[] = [
   },
   {
     slug: "compress-images-without-losing-quality",
+    image: "/blog/compress-images-without-losing-quality.gif",
     title: "Compress images without losing quality: how it actually works",
     description:
       "MozJPEG, pngquant, WebP and AVIF explained - why modern codecs shrink files dramatically with no visible difference.",
@@ -81,6 +85,7 @@ export const POSTS: BlogPost[] = [
   },
   {
     slug: "jpg-vs-png-vs-webp-vs-avif",
+    image: "/blog/jpg-vs-png-vs-webp-vs-avif.gif",
     title: "JPG vs PNG vs WebP vs AVIF: which format and when",
     description: "A no-nonsense comparison of the four image formats that matter, with clear rules for when to pick each.",
     date: "2026-01-22",
@@ -108,6 +113,7 @@ export const POSTS: BlogPost[] = [
   },
   {
     slug: "shrink-pdf-for-email-attachment-limits",
+    image: "/blog/shrink-pdf-for-email-attachment-limits.gif",
     title: "How to shrink a PDF for email attachment limits (Gmail, Outlook)",
     description: "Hit Gmail's 25 MB and Outlook's 20 MB limits by compressing your PDF in the browser - no upload required.",
     date: "2026-01-26",
@@ -136,6 +142,7 @@ export const POSTS: BlogPost[] = [
   },
   {
     slug: "browser-based-tools-are-more-private",
+    image: "/blog/browser-based-tools-are-more-private.gif",
     title: "Why browser-based file tools are more private than upload-based ones",
     description: "If a tool uploads your files to its servers, you've already lost control of them. Here's why in-browser tools are fundamentally more private.",
     date: "2026-02-02",
@@ -161,6 +168,7 @@ export const POSTS: BlogPost[] = [
   },
   {
     slug: "compress-images-for-core-web-vitals",
+    image: "/blog/compress-images-for-core-web-vitals.gif",
     title: "Compress images for faster websites & better Core Web Vitals",
     description: "Images are usually the heaviest thing on a page. Here's how to compress them for great Largest Contentful Paint without hurting quality.",
     date: "2026-02-08",
@@ -185,6 +193,7 @@ export const POSTS: BlogPost[] = [
   },
   {
     slug: "heic-to-jpg-convert-iphone-photos",
+    image: "/blog/heic-to-jpg-convert-iphone-photos.gif",
     title: "HEIC to JPG: convert iPhone photos for any platform",
     description: "HEIC keeps iPhone photos small, but not every app accepts it. Here's how to convert to universal JPG without uploading.",
     date: "2026-02-14",
@@ -207,6 +216,7 @@ export const POSTS: BlogPost[] = [
   },
   {
     slug: "best-ilovepdf-smallpdf-tinypng-alternatives-2026",
+    image: "/blog/best-ilovepdf-smallpdf-tinypng-alternatives-2026.gif",
     title: "Best free iLovePDF, Smallpdf & TinyPNG alternatives in 2026",
     description: "Looking for a private, unlimited, no-signup alternative to the big file tools? Here's what to look for - and a strong option.",
     date: "2026-02-20",
