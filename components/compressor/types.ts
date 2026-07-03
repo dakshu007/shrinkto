@@ -10,4 +10,6 @@ export interface CompressItem {
   compressedUrl?: string;
   compressedBlob?: Blob;
   error?: string;
+  /** User-edited download name (base, without extension). */
+  customName?: string;
 }

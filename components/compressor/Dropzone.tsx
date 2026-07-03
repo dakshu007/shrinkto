@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useId } from "react";
-import { Upload } from "@/components/icons";
+import { Upload, Camera } from "@/components/icons";
 import styles from "./Dropzone.module.css";
 
 export function Dropzone({
@@ -9,15 +9,19 @@ export function Dropzone({
   accept = "image/*",
   hint = "JPG · PNG · WebP · AVIF · HEIC",
   title = "Drop images to compress",
+  capture,
 }: {
   onFiles: (files: File[]) => void;
   accept?: string;
   hint?: string;
   title?: string;
+  /** When set, offers a direct camera button (mobile browsers open the camera). */
+  capture?: "environment" | "user";
 }) {
   // The role="button" wrapper derives its accessible name from the visible text
   // (so it always matches), and the native input is aria-hidden.
   const inputRef = useRef<HTMLInputElement>(null);
+  const cameraRef = useRef<HTMLInputElement>(null);
   const id = useId();
 
   function pick() {
@@ -58,6 +62,18 @@ export function Dropzone({
         or <span className={styles.link}>browse files</span> · paste with Ctrl/⌘+V
       </p>
       <p className={styles.hint}>{hint}</p>
+      {capture && (
+        <button
+          type="button"
+          className={styles.cameraBtn}
+          onClick={(e) => {
+            e.stopPropagation();
+            cameraRef.current?.click();
+          }}
+        >
+          <Camera size={18} aria-hidden /> Take photo
+        </button>
+      )}
       <input
         ref={inputRef}
         id={id}
@@ -73,6 +89,22 @@ export function Dropzone({
           e.target.value = "";
         }}
       />
+      {capture && (
+        <input
+          ref={cameraRef}
+          type="file"
+          accept={accept}
+          capture={capture}
+          tabIndex={-1}
+          aria-hidden
+          className="sr-only"
+          onChange={(e) => {
+            const files = Array.from(e.target.files ?? []);
+            if (files.length) onFiles(files);
+            e.target.value = "";
+          }}
+        />
+      )}
     </div>
   );
 }

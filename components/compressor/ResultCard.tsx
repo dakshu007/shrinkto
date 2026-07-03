@@ -11,11 +11,13 @@ export function ResultCard({
   onRemove,
   onDownload,
   onEdit,
+  onRename,
 }: {
   item: CompressItem;
   onRemove: () => void;
   onDownload: () => void;
   onEdit: () => void;
+  onRename: (name: string) => void;
 }) {
   const [pos, setPos] = useState(50);
   const saved = item.result ? percentSaved(item.originalSize, item.result.outSize) : 0;
@@ -58,9 +60,23 @@ export function ResultCard({
 
       <div className={styles.body}>
         <div className={styles.row}>
-          <p className={styles.name} title={item.file.name}>
-            {item.file.name}
-          </p>
+          {item.status === "done" && item.result ? (
+            /* Editable download name (extension stays fixed to the output format). */
+            <span className={styles.nameEdit} title={`Original: ${item.file.name}`}>
+              <input
+                className={styles.nameInput}
+                value={item.customName ?? `${item.file.name.replace(/\.[^.]+$/, "")}-shrinkto`}
+                onChange={(e) => onRename(e.target.value)}
+                aria-label={`Download name for ${item.file.name}`}
+                spellCheck={false}
+              />
+              <span className={styles.nameExt}>.{item.result.format === "jpeg" ? "jpg" : item.result.format}</span>
+            </span>
+          ) : (
+            <p className={styles.name} title={item.file.name}>
+              {item.file.name}
+            </p>
+          )}
           <button
             className={styles.edit}
             onClick={onEdit}

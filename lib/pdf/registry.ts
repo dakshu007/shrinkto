@@ -444,10 +444,12 @@ export const REGISTRY: Record<string, PdfToolDef> = {
     slug: "scan-to-pdf",
     accept: "image/*",
     multiple: true,
+    capture: "environment",
     cta: "Create PDF",
-    note: "Capture photos with your device camera (or pick images), and they're combined into a single PDF.",
+    note: "On mobile, tap “Take photo” to scan with your camera — snap as many pages as you need, they all become one PDF.",
     async process(files) {
-      return REGISTRY["jpg-to-pdf"].process!(files, { pageSize: "fit" });
+      const out = await REGISTRY["jpg-to-pdf"].process!(files, { pageSize: "fit" });
+      return out.map((o) => ({ ...o, name: "scanned-document.pdf" }));
     },
   },
 
@@ -493,10 +495,15 @@ export const REGISTRY: Record<string, PdfToolDef> = {
       if (!password) throw new Error("Please enter a password.");
       const { PDFDocument } = await getCantoo();
       const doc = await PDFDocument.load(await files[0].arrayBuffer());
-      const bytes = await doc.save({
-        // @ts-expect-error - @cantoo/pdf-lib accepts an encryption option.
-        encrypt: { userPassword: password, ownerPassword: password },
+      // Real encryption: encrypt() must be called BEFORE save() - it installs
+      // the /Encrypt dictionary and the writer encrypts every object. Viewers
+      // will prompt for the password on open.
+      doc.encrypt({
+        userPassword: password,
+        ownerPassword: password,
+        permissions: { printing: "highResolution" },
       });
+      const bytes = await doc.save();
       return [{ name: `${baseName(files[0].name)}-protected.pdf`, blob: pdfBlob(bytes) }];
     },
   },
@@ -512,7 +519,11 @@ export const REGISTRY: Record<string, PdfToolDef> = {
     async process(files, opts) {
       const password = String(opts.password ?? "");
       const { PDFDocument } = await getCantoo();
-      const doc = await PDFDocument.load(await files[0].arrayBuffer(), { password });
+      // ignoreEncryption lets the parser proceed; password decrypts contents.
+      const doc = await PDFDocument.load(await files[0].arrayBuffer(), {
+        password,
+        ignoreEncryption: true,
+      });
       const bytes = await doc.save();
       return [{ name: `${baseName(files[0].name)}-unlocked.pdf`, blob: pdfBlob(bytes) }];
     },

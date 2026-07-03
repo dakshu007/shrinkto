@@ -195,3 +195,37 @@
   background: var(--color-primary-50);
   border-color: var(--color-primary);
 }
+
+/* Editable download name */
+.nameEdit {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.nameInput {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+}
+.nameInput:hover {
+  border-color: var(--color-border-light);
+}
+.nameInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}
+.nameExt {
+  flex-shrink: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+}

@@ -199,12 +199,21 @@ export function Compressor({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /** Download base name: the user's rename if set, else `<original>-shrinkto`. */
+  function downloadBase(item: CompressItem): string {
+    const fallback = `${item.file.name.replace(/\.[^.]+$/, "")}-shrinkto`;
+    return item.customName?.trim() || fallback;
+  }
+
+  function renameItem(id: string, name: string) {
+    setItems((prev) => prev.map((i) => (i.id === id ? { ...i, customName: name } : i)));
+  }
+
   function downloadOne(item: CompressItem) {
     if (!item.compressedBlob || !item.result) return;
     const a = document.createElement("a");
     a.href = item.compressedUrl!;
-    const base = item.file.name.replace(/\.[^.]+$/, "");
-    a.download = `${base}-shrinkto.${extFor(item.result.format)}`;
+    a.download = `${downloadBase(item)}.${extFor(item.result.format)}`;
     a.click();
   }
 
@@ -215,8 +224,7 @@ export function Compressor({
     const { default: JSZip } = await import("jszip");
     const zip = new JSZip();
     done.forEach((i) => {
-      const base = i.file.name.replace(/\.[^.]+$/, "");
-      zip.file(`${base}-shrinkto.${extFor(i.result!.format)}`, i.compressedBlob!);
+      zip.file(`${downloadBase(i)}.${extFor(i.result!.format)}`, i.compressedBlob!);
     });
     const blob = await zip.generateAsync({ type: "blob" });
     const url = URL.createObjectURL(blob);
@@ -374,6 +382,7 @@ export function Compressor({
                 onRemove={() => removeItem(item.id)}
                 onDownload={() => downloadOne(item)}
                 onEdit={() => setEditingId(item.id)}
+                onRename={(name) => renameItem(item.id, name)}
               />
             ))}
           </div>

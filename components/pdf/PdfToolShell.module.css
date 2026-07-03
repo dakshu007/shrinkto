@@ -197,3 +197,26 @@
   color: var(--color-text-secondary);
   max-width: 440px;
 }
+
+/* Editable output filename - looks like text until focused. */
+.nameInput {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+}
+.nameInput:hover {
+  border-color: var(--color-border-light);
+}
+.nameInput:focus {
+  outline: none;
+  background: var(--color-bg);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus);
+}

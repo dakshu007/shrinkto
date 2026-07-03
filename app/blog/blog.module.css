@@ -47,7 +47,107 @@
   margin-top: var(--space-2);
 }
 
-/* Article page */
+/* ---- Article page ------------------------------------------------------- */
+
+.postPage {
+  padding-bottom: var(--space-8);
+}
+
+/* Hero band */
+.postHero {
+  padding: var(--space-8) 0;
+  text-align: center;
+  background:
+    radial-gradient(80% 70% at 50% -10%, var(--color-primary-light), transparent 70%),
+    var(--color-primary-50);
+  border-bottom: 1px solid var(--color-border-light);
+}
+.postHeroInner {
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+.categoryPill {
+  display: inline-block;
+  padding: 6px 16px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary-active);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-full);
+}
+.postTitle {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.byline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+.byline a {
+  color: var(--color-primary-active);
+  font-weight: 600;
+}
+.bylineSep {
+  color: var(--color-border);
+}
+.heroCta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.ctaNote {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.ctaNote span {
+  color: var(--color-primary-active);
+  font-weight: 700;
+}
+
+/* 1280px reading area: article + sticky TOC */
+.postLayout {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-5) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: var(--space-8);
+  align-items: start;
+}
+.postArticle {
+  min-width: 0;
+}
+.tocAside {
+  min-width: 0;
+  /* Full row height so the sticky TOC can travel with the reader. */
+  align-self: stretch;
+}
+@media (max-width: 1023px) {
+  .postLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tocAside {
+    display: none;
+  }
+}
+
+/* Legacy single-column article (kept for safety) */
 .article {
   max-width: 720px;
   margin: 0 auto;
@@ -84,21 +184,26 @@
   border-bottom: 1px solid var(--color-border-light);
 }
 .body h2 {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
+  letter-spacing: -0.02em;
   margin-top: var(--space-8);
   margin-bottom: var(--space-3);
+  /* Anchored headings land below the sticky header. */
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
 .body p {
   margin-bottom: var(--space-4);
   color: var(--color-text);
-  line-height: 1.75;
+  font-size: var(--text-lg);
+  line-height: 1.8;
 }
 .body ul,
 .body ol {
   margin-bottom: var(--space-4);
   padding-left: var(--space-5);
   color: var(--color-text);
-  line-height: 1.75;
+  font-size: var(--text-lg);
+  line-height: 1.8;
 }
 .body li {
   margin-bottom: var(--space-2);

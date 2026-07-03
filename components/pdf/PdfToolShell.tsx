@@ -67,11 +67,15 @@ export function PdfToolShell({ slug, cta }: { slug: string; cta: string }) {
     }
   }
 
+  function renameResult(index: number, name: string) {
+    setResults((prev) => prev.map((r, i) => (i === index ? { ...r, name } : r)));
+  }
+
   function download(item: PdfOutput) {
     const url = URL.createObjectURL(item.blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = item.name;
+    a.download = item.name.trim() || "output.pdf";
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -96,13 +100,16 @@ export function PdfToolShell({ slug, cta }: { slug: string; cta: string }) {
       <Dropzone
         onFiles={addFiles}
         accept={tool.accept}
+        capture={tool.capture}
         hint={tool.accept === "application/pdf" ? "PDF files" : "Image files"}
         title={
-          tool.accept === "application/pdf"
-            ? tool.multiple
-              ? "Drop your PDFs here"
-              : "Drop your PDF here"
-            : "Drop your files here"
+          tool.multiple && files.length > 0
+            ? "Add more pages"
+            : tool.accept === "application/pdf"
+              ? tool.multiple
+                ? "Drop your PDFs here"
+                : "Drop your PDF here"
+              : "Drop your files here"
         }
       />
 
@@ -210,7 +217,14 @@ export function PdfToolShell({ slug, cta }: { slug: string; cta: string }) {
             {results.map((r, i) => (
               <div key={i} className={styles.resultRow}>
                 <FileText size={18} aria-hidden />
-                <span className={styles.fileName}>{r.name}</span>
+                {/* Editable so users can rename the file before saving it. */}
+                <input
+                  className={styles.nameInput}
+                  value={r.name}
+                  onChange={(e) => renameResult(i, e.target.value)}
+                  aria-label={`File name for result ${i + 1}`}
+                  spellCheck={false}
+                />
                 <span className={styles.fileSize}>{formatBytes(r.blob.size)}</span>
                 <button className={styles.resultDl} onClick={() => download(r)}>
                   <Download size={15} aria-hidden /> Save

@@ -26,6 +26,8 @@ export interface PdfToolDef {
   accept: string;
   multiple: boolean;
   cta: string;
+  /** Offer a direct camera-capture button on mobile (input capture attr). */
+  capture?: "environment" | "user";
   options?: PdfOptionField[];
   note?: string;
   comingSoon?: boolean;
