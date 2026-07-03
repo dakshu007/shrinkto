@@ -282,6 +282,9 @@ export function Compressor({
         {announce}
       </div>
 
+      {/* Dropzone first — users can drop files immediately, settings below. */}
+      <Dropzone onFiles={addFiles} />
+
       {/* Controls */}
       <div className={styles.controls}>
         <div className={styles.controlGroup}>
@@ -339,9 +342,6 @@ export function Compressor({
           </div>
         </div>
       </div>
-
-      {/* Dropzone */}
-      <Dropzone onFiles={addFiles} />
 
       {/* Results */}
       {items.length > 0 && (

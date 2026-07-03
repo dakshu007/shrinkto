@@ -26,7 +26,9 @@ export function ResultCard({
         {item.compressedUrl ? (
           <div className={styles.compare} aria-label="Before and after comparison">
             <img src={item.originalUrl} alt="" className={styles.imgBase} />
-            <div className={styles.imgClip} style={{ width: `${pos}%` }}>
+            {/* Full-size layer clipped with clip-path so both images share the
+                exact same box — the slider reveals, it never rescales. */}
+            <div className={styles.imgClip} style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
               <img src={item.compressedUrl} alt="" className={styles.imgTop} />
             </div>
             <div className={styles.handle} style={{ left: `${pos}%` }} aria-hidden />
