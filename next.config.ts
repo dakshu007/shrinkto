@@ -41,6 +41,16 @@ const nextConfig: NextConfig = {
       "@jsquash/resize",
     ],
   },
+  async redirects() {
+    return [
+      // Post renamed to match its focus keyword (jpeg vs jpg).
+      {
+        source: "/blog/jpg-vs-png-vs-webp-vs-avif",
+        destination: "/blog/jpeg-vs-png-vs-webp-vs-avif",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

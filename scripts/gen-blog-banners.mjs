@@ -1,19 +1,20 @@
-// Usage: npm i -g gifenc (or npx -y) then: node scripts/gen-blog-banners.mjs [preview|gif]
-// Add a new entry to POSTS below for each new blog post, then run to emit public/blog/<slug>.gif
-// Animated GIF banner generator for ShrinkTo blog posts.
-// Flat vector SVG frames (GIF-friendly: no gradients) -> sharp -> gifenc.
+// Blog banner generator for ShrinkTo posts. Flat vector SVG -> sharp.
+// Usage: node scripts/gen-blog-banners.mjs            -> static PNG per post (the default)
+//        node scripts/gen-blog-banners.mjs preview    -> quick PNG proofs to /tmp
+//        node scripts/gen-blog-banners.mjs gif        -> animated GIFs (needs `gifenc` installed)
+// Add a new entry to POSTS below for each new blog post. `still` is the
+// animation time (0..1) used for the static banner frame.
 import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import fs from "node:fs";
-const requireProj = createRequire(new URL("../package.json", import.meta.url).pathname);
+const requireProj = createRequire(fileURLToPath(new URL("../package.json", import.meta.url)));
 const sharp = requireProj("sharp");
-const gifencMod = await import("gifenc");
-const { GIFEncoder, quantize, applyPalette } = gifencMod.default ?? gifencMod;
 
 const W = 960;
 const H = 504;
 const FRAMES = 16;
 const DELAY = 110; // ms per frame (~1.76s loop)
-const OUT = new URL("../public/blog", import.meta.url).pathname;
+const OUT = fileURLToPath(new URL("../public/blog", import.meta.url));
 const PREVIEW = "/tmp/banner-previews";
 fs.mkdirSync(OUT, { recursive: true });
 fs.mkdirSync(PREVIEW, { recursive: true });
@@ -69,6 +70,7 @@ const kb = (v) => (v >= 1000 ? `${(v / 1000).toFixed(1)} MB` : `${Math.round(v)}
 const POSTS = [
   {
     slug: "compress-image-to-exact-file-size",
+    still: 0.9,
     title: ["Compress an image", "to an EXACT", "file size"],
     draw(t) {
       const p = seg(t, 0.05, 0.7);
@@ -92,6 +94,7 @@ const POSTS = [
   },
   {
     slug: "compress-images-without-losing-quality",
+    still: 0.75,
     title: ["Compress images", "without losing", "quality"],
     draw(t) {
       const p = seg(t, 0.1, 0.75);
@@ -113,7 +116,44 @@ const POSTS = [
     },
   },
   {
-    slug: "jpg-vs-png-vs-webp-vs-avif",
+    slug: "compress-pdf-to-100kb",
+    still: 0.9,
+    title: ["Compress a PDF", "to 100 KB", "free · no upload"],
+    draw(t) {
+      const p = seg(t, 0.1, 0.7);
+      const arrowOp = seg(t, 0.25, 0.5);
+      const smallOp = seg(t, 0.45, 0.75);
+      const done = t > 0.85;
+      return `
+        <rect x="86" y="36" width="124" height="150" rx="12" fill="${C.white}"/>
+        <rect x="86" y="36" width="124" height="38" rx="12" fill="${C.red}"/>
+        <text x="148" y="63" font-family="${FONT}" font-size="21" font-weight="800" fill="#fff" text-anchor="middle">PDF</text>
+        <rect x="102" y="92" width="92" height="9" rx="4.5" fill="${C.mute}"/>
+        <rect x="102" y="112" width="92" height="9" rx="4.5" fill="${C.mute}"/>
+        <rect x="102" y="132" width="92" height="9" rx="4.5" fill="${C.mute}"/>
+        <rect x="102" y="152" width="58" height="9" rx="4.5" fill="${C.mute}"/>
+        <rect x="226" y="92" width="96" height="32" rx="16" fill="${C.bg2}"/>
+        <text x="274" y="114" font-family="${FONT}" font-size="18" font-weight="700" fill="${C.mute}" text-anchor="middle" text-decoration="line-through">2.4 MB</text>
+        <g opacity="${arrowOp}">
+          <path d="M148 202 L148 244 M130 228 L148 248 L166 228" stroke="${C.sky}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </g>
+        <g opacity="${smallOp}">
+          <rect x="104" y="266" width="88" height="106" rx="10" fill="${C.white}"/>
+          <rect x="104" y="266" width="88" height="28" rx="10" fill="${C.green}"/>
+          <text x="148" y="286" font-family="${FONT}" font-size="16" font-weight="800" fill="#fff" text-anchor="middle">PDF</text>
+          <rect x="116" y="306" width="64" height="7" rx="3.5" fill="${C.mute}"/>
+          <rect x="116" y="322" width="64" height="7" rx="3.5" fill="${C.mute}"/>
+          <rect x="116" y="338" width="40" height="7" rx="3.5" fill="${C.mute}"/>
+          <rect x="212" y="300" width="104" height="34" rx="17" fill="${C.green}"/>
+          <text x="264" y="323" font-family="${FONT}" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">${kb(lerp(2400, 98, p))}</text>
+        </g>
+        <rect x="86" y="392" width="230" height="34" rx="17" fill="${done ? C.green : C.bg2}"/>
+        <text x="201" y="415" font-family="${FONT}" font-size="16" font-weight="700" fill="${C.white}" text-anchor="middle">Portal limit: 100 KB ${done ? "✓" : ""}</text>`;
+    },
+  },
+  {
+    slug: "jpeg-vs-png-vs-webp-vs-avif",
+    still: 0.9,
     title: ["JPG vs PNG vs", "WebP vs AVIF:", "which & when"],
     draw(t) {
       const p = seg(t, 0.08, 0.72);
@@ -140,6 +180,7 @@ const POSTS = [
   },
   {
     slug: "shrink-pdf-for-email-attachment-limits",
+    still: 0.95,
     title: ["Shrink a PDF for", "email attachment", "limits"],
     draw(t) {
       const p = seg(t, 0.08, 0.7);
@@ -166,6 +207,7 @@ const POSTS = [
   },
   {
     slug: "browser-based-tools-are-more-private",
+    still: 0.55,
     title: ["Browser-based", "tools are more", "private"],
     draw(t) {
       const s = lerp(0.92, 1.06, pulse(t, 2));
@@ -191,6 +233,7 @@ const POSTS = [
   },
   {
     slug: "compress-images-for-core-web-vitals",
+    still: 0.95,
     title: ["Compress images", "for better Core", "Web Vitals"],
     draw(t) {
       const p = seg(t, 0.08, 0.75);
@@ -216,6 +259,7 @@ const POSTS = [
   },
   {
     slug: "heic-to-jpg-convert-iphone-photos",
+    still: 0.95,
     title: ["HEIC to JPG:", "convert iPhone", "photos anywhere"],
     draw(t) {
       const flip = seg(t, 0.25, 0.6);
@@ -244,6 +288,7 @@ const POSTS = [
   },
   {
     slug: "best-ilovepdf-smallpdf-tinypng-alternatives-2026",
+    still: 0.95,
     title: ["Best iLovePDF,", "Smallpdf & TinyPNG", "alternatives"],
     draw(t) {
       const rise = lerp(46, 0, seg(t, 0.15, 0.6));
@@ -273,14 +318,25 @@ const POSTS = [
 ];
 
 // ---- render -----------------------------------------------------------------------
-const mode = process.argv[2] ?? "gif"; // "preview" renders one PNG frame per post
+// Default mode: one clean static PNG per post at its `still` frame.
+const mode = process.argv[2] ?? "png";
 for (const post of POSTS) {
   if (mode === "preview") {
-    const svg = shell(post.title, post.draw(0.65));
+    const svg = shell(post.title, post.draw(post.still ?? 0.9));
     await sharp(Buffer.from(svg)).png().toFile(`${PREVIEW}/${post.slug}.png`);
     console.log("preview", post.slug);
     continue;
   }
+  if (mode === "png") {
+    const svg = shell(post.title, post.draw(post.still ?? 0.9));
+    const buf = await sharp(Buffer.from(svg)).png({ palette: true, quality: 90, effort: 7 }).toBuffer();
+    fs.writeFileSync(`${OUT}/${post.slug}.png`, buf);
+    console.log(post.slug + ".png", (buf.length / 1024).toFixed(0) + " KB");
+    continue;
+  }
+  // gif mode (kept for reference; needs the `gifenc` package available)
+  const gifencMod = await import("gifenc");
+  const { GIFEncoder, quantize, applyPalette } = gifencMod.default ?? gifencMod;
   const gif = GIFEncoder();
   for (let f = 0; f < FRAMES; f++) {
     const t = f / FRAMES;

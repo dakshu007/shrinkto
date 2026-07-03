@@ -54,6 +54,44 @@ function slugify(text: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
+/**
+ * Minimal inline markup: [label](href) links, **bold**, `code`.
+ * Internal links (leading /) render as <Link>; external links open in a new
+ * tab with nofollow.
+ */
+function renderInline(text: string): React.ReactNode {
+  const re = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|`([^`]+)`/g;
+  const parts: React.ReactNode[] = [];
+  let last = 0;
+  let key = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    if (m[1] !== undefined) {
+      const href = m[2];
+      parts.push(
+        href.startsWith("/") ? (
+          <Link key={key++} href={href}>
+            {m[1]}
+          </Link>
+        ) : (
+          <a key={key++} href={href} target="_blank" rel="nofollow noopener noreferrer">
+            {m[1]}
+          </a>
+        ),
+      );
+    } else if (m[3] !== undefined) {
+      parts.push(<strong key={key++}>{m[3]}</strong>);
+    } else {
+      parts.push(<code key={key++}>{m[4]}</code>);
+    }
+    last = m.index + m[0].length;
+  }
+  if (parts.length === 0) return text;
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
+
 function renderBlock(block: Block, i: number) {
   switch (block.type) {
     case "h2":
@@ -62,13 +100,15 @@ function renderBlock(block: Block, i: number) {
           {block.text}
         </h2>
       );
+    case "h3":
+      return <h3 key={i}>{block.text}</h3>;
     case "p":
-      return <p key={i}>{block.text}</p>;
+      return <p key={i}>{renderInline(block.text)}</p>;
     case "ul":
       return (
         <ul key={i}>
           {block.items.map((it, j) => (
-            <li key={j}>{it}</li>
+            <li key={j}>{renderInline(it)}</li>
           ))}
         </ul>
       );
@@ -76,9 +116,40 @@ function renderBlock(block: Block, i: number) {
       return (
         <ol key={i}>
           {block.items.map((it, j) => (
-            <li key={j}>{it}</li>
+            <li key={j}>{renderInline(it)}</li>
           ))}
         </ol>
+      );
+    case "table":
+      return (
+        <div key={i} className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                {block.headers.map((h, j) => (
+                  <th key={j}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, r) => (
+                <tr key={r}>
+                  {row.map((cell, c) => (
+                    <td key={c}>{renderInline(cell)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    case "cta":
+      return (
+        <aside key={i} className={styles.ctaBox}>
+          <p className={styles.ctaBoxTitle}>{block.title}</p>
+          <p className={styles.ctaBoxText}>{renderInline(block.text)}</p>
+          <Button href={block.href}>{block.label}</Button>
+        </aside>
       );
   }
 }
