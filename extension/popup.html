@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShrinkTo Pro</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark">✦</span>
+      <span class="name">ShrinkTo <em>Pro</em></span>
+    </div>
+    <div class="topActions">
+      <button id="openTab" class="iconBtn" title="Open as a tab">⧉</button>
+      <button id="openOptions" class="iconBtn" title="License &amp; settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- Paywall (shown until a license is activated) -->
+  <section id="paywall" class="paywall" hidden>
+    <h1>Compress images to an <span>exact size</span></h1>
+    <ul class="perks">
+      <li>Hit 20 KB, 50 KB, 100 KB - any target, first try</li>
+      <li>Right-click any image on the web to compress it</li>
+      <li>Batch compress &amp; rename before saving</li>
+      <li>100% private - photos never leave your device</li>
+    </ul>
+    <a id="buyBtn" class="buy" target="_blank" rel="noopener">
+      Buy lifetime license - <span id="priceText"></span>
+    </a>
+    <p class="payNote">One-time payment · lifetime updates · license key arrives by email</p>
+
+    <div class="divider"><span>already purchased?</span></div>
+
+    <form id="activateForm" class="activate">
+      <input id="licenseInput" type="text" placeholder="Paste your license key" autocomplete="off" spellcheck="false" />
+      <button type="submit" id="activateBtn">Activate</button>
+    </form>
+    <p id="activateMsg" class="msg" role="alert" hidden></p>
+  </section>
+
+  <!-- Compressor (licensed) -->
+  <section id="app" hidden>
+    <div class="controls">
+      <div class="group">
+        <span class="label">Target size</span>
+        <div class="pills" id="targetPills">
+          <button data-kb="20">20 KB</button>
+          <button data-kb="50">50 KB</button>
+          <button data-kb="100" class="active">100 KB</button>
+          <button data-kb="200">200 KB</button>
+          <button data-kb="500">500 KB</button>
+          <label class="custom"><input id="customKb" type="number" min="1" placeholder="Custom" /><span>KB</span></label>
+        </div>
+      </div>
+      <div class="group">
+        <span class="label">Format</span>
+        <div class="pills" id="formatPills">
+          <button data-fmt="auto" class="active">Auto</button>
+          <button data-fmt="jpeg">JPEG</button>
+          <button data-fmt="webp">WebP</button>
+          <button data-fmt="png">PNG</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="drop" class="drop" role="button" tabindex="0">
+      <span class="dropIcon">⬆</span>
+      <p class="dropTitle">Drop images here</p>
+      <p class="dropSub">or <span class="link">browse</span> · paste with Ctrl/⌘+V</p>
+      <input id="file" type="file" accept="image/*" multiple hidden />
+    </div>
+
+    <div id="grantWrap" class="grant" hidden>
+      <p>To fetch images from web pages, ShrinkTo needs your permission.</p>
+      <button id="grantBtn">Allow access</button>
+    </div>
+
+    <div id="results" class="results"></div>
+    <button id="downloadAll" class="dlAll" hidden>Download all</button>
+
+    <p class="foot">All compression happens on your device - nothing is uploaded.</p>
+  </section>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

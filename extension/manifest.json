@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "ShrinkTo Pro - Image Compressor",
+  "version": "1.0.0",
+  "description": "Compress any image to an exact size - 20 KB, 100 KB, anything. 100% on your device: photos never upload to a server.",
+  "author": "ShrinkTo",
+  "homepage_url": "https://shrinkto.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ShrinkTo - compress images to an exact size"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "options_page": "options.html",
+  "permissions": ["contextMenus", "storage", "downloads"],
+  "optional_host_permissions": ["<all_urls>"],
+  "minimum_chrome_version": "116"
+}
