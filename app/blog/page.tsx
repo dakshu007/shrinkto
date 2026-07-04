@@ -10,7 +10,8 @@ export default function BlogIndex() {
   const seo = getSeo("/blog");
   // Slim, serializable card data for the client-side explorer (no bodies/faqs).
   const posts: PostCardData[] = [...POSTS]
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    // Newest first; 0 on equal dates keeps the hand-picked array order.
+    .sort((a, b) => b.date.localeCompare(a.date))
     .map(({ slug, title, description, date, readMins, tags, image }) => ({
       slug,
       title,

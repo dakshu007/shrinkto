@@ -116,6 +116,95 @@ const POSTS = [
     },
   },
   {
+    slug: "compress-photo-to-20kb-50kb",
+    still: 0.9,
+    title: ["Compress a photo", "to 20 KB or 50 KB", "for online forms"],
+    draw(t) {
+      const p = seg(t, 0.1, 0.7);
+      const done = t > 0.82;
+      return `
+        <rect x="96" y="44" width="150" height="180" rx="14" fill="${C.pale}"/>
+        <circle cx="171" cy="104" r="30" fill="${C.sky}"/>
+        <path d="M121 208 C121 168 221 168 221 208 L221 224 L121 224 Z" fill="${C.blue}"/>
+        <rect x="96" y="44" width="150" height="180" rx="14" fill="none" stroke="${C.sky}" stroke-width="3"/>
+        <rect x="262" y="82" width="86" height="30" rx="15" fill="${C.bg2}"/>
+        <text x="305" y="103" font-family="${FONT}" font-size="17" font-weight="700" fill="${C.mute}" text-anchor="middle" text-decoration="line-through">4 MB</text>
+        <path d="M305 124 L305 152 M291 140 L305 156 L319 140" stroke="${C.sky}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="${seg(t, 0.25, 0.5)}"/>
+        <rect x="262" y="168" width="86" height="34" rx="17" fill="${C.green}" opacity="${seg(t, 0.4, 0.7)}"/>
+        <text x="305" y="191" font-family="${FONT}" font-size="18" font-weight="800" fill="#fff" text-anchor="middle" opacity="${seg(t, 0.4, 0.7)}">${Math.round(lerp(400, 19, p))} KB</text>
+        <rect x="96" y="258" width="252" height="40" rx="20" fill="${done ? C.green : C.bg2}"/>
+        <text x="222" y="284" font-family="${FONT}" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">Upload accepted ${done ? "✓" : "…"}</text>
+        <text x="200" y="340" font-family="${FONT}" font-size="16" font-weight="600" fill="${C.mute}" text-anchor="middle">exam · passport · job portals</text>
+        <text x="200" y="368" font-family="${FONT}" font-size="16" font-weight="600" fill="${C.mute}" text-anchor="middle">resize → compress → pass ✓</text>`;
+    },
+  },
+  {
+    slug: "what-is-heic-convert-heic-to-jpg",
+    still: 0.95,
+    title: ["What is HEIC?", "Convert iPhone", "photos to JPG"],
+    draw(t) {
+      const p = seg(t, 0.3, 0.65);
+      return `
+        <rect x="56" y="96" width="118" height="146" rx="12" fill="${C.white}"/>
+        <rect x="56" y="96" width="118" height="36" rx="12" fill="${C.mute}"/>
+        <text x="115" y="121" font-family="${FONT}" font-size="18" font-weight="800" fill="${C.bg}" text-anchor="middle">HEIC</text>
+        <circle cx="115" cy="182" r="14" fill="${C.gold}"/>
+        <path d="M72 228 L104 192 L124 212 L142 194 L158 228 Z" fill="${C.blue}"/>
+        <circle cx="168" cy="106" r="17" fill="${C.red}"/>
+        <text x="168" y="113" font-family="${FONT}" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">✕</text>
+        <path d="M186 170 L216 170 M204 156 L220 170 L204 184" stroke="${C.white}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="${p}"/>
+        <g opacity="${p}">
+          <rect x="228" y="96" width="118" height="146" rx="12" fill="${C.white}"/>
+          <rect x="228" y="96" width="118" height="36" rx="12" fill="${C.green}"/>
+          <text x="287" y="121" font-family="${FONT}" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">JPG</text>
+          <circle cx="287" cy="182" r="14" fill="${C.gold}"/>
+          <path d="M244 228 L276 192 L296 212 L314 194 L330 228 Z" fill="${C.blue}"/>
+          <circle cx="340" cy="106" r="17" fill="${C.green}"/>
+          <text x="340" y="113" font-family="${FONT}" font-size="19" font-weight="800" fill="#fff" text-anchor="middle">✓</text>
+        </g>
+        <rect x="70" y="286" width="262" height="40" rx="20" fill="${C.bg2}"/>
+        <text x="201" y="312" font-family="${FONT}" font-size="17" font-weight="700" fill="${C.pale}" text-anchor="middle">Opens everywhere ✓</text>
+        <text x="200" y="366" font-family="${FONT}" font-size="16" font-weight="600" fill="${C.mute}" text-anchor="middle">Windows · portals · email · web</text>`;
+    },
+  },
+  {
+    slug: "how-to-merge-pdf-files-into-one",
+    still: 0.95,
+    title: ["Merge PDF files", "into one document", "free · no upload"],
+    draw(t) {
+      const p = seg(t, 0.25, 0.6);
+      const cards = [0, 1, 2];
+      return `
+        ${cards
+          .map((i) => {
+            const y = 66 + i * 64;
+            return `<rect x="${64 + i * 10}" y="${y}" width="88" height="104" rx="10" fill="${C.white}"/>
+              <rect x="${64 + i * 10}" y="${y}" width="88" height="26" rx="10" fill="${C.red}"/>
+              <text x="${108 + i * 10}" y="${y + 19}" font-family="${FONT}" font-size="14" font-weight="800" fill="#fff" text-anchor="middle">PDF</text>
+              <rect x="${76 + i * 10}" y="${y + 38}" width="64" height="7" rx="3.5" fill="${C.mute}"/>
+              <rect x="${76 + i * 10}" y="${y + 54}" width="64" height="7" rx="3.5" fill="${C.mute}"/>
+              <rect x="${76 + i * 10}" y="${y + 70}" width="40" height="7" rx="3.5" fill="${C.mute}"/>`;
+          })
+          .join("")}
+        <path d="M196 176 L232 176 M218 160 L236 176 L218 192" stroke="${C.sky}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="${p}"/>
+        <g opacity="${p}">
+          <rect x="248" y="84" width="120" height="188" rx="12" fill="${C.white}"/>
+          <rect x="248" y="84" width="120" height="36" rx="12" fill="${C.green}"/>
+          <text x="308" y="109" font-family="${FONT}" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">PDF</text>
+          <rect x="264" y="136" width="88" height="8" rx="4" fill="${C.mute}"/>
+          <rect x="264" y="154" width="88" height="8" rx="4" fill="${C.mute}"/>
+          <rect x="264" y="172" width="88" height="8" rx="4" fill="${C.mute}"/>
+          <rect x="264" y="190" width="88" height="8" rx="4" fill="${C.mute}"/>
+          <rect x="264" y="208" width="56" height="8" rx="4" fill="${C.mute}"/>
+          <circle cx="360" cy="94" r="18" fill="${C.gold}"/>
+          <text x="360" y="101" font-family="${FONT}" font-size="17" font-weight="800" fill="${C.bg}" text-anchor="middle">1</text>
+        </g>
+        <rect x="76" y="302" width="252" height="40" rx="20" fill="${t > 0.8 ? C.green : C.bg2}"/>
+        <text x="202" y="328" font-family="${FONT}" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">3 files → 1 document ✓</text>
+        <text x="200" y="378" font-family="${FONT}" font-size="16" font-weight="600" fill="${C.mute}" text-anchor="middle">drag to reorder · merge · download</text>`;
+    },
+  },
+  {
     slug: "compress-pdf-to-100kb",
     still: 0.9,
     title: ["Compress a PDF", "to 100 KB", "free · no upload"],

@@ -6,6 +6,7 @@ import { TOOLS_BY_SLUG } from "@/lib/content/tools";
 import { SITE } from "@/lib/content/seo-map";
 import { Faq } from "@/components/Faq";
 import { Toc } from "@/components/blog/Toc";
+import { AiActions } from "@/components/blog/AiActions";
 import { Button } from "@/components/ui/Button";
 import { JsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { ChevronRight, ArrowRight } from "@/components/icons";
@@ -265,7 +266,10 @@ export default async function BlogPostPage({ params }: Params) {
         </article>
 
         <aside className={styles.tocAside}>
-          <Toc items={tocItems} />
+          <div className={styles.asideSticky}>
+            <Toc items={tocItems} />
+            <AiActions url={url} />
+          </div>
         </aside>
       </div>
 
