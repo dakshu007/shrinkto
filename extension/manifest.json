@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ShrinkTo Pro - Image Compressor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compress any image to an exact size - 20 KB, 100 KB, anything. 100% on your device: photos never upload to a server.",
   "author": "ShrinkTo",
   "homepage_url": "https://shrinkto.com",
@@ -22,5 +22,8 @@
   "options_page": "options.html",
   "permissions": ["contextMenus", "storage", "downloads"],
   "optional_host_permissions": ["<all_urls>"],
+  "externally_connectable": {
+    "matches": ["https://shrinkto.com/*"]
+  },
   "minimum_chrome_version": "116"
 }

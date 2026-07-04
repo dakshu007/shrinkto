@@ -15,4 +15,8 @@ export const CONFIG = {
 
   SUPPORT_URL: "https://shrinkto.com/contact",
   SITE_URL: "https://shrinkto.com",
+
+  // After checkout, Dodo redirects here; the page fetches the license key
+  // and pushes it into the extension for automatic activation.
+  ACTIVATED_URL: "https://shrinkto.com/extension/activated",
 };

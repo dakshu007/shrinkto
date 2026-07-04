@@ -30,11 +30,25 @@ async function init() {
 }
 
 // ---- paywall -----------------------------------------------------------------
-function showPaywall() {
+async function showPaywall() {
   $("#paywall").hidden = false;
   $("#app").hidden = true;
-  $("#buyBtn").href = CONFIG.PAYMENT_LINK;
   $("#priceText").textContent = CONFIG.PRICE_TEXT;
+
+  // Send the buyer back to shrinkto.com/extension/activated with our
+  // extension id so the license auto-activates after checkout.
+  const { devTestMode } = await chrome.storage.sync.get("devTestMode");
+  const redirect = `${CONFIG.ACTIVATED_URL}?ext=${chrome.runtime.id}&mode=${devTestMode ? "test" : "live"}`;
+  const joiner = CONFIG.PAYMENT_LINK.includes("?") ? "&" : "?";
+  $("#buyBtn").href = `${CONFIG.PAYMENT_LINK}${joiner}redirect_url=${encodeURIComponent(redirect)}`;
+
+  // If activation lands while this popup is open, unlock immediately.
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "sync" && changes.shrinktoLicense?.newValue?.valid) {
+      $("#paywall").hidden = true;
+      showApp();
+    }
+  });
 
   $("#activateForm").addEventListener("submit", async (e) => {
     e.preventDefault();

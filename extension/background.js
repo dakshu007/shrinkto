@@ -1,4 +1,19 @@
-// ---- Service worker: context menu + right-click image hand-off ---------------
+// ---- Service worker: context menu, right-click hand-off, auto-activation -----
+
+import { activate } from "./license.js";
+
+// Auto-activation: after checkout, shrinkto.com/extension/activated sends the
+// freshly issued license key here (allowed via externally_connectable).
+chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => {
+  if (message?.type !== "activate-license" || typeof message.key !== "string") {
+    sendResponse({ ok: false, error: "Unknown message." });
+    return false;
+  }
+  activate(message.key, { testMode: Boolean(message.testMode) })
+    .then((result) => sendResponse(result))
+    .catch((err) => sendResponse({ ok: false, error: String(err?.message ?? err) }));
+  return true; // async response
+});
 
 chrome.runtime.onInstalled.addListener((details) => {
   chrome.contextMenus.create({
