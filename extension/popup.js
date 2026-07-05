@@ -1,4 +1,4 @@
-import { CONFIG } from "./config.js";
+import { CONFIG, isTestPaymentLink } from "./config.js";
 import { isActive, activate, getLicense } from "./license.js";
 import { compressToTarget, pickFormat, extFor, formatBytes } from "./engine.js";
 
@@ -36,9 +36,12 @@ async function showPaywall() {
   $("#priceText").textContent = CONFIG.PRICE_TEXT;
 
   // Send the buyer back to shrinkto.com/extension/activated with our
-  // extension id so the license auto-activates after checkout.
+  // extension id so the license auto-activates after checkout. Test mode is
+  // inferred from the payment link itself (test.checkout.*) or the options
+  // toggle, so keys from test purchases activate without extra setup.
   const { devTestMode } = await chrome.storage.sync.get("devTestMode");
-  const redirect = `${CONFIG.ACTIVATED_URL}?ext=${chrome.runtime.id}&mode=${devTestMode ? "test" : "live"}`;
+  const testMode = Boolean(devTestMode) || isTestPaymentLink();
+  const redirect = `${CONFIG.ACTIVATED_URL}?ext=${chrome.runtime.id}&mode=${testMode ? "test" : "live"}`;
   const joiner = CONFIG.PAYMENT_LINK.includes("?") ? "&" : "?";
   $("#buyBtn").href = `${CONFIG.PAYMENT_LINK}${joiner}redirect_url=${encodeURIComponent(redirect)}`;
 
@@ -59,7 +62,9 @@ async function showPaywall() {
     msg.hidden = true;
 
     const { devTestMode } = await chrome.storage.sync.get("devTestMode");
-    const result = await activate($("#licenseInput").value, { testMode: Boolean(devTestMode) });
+    const result = await activate($("#licenseInput").value, {
+      testMode: Boolean(devTestMode) || isTestPaymentLink(),
+    });
 
     btn.disabled = false;
     btn.textContent = "Activate";
