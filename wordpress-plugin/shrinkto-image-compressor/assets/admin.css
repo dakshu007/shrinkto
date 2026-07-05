@@ -1,0 +1,103 @@
+.shrinkto-wrap .shrinkto-mark {
+	display: inline-grid;
+	place-items: center;
+	width: 30px;
+	height: 30px;
+	border-radius: 8px;
+	background: #1a73e8;
+	color: #fff;
+	font-size: 15px;
+	vertical-align: -6px;
+	margin-right: 4px;
+}
+.shrinkto-pro-badge {
+	display: inline-block;
+	margin-left: 8px;
+	padding: 2px 10px;
+	border-radius: 999px;
+	background: #e6f4ea;
+	color: #188038;
+	font-size: 12px;
+	font-weight: 700;
+	vertical-align: middle;
+}
+.shrinkto-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 320px;
+	gap: 24px;
+	margin-top: 12px;
+}
+@media (max-width: 1100px) {
+	.shrinkto-grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+.shrinkto-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	padding: 16px 20px 20px;
+	margin-bottom: 16px;
+}
+.shrinkto-card h2 {
+	margin-top: 4px;
+}
+.shrinkto-stat-banner {
+	padding: 12px 16px;
+	background: #e6f4ea;
+	border: 1px solid #b7dfc2;
+	border-radius: 8px;
+	color: #1e4620;
+	margin: 12px 0 4px;
+}
+.shrinkto-perks {
+	margin: 0 0 14px;
+}
+.shrinkto-perks li {
+	padding-left: 22px;
+	position: relative;
+	margin-bottom: 6px;
+}
+.shrinkto-perks li::before {
+	content: "✓";
+	position: absolute;
+	left: 0;
+	color: #188038;
+	font-weight: 700;
+}
+.shrinkto-buy {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 8px !important;
+}
+.shrinkto-active {
+	color: #188038;
+	font-weight: 600;
+}
+.shrinkto-disabled {
+	opacity: 0.55;
+}
+.shrinkto-lock {
+	font-size: 14px;
+}
+.shrinkto-done {
+	color: #188038;
+	font-weight: 600;
+	white-space: nowrap;
+}
+.shrinkto-bar {
+	height: 12px;
+	background: #dcdcde;
+	border-radius: 999px;
+	overflow: hidden;
+	max-width: 480px;
+}
+.shrinkto-bar-fill {
+	height: 100%;
+	background: #1a73e8;
+	border-radius: 999px;
+	transition: width 0.25s ease;
+}
+#shrinkto-bulk-status {
+	font-weight: 600;
+}
