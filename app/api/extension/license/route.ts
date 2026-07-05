@@ -25,33 +25,41 @@ export async function GET(req: NextRequest) {
   }
 
   const base = mode === "test" ? "https://test.dodopayments.com" : "https://live.dodopayments.com";
-  let res: Response;
-  try {
-    res = await fetch(`${base}/license_keys?payment_id=${encodeURIComponent(paymentId)}`, {
-      headers: { Authorization: `Bearer ${apiKey}` },
-      cache: "no-store",
-    });
-  } catch {
-    return NextResponse.json({ error: "Couldn't reach Dodo Payments." }, { status: 502 });
+
+  // SECURITY: Dodo's list endpoint ignores unknown query filters, so we must
+  // match payment_id ourselves - only ever return a key whose payment_id
+  // equals the one from the checkout redirect. Newest keys come first, so a
+  // just-completed purchase is found on page 0.
+  interface LicenseItem {
+    key?: string;
+    payment_id?: string;
   }
 
-  if (!res.ok) {
-    return NextResponse.json({ error: `Dodo lookup failed (HTTP ${res.status}).` }, { status: 502 });
+  for (let pageNumber = 0; pageNumber < 10; pageNumber++) {
+    let res: Response;
+    try {
+      res = await fetch(
+        `${base}/license_keys?page_size=100&page_number=${pageNumber}`,
+        { headers: { Authorization: `Bearer ${apiKey}` }, cache: "no-store" },
+      );
+    } catch {
+      return NextResponse.json({ error: "Couldn't reach Dodo Payments." }, { status: 502 });
+    }
+    if (!res.ok) {
+      return NextResponse.json({ error: `Dodo lookup failed (HTTP ${res.status}).` }, { status: 502 });
+    }
+
+    const body = (await res.json()) as unknown;
+    const items = (Array.isArray(body) ? body : ((body as { items?: unknown[] })?.items ?? [])) as LicenseItem[];
+
+    const match = items.find((item) => item.payment_id === paymentId && item.key);
+    if (match?.key) return NextResponse.json({ key: match.key });
+
+    if (items.length < 100) break; // no more pages
   }
 
-  const body = (await res.json()) as unknown;
-  // Accept both {items: [...]} and bare-array response shapes.
-  const items = Array.isArray(body)
-    ? body
-    : ((body as { items?: unknown[] })?.items ?? []);
-  const first = items[0] as { key?: string } | undefined;
-
-  if (!first?.key) {
-    return NextResponse.json(
-      { error: "No license key found for this payment yet. It can take a few seconds - refresh this page." },
-      { status: 404 },
-    );
-  }
-
-  return NextResponse.json({ key: first.key });
+  return NextResponse.json(
+    { error: "No license key found for this payment yet. It can take a few seconds - refresh this page." },
+    { status: 404 },
+  );
 }
