@@ -1,5 +1,6 @@
 import { CONFIG, isTestPaymentLink } from "./config.js";
 import { isActive, activate, getLicense } from "./license.js";
+import { freeRemaining, recordUse, resetsIn } from "./usage.js";
 import { compressToTarget, pickFormat, extFor, formatBytes } from "./engine.js";
 
 const $ = (sel) => document.querySelector(sel);
@@ -9,7 +10,17 @@ if (params.has("tab")) document.body.classList.add("tab");
 let targetKb = 100;
 let formatChoice = "auto";
 let uid = 0;
+let isPro = false;
 const items = new Map(); // id -> { file, blob, baseName, format }
+
+/** Checkout URL carrying the auto-activation redirect. */
+async function buildBuyUrl() {
+  const { devTestMode } = await chrome.storage.sync.get("devTestMode");
+  const testMode = Boolean(devTestMode) || isTestPaymentLink();
+  const redirect = `${CONFIG.ACTIVATED_URL}?ext=${chrome.runtime.id}&mode=${testMode ? "test" : "live"}`;
+  const joiner = CONFIG.PAYMENT_LINK.includes("?") ? "&" : "?";
+  return `${CONFIG.PAYMENT_LINK}${joiner}redirect_url=${encodeURIComponent(redirect)}`;
+}
 
 // ---- boot --------------------------------------------------------------------
 init();
@@ -21,37 +32,63 @@ async function init() {
   });
   $("#openOptions").addEventListener("click", () => chrome.runtime.openOptionsPage());
 
-  const licensed = await isActive();
-  if (!licensed) {
-    showPaywall();
+  // If activation lands while this popup is open (auto-activation after
+  // checkout, or a key entered elsewhere), unlock immediately.
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === "sync" && changes.shrinktoLicense?.newValue?.valid) {
+      isPro = true;
+      $("#paywall").hidden = true;
+      $("#freeChip").hidden = true;
+      $("#quotaBanner").hidden = true;
+      if ($("#app").hidden) showApp();
+    }
+  });
+
+  isPro = await isActive();
+  if (isPro) {
+    showApp();
     return;
   }
-  showApp();
+  // Free tier: usable until the weekly allowance runs out.
+  if ((await freeRemaining()) > 0) {
+    await showFreeChip();
+    showApp();
+  } else {
+    showPaywall(true);
+  }
+}
+
+async function showFreeChip() {
+  const left = await freeRemaining();
+  $("#freeChipText").textContent = `Free plan: ${left} of ${CONFIG.FREE_LIMIT} compressions left this week`;
+  document.querySelector(".freeChipPrice").textContent = CONFIG.PRICE_TEXT;
+  $("#freeChipUpgrade").href = await buildBuyUrl();
+  $("#freeChip").hidden = false;
+}
+
+async function showQuotaBanner() {
+  const reset = await resetsIn();
+  $("#quotaBannerReset").textContent = reset ? `Resets in ${reset} - or go unlimited for ${CONFIG.PRICE_TEXT}.` : `Go unlimited for ${CONFIG.PRICE_TEXT}.`;
+  $("#quotaBannerBuy").href = await buildBuyUrl();
+  $("#quotaBanner").hidden = false;
+  $("#freeChip").hidden = true;
 }
 
 // ---- paywall -----------------------------------------------------------------
-async function showPaywall() {
+async function showPaywall(quotaExhausted = false) {
   $("#paywall").hidden = false;
   $("#app").hidden = true;
   $("#priceText").textContent = CONFIG.PRICE_TEXT;
+  $("#buyBtn").href = await buildBuyUrl();
 
-  // Send the buyer back to shrinkto.com/extension/activated with our
-  // extension id so the license auto-activates after checkout. Test mode is
-  // inferred from the payment link itself (test.checkout.*) or the options
-  // toggle, so keys from test purchases activate without extra setup.
-  const { devTestMode } = await chrome.storage.sync.get("devTestMode");
-  const testMode = Boolean(devTestMode) || isTestPaymentLink();
-  const redirect = `${CONFIG.ACTIVATED_URL}?ext=${chrome.runtime.id}&mode=${testMode ? "test" : "live"}`;
-  const joiner = CONFIG.PAYMENT_LINK.includes("?") ? "&" : "?";
-  $("#buyBtn").href = `${CONFIG.PAYMENT_LINK}${joiner}redirect_url=${encodeURIComponent(redirect)}`;
-
-  // If activation lands while this popup is open, unlock immediately.
-  chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === "sync" && changes.shrinktoLicense?.newValue?.valid) {
-      $("#paywall").hidden = true;
-      showApp();
-    }
-  });
+  if (quotaExhausted) {
+    const reset = await resetsIn();
+    $("#quotaMsg").textContent =
+      `You've used all ${CONFIG.FREE_LIMIT} free compressions this week` +
+      (reset ? ` - your allowance resets in ${reset}.` : ".") +
+      " Upgrade once and never think about limits again.";
+    $("#quotaMsg").hidden = false;
+  }
 
   $("#activateForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -196,10 +233,25 @@ async function processFile(file) {
   const baseName = file.name.replace(/\.[^.]+$/, "") + "-shrinkto";
   const row = renderRow(id, file, baseName, format);
 
+  // Free tier: enforce the weekly allowance per image.
+  if (!isPro && (await freeRemaining()) <= 0) {
+    row.querySelector(".sizes").innerHTML = `<span class="warn">Weekly free limit reached - upgrade for unlimited.</span>`;
+    await showQuotaBanner();
+    return;
+  }
+
   try {
     const result = await compressToTarget(file, { targetKB: targetKb, format });
     items.set(id, { file, blob: result.blob, baseName, format });
     finishRow(row, id, file, result, format);
+    if (!isPro) {
+      const left = await recordUse();
+      if (left <= 0) {
+        await showQuotaBanner();
+      } else {
+        await showFreeChip();
+      }
+    }
   } catch (err) {
     row.querySelector(".sizes").innerHTML = `<span class="warn">${err.message ?? "Failed to compress."}</span>`;
   }

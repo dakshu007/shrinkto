@@ -22,11 +22,13 @@
   <section id="paywall" class="paywall" hidden>
     <h1>Compress images to an <span>exact size</span></h1>
     <ul class="perks">
+      <li>Unlimited compressions (free plan: 10 per week)</li>
       <li>Hit 20 KB, 50 KB, 100 KB - any target, first try</li>
       <li>Right-click any image on the web to compress it</li>
       <li>Batch compress &amp; rename before saving</li>
       <li>100% private - photos never leave your device</li>
     </ul>
+    <p id="quotaMsg" class="quotaMsg" hidden></p>
     <a id="buyBtn" class="buy" target="_blank" rel="noopener">
       Buy lifetime license - <span id="priceText"></span>
     </a>
@@ -41,8 +43,16 @@
     <p id="activateMsg" class="msg" role="alert" hidden></p>
   </section>
 
-  <!-- Compressor (licensed) -->
+  <!-- Compressor (licensed = unlimited, free = weekly allowance) -->
   <section id="app" hidden>
+    <div id="freeChip" class="freeChip" hidden>
+      <span id="freeChipText"></span>
+      <a id="freeChipUpgrade" target="_blank" rel="noopener">Go unlimited - <span class="freeChipPrice"></span></a>
+    </div>
+    <div id="quotaBanner" class="quotaBanner" hidden>
+      <p><strong>Weekly free limit reached.</strong> <span id="quotaBannerReset"></span></p>
+      <a id="quotaBannerBuy" target="_blank" rel="noopener">Upgrade to Pro</a>
+    </div>
     <div class="controls">
       <div class="group">
         <span class="label">Target size</span>

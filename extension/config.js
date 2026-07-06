@@ -5,8 +5,14 @@
 // launch, create the product in Live mode and swap in its link:
 //   https://checkout.dodopayments.com/buy/pdt_XXXXXXXXXXXX?quantity=1
 export const CONFIG = {
-  PAYMENT_LINK: "https://test.checkout.dodopayments.com/buy/pdt_0NiTZmrZoFZS9LGhjmHQe?quantity=1",
+  // LIVE product (resolved from dodo.pe/shrinkto-pro - full URL required so
+  // the redirect_url param survives for auto-activation).
+  PAYMENT_LINK: "https://checkout.dodopayments.com/buy/pdt_0NiTcG4hxlufJ3khfWoaX?quantity=1",
   PRICE_TEXT: "$2",
+
+  // Free tier: this many compressions per rolling window, then Pro.
+  FREE_LIMIT: 10,
+  FREE_WINDOW_MS: 7 * 24 * 60 * 60 * 1000,
 
   // Dodo Payments license endpoints (public client endpoints - no API key).
   DODO_LIVE: "https://live.dodopayments.com",
