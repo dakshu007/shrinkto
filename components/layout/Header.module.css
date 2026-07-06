@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-5);
-  height: var(--header-height);
+  height: var(--nav-height);
   position: relative; /* anchor for the full-width mega menu */
 }
 
@@ -179,5 +179,56 @@
   }
   .burger {
     display: inline-flex;
+  }
+}
+
+/* ---- Promo banner (part of the sticky header stack) ---- */
+.promo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  padding-inline: var(--space-4);
+  background: linear-gradient(90deg, var(--color-primary-active), var(--color-primary));
+  color: #fff;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  overflow: hidden;
+}
+.promo:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.promo:hover .promoText {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.promoMark {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.18);
+  flex-shrink: 0;
+}
+.promoText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.promoText strong {
+  font-weight: 700;
+}
+.promoArrow {
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+.promo:hover .promoArrow {
+  transform: translateX(3px);
+}
+@media (max-width: 640px) {
+  .promoLong {
+    display: none;
   }
 }

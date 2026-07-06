@@ -75,7 +75,9 @@
 
   /* Layout */
   --container-max: 1200px;
-  --header-height: 68px;
+  /* Total sticky header stack: 38px promo banner + 68px nav bar. */
+  --header-height: 106px;
+  --nav-height: 68px;
 }
 
 *,

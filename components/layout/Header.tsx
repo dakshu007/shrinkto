@@ -45,6 +45,21 @@ export function Header() {
 
   return (
     <header className={styles.header}>
+      {/* Site-wide promo banner - hidden on the extension page itself. */}
+      {pathname !== "/chrome-extension-shrinkto-pro" && (
+        <Link href="/chrome-extension-shrinkto-pro" className={styles.promo}>
+          <span className={styles.promoMark} aria-hidden>
+            <Sparkles size={12} strokeWidth={2.5} />
+          </span>
+          <span className={styles.promoText}>
+            <strong>New:</strong> Try our Chrome extension
+            <span className={styles.promoLong}> - compress images to exact KB from your toolbar</span>
+          </span>
+          <span className={styles.promoArrow} aria-hidden>
+            →
+          </span>
+        </Link>
+      )}
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.logo} aria-label="ShrinkTo home">
           <span className={styles.logoMark} aria-hidden>
