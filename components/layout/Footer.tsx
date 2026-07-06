@@ -45,6 +45,7 @@ export function Footer() {
             <p className={styles.colHead}>Company</p>
             <ul>
               <li><Link href="/all-tools">All tools</Link></li>
+              <li><Link href="/chrome-extension-shrinkto-pro">Chrome Extension</Link></li>
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/about">About</Link></li>
               <li><Link href="/faq">FAQ</Link></li>

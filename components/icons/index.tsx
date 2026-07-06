@@ -41,6 +41,7 @@ export {
   Upload,
   Download,
   Search,
+  Puzzle,
   Clipboard,
   X,
   Check,

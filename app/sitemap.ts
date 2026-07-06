@@ -6,7 +6,7 @@ import { POSTS } from "@/lib/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticPages = ["", "all-tools", "convert", "about", "faq", "privacy", "terms", "contact", "blog", "become-a-partner", "partners"];
+  const staticPages = ["", "all-tools", "convert", "about", "faq", "privacy", "terms", "contact", "blog", "become-a-partner", "partners", "chrome-extension-shrinkto-pro"];
 
   const entries: MetadataRoute.Sitemap = [];
 
