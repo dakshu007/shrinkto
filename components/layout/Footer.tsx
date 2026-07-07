@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CATEGORIES, toolsByCategory } from "@/lib/content/tools";
 import { SITE } from "@/lib/content/seo-map";
-import { Sparkles } from "@/components/icons";
+import { BrandMark } from "@/components/BrandMark";
 import styles from "./Footer.module.css";
 
 const FOOTER_CATEGORIES = CATEGORIES.filter((c) =>
@@ -16,7 +16,7 @@ export function Footer() {
           <div className={styles.brandCol}>
             <Link href="/" className={styles.logo} aria-label="ShrinkTo home">
               <span className={styles.logoMark} aria-hidden>
-                <Sparkles size={16} strokeWidth={2} />
+                <BrandMark size={17} />
               </span>
               ShrinkTo
             </Link>

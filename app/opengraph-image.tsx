@@ -15,7 +15,7 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #1a73e8 0%, #6a5cff 100%)",
+          background: "linear-gradient(150deg, #5a9cf8 0%, #1a73e8 100%)",
           color: "#fff",
           fontFamily: "sans-serif",
         }}
@@ -30,11 +30,11 @@ export default function OgImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 44,
-              fontWeight: 800,
             }}
           >
-            S
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="#fff">
+              <path d="M12 3.6C12.67 8.22 15.78 11.33 20.4 12C15.78 12.67 12.67 15.78 12 20.4C11.33 15.78 8.22 12.67 3.6 12C8.22 11.33 11.33 8.22 12 3.6Z" />
+            </svg>
           </div>
           <div style={{ fontSize: 40, fontWeight: 700 }}>ShrinkTo</div>
         </div>

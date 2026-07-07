@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CATEGORIES, toolsByCategory } from "@/lib/content/tools";
 import { ICON_MAP, Menu, X, ChevronDown, Sparkles } from "@/components/icons";
+import { BrandMark } from "@/components/BrandMark";
 import { Button } from "@/components/ui/Button";
 import styles from "./Header.module.css";
 
@@ -63,7 +64,7 @@ export function Header() {
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.logo} aria-label="ShrinkTo home">
           <span className={styles.logoMark} aria-hidden>
-            <Sparkles size={18} strokeWidth={2} />
+            <BrandMark size={19} />
           </span>
           <span className={styles.logoText}>ShrinkTo</span>
         </Link>

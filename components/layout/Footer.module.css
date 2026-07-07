@@ -31,7 +31,7 @@
   height: 28px;
   border-radius: var(--radius-md);
   color: #fff;
-  background: linear-gradient(135deg, var(--color-primary), #6a5cff);
+  background: linear-gradient(160deg, #5a9cf8, var(--color-primary));
 }
 .tagline {
   font-size: var(--text-sm);

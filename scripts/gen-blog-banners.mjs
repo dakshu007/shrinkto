@@ -45,6 +45,12 @@ const pulse = (t, times = 1) => 0.5 - 0.5 * Math.cos(2 * Math.PI * times * t);
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
+// Official ShrinkTo logo: white four-point sparkle centered at (cx,cy).
+const sparkleMark = (cx, cy, r) => {
+  const k = r * 0.09, m = r * 0.44;
+  return `<path d="M${cx} ${cy - r}C${cx + k} ${cy - m} ${cx + m} ${cy - k} ${cx + r} ${cy}C${cx + m} ${cy + k} ${cx + k} ${cy + m} ${cx} ${cy + r}C${cx - k} ${cy + m} ${cx - m} ${cy + k} ${cx - r} ${cy}C${cx - m} ${cy - k} ${cx - k} ${cy - m} ${cx} ${cy - r}Z" fill="#ffffff"/>`;
+};
+
 function shell(titleLines, stage) {
   const lines = titleLines
     .map((l, i) => `<text x="64" y="${248 + i * 58}" font-family="${FONT}" font-size="46" font-weight="800" fill="${C.white}">${esc(l)}</text>`)
@@ -54,9 +60,9 @@ function shell(titleLines, stage) {
   <circle cx="905" cy="40" r="180" fill="${C.bg2}"/>
   <circle cx="80" cy="490" r="150" fill="${C.bg2}"/>
   <rect x="500" y="60" width="400" height="390" rx="28" fill="${C.bg3}"/>
-  <!-- brand -->
+  <!-- brand: official ShrinkTo sparkle logo -->
   <rect x="64" y="64" width="40" height="40" rx="11" fill="${C.blue}"/>
-  <text x="84" y="92" font-family="${FONT}" font-size="24" font-weight="700" fill="#fff" text-anchor="middle">✦</text>
+  ${sparkleMark(84, 84, 12.5)}
   <text x="116" y="93" font-family="${FONT}" font-size="26" font-weight="800" fill="${C.white}">ShrinkTo</text>
   ${lines}
   <rect x="64" y="${248 + titleLines.length * 58 - 34}" width="70" height="6" rx="3" fill="${C.blue}"/>

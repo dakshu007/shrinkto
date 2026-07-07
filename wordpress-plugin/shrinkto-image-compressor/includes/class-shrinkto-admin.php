@@ -196,7 +196,7 @@ class Shrinkto_Admin {
 		$total    = (int) get_option( 'shrinkto_total_saved', 0 );
 		?>
 		<div class="wrap shrinkto-wrap">
-			<h1><span class="shrinkto-mark">✦</span> ShrinkTo Image Compressor <?php echo $pro ? '<span class="shrinkto-pro-badge">PRO</span>' : ''; ?></h1>
+			<h1><span class="shrinkto-mark"><svg viewBox="0 0 24 24" fill="currentColor" width="60%" height="60%"><path d="M12 3.6C12.67 8.22 15.78 11.33 20.4 12C15.78 12.67 12.67 15.78 12 20.4C11.33 15.78 8.22 12.67 3.6 12C8.22 11.33 11.33 8.22 12 3.6Z"/></svg></span> ShrinkTo Image Compressor <?php echo $pro ? '<span class="shrinkto-pro-badge">PRO</span>' : ''; ?></h1>
 			<?php settings_errors( 'shrinkto' ); ?>
 
 			<div class="shrinkto-grid">
