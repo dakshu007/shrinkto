@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   creator: SITE.author,
   icons: { icon: "/favicon.ico" },
   manifest: "/manifest.webmanifest",
+  verification: {
+    google: "wFEGRIsve1USTVIYs6ha0-xJTkhMb_WwkttystQEpQk",
+  },
 };
 
 export const viewport = {
