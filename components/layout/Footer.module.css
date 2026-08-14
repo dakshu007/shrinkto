@@ -37,6 +37,16 @@
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
 }
+.statusBadge {
+  margin-top: var(--space-4);
+  display: flex;
+  align-items: center;
+}
+.statusBadge img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
 .colHead {
   font-size: var(--text-xs);
   font-weight: 700;
