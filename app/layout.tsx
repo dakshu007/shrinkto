@@ -50,6 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={dmSans.variable}>
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-4324017547197953" />
+      </head>
       <body>
         <a href="#main" className="skip-link">
           Skip to content
