@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { ServiceWorker } from "@/components/ServiceWorker";
 import { SITE } from "@/lib/content/seo-map";
 
@@ -32,6 +32,9 @@ export const metadata: Metadata = {
   verification: {
     google: "wFEGRIsve1USTVIYs6ha0-xJTkhMb_WwkttystQEpQk",
   },
+  other: {
+    "google-adsense-account": "ca-pub-4324017547197953",
+  },
 };
 
 export const viewport = {
@@ -55,6 +58,7 @@ export default function RootLayout({
         <main id="main">{children}</main>
         <Footer />
         <OrganizationJsonLd />
+        <WebSiteJsonLd />
         <ServiceWorker />
 
         {/* Google Analytics (gtag.js) - loaded after the page is interactive
@@ -69,6 +73,14 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA_ID}');`}
         </Script>
+
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324017547197953"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
