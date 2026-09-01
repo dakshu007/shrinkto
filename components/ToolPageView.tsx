@@ -5,6 +5,7 @@ import {
   WebApplicationJsonLd,
   BreadcrumbJsonLd,
   HowToJsonLd,
+  FaqJsonLd,
 } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/content/seo-map";
 import { relatedTools } from "@/lib/content/tools";
@@ -111,6 +112,7 @@ export function ToolPageView({
         ]}
       />
       <HowToJsonLd name={`How to ${h1.toLowerCase()}`} steps={steps} />
+      {faqs && faqs.length > 0 && <FaqJsonLd items={faqs} />}
     </div>
   );
 }

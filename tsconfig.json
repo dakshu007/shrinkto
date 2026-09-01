@@ -20,7 +20,8 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "types": ["cypress", "@argos-ci/cypress/support"]
   },
   "include": [
     "next-env.d.ts",

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Faq } from "@/components/Faq";
 import { metadataFor } from "@/lib/seo/metadata";
+import { FaqJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { SITE } from "@/lib/content/seo-map";
 
 export const metadata: Metadata = metadataFor("/faq");
 
@@ -48,6 +50,14 @@ export default function FaqPage() {
         </h1>
       </header>
       <Faq items={FAQS} title="" />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: SITE.url },
+          { name: "FAQ", url: `${SITE.url}/faq` },
+        ]}
+      />
+      <FaqJsonLd items={FAQS} />
     </div>
   );
 }
+

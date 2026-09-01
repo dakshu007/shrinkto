@@ -8,7 +8,7 @@ import { Faq } from "@/components/Faq";
 import { Toc } from "@/components/blog/Toc";
 import { AiActions } from "@/components/blog/AiActions";
 import { Button } from "@/components/ui/Button";
-import { JsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { JsonLd, BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { ChevronRight, ArrowRight } from "@/components/icons";
 import styles from "../blog.module.css";
 
@@ -294,6 +294,7 @@ export default async function BlogPostPage({ params }: Params) {
           { name: post.title, url },
         ]}
       />
+      {post.faqs && post.faqs.length > 0 && <FaqJsonLd items={post.faqs} />}
     </div>
   );
 }

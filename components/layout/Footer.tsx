@@ -24,15 +24,6 @@ export function Footer() {
               Private, in-browser image &amp; PDF tools. No upload, no signup, no limits - your
               files never leave your device.
             </p>
-            <div className={styles.statusBadge}>
-              <a href="https://shrinkto.com/" target="_blank" rel="noopener noreferrer">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://mykavo.app/api/badge/zTwy4VTKVI6HI_QIpb3NrNZc"
-                  alt="Uptime status"
-                />
-              </a>
-            </div>
           </div>
 
           {FOOTER_CATEGORIES.map((cat) => (

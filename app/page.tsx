@@ -4,7 +4,7 @@ import { Compressor } from "@/components/compressor/Compressor";
 import { ToolGrid } from "@/components/ToolGrid";
 import { Faq } from "@/components/Faq";
 import { Button } from "@/components/ui/Button";
-import { WebApplicationJsonLd } from "@/components/seo/JsonLd";
+import { WebApplicationJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { metadataFor } from "@/lib/seo/metadata";
 import { getSeo, SITE } from "@/lib/content/seo-map";
 import {
@@ -94,7 +94,7 @@ export default function HomePage() {
         <div className="container">
           <div className={styles.heroHead}>
             <span className={styles.eyebrow}>
-              <Sparkles size={14} aria-hidden /> Private · in-browser · unlimited
+              <Sparkles size={14} aria-hidden /> ✨ 100% Private · In-Browser · Lightning Fast &amp; Unlimited
             </span>
             <h1 className={styles.h1}>{seo.h1}</h1>
             <p className={styles.lede}>
@@ -226,6 +226,7 @@ export default function HomePage() {
       <p className={styles.builtBy}>
         Built by <Link href="/about">{SITE.author}</Link> - privacy-first file tools for everyone.
       </p>
+      <FaqJsonLd items={FAQS} />
     </>
   );
 }

@@ -6,7 +6,9 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@cantoo/pdf-lib": "^2.7.1",
@@ -34,10 +36,12 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@argos-ci/cypress": "^7.1.5",
     "@netlify/plugin-nextjs": "^5.15.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cypress": "^15.21.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
     "typescript": "^5"
