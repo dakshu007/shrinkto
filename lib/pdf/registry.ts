@@ -13,14 +13,17 @@ import {
   type PdfToolDef,
 } from "./types";
 import { TOOL_MODULES } from "./tools/index";
+import { normalizeImage } from "@/lib/compress/heic";
 
 // Re-export the shared types so existing importers (PdfToolShell, etc.) keep working.
 export type { OptionValues, PdfOptionField, PdfOutput, PdfToolDef };
 
 /** Rasterize any browser-decodable image File to PNG bytes (for embedding). */
 async function imageToEmbeddable(
-  file: File,
+  input: File,
 ): Promise<{ bytes: ArrayBuffer; kind: "jpg" | "png"; width: number; height: number }> {
+  // iPhone HEIC photos -> JPEG first (only Safari decodes HEIC natively).
+  const file = await normalizeImage(input);
   if (file.type === "image/jpeg") {
     const buf = await file.arrayBuffer();
     const bmp = await createImageBitmap(file);
@@ -43,6 +46,7 @@ async function renderPdfToJpegs(
   buffer: ArrayBuffer,
   scale: number,
   quality: number,
+  mime: "image/jpeg" | "image/png" = "image/jpeg",
 ): Promise<{ blob: Blob; width: number; height: number }[]> {
   const pdfjs = await getPdfjs();
   const doc = await pdfjs.getDocument({ data: new Uint8Array(buffer) }).promise;
@@ -58,7 +62,7 @@ async function renderPdfToJpegs(
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     await page.render({ canvas, canvasContext: ctx, viewport }).promise;
     const blob: Blob = await new Promise((res) =>
-      canvas.toBlob((b) => res(b!), "image/jpeg", quality),
+      canvas.toBlob((b) => res(b!), mime, mime === "image/png" ? undefined : quality),
     );
     out.push({ blob, width: canvas.width, height: canvas.height });
   }
@@ -476,6 +480,35 @@ export const REGISTRY: Record<string, PdfToolDef> = {
       const base = baseName(files[0].name);
       return images.map((img, i) => ({
         name: `${base}-page-${i + 1}.jpg`,
+        blob: img.blob,
+      }));
+    },
+  },
+
+  "pdf-to-png": {
+    slug: "pdf-to-png",
+    accept: PDF_MIME,
+    multiple: false,
+    cta: "Convert to PNG",
+    options: [
+      {
+        key: "scale",
+        label: "Resolution",
+        type: "select",
+        default: "2",
+        options: [
+          { value: "1", label: "Standard (72 DPI)" },
+          { value: "2", label: "High (144 DPI)" },
+          { value: "3", label: "Print (216 DPI)" },
+        ],
+      },
+    ],
+    async process(files, opts) {
+      const scale = Number(opts.scale ?? 2);
+      const images = await renderPdfToJpegs(await files[0].arrayBuffer(), scale, 1, "image/png");
+      const base = baseName(files[0].name);
+      return images.map((img, i) => ({
+        name: `${base}-page-${i + 1}.png`,
         blob: img.blob,
       }));
     },

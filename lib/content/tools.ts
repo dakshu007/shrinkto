@@ -54,6 +54,9 @@ export const TOOLS: Tool[] = [
   { slug: "png-to-jpg", label: "PNG to JPG", description: "Convert PNG images to compact JPG.", category: "image", kind: "image", icon: "Image", accept: "image/png" },
   { slug: "jpg-to-png", label: "JPG to PNG", description: "Convert JPG to lossless PNG.", category: "image", kind: "image", icon: "Image", accept: "image/jpeg" },
   { slug: "webp-converter", label: "WebP Converter", description: "Convert images to and from WebP.", category: "image", kind: "image", icon: "RefreshCw", accept: "image/*" },
+  { slug: "increase-image-size-in-kb", label: "Increase Image Size in KB", description: "Make a photo bigger in KB to meet a form's minimum - looks identical.", category: "image", kind: "image", icon: "ArrowUpFromLine", accept: "image/*" },
+  { slug: "rotate-image", label: "Rotate & Flip Image", description: "Rotate 90°/180° or mirror photos, in bulk.", category: "image", kind: "image", icon: "RotateCw", accept: "image/*" },
+  { slug: "watermark-image", label: "Watermark Image", description: "Stamp your name or brand on photos, tiled or in a corner.", category: "image", kind: "image", icon: "Stamp", accept: "image/*" },
 
   // ---- Organize PDF ----
   { slug: "merge-pdf", label: "Merge PDF", description: "Combine multiple PDFs into one, in any order.", category: "organize", kind: "pdf", icon: "Combine", accept: "application/pdf" },
@@ -77,6 +80,7 @@ export const TOOLS: Tool[] = [
 
   // ---- Convert from PDF ----
   { slug: "pdf-to-jpg", label: "PDF to JPG", description: "Convert each PDF page into a JPG image.", category: "convert", kind: "pdf", icon: "Image", accept: "application/pdf" },
+  { slug: "pdf-to-png", label: "PDF to PNG", description: "Convert each PDF page into a crisp PNG.", category: "convert", kind: "pdf", icon: "Image", accept: "application/pdf" },
   { slug: "pdf-to-word", label: "PDF to Word", description: "Convert PDF to an editable Word document.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf" },
   { slug: "pdf-to-powerpoint", label: "PDF to PowerPoint", description: "Convert PDF pages into PPTX slides.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf" },
   { slug: "pdf-to-excel", label: "PDF to Excel", description: "Extract tables from PDF into Excel.", category: "convert", kind: "pdf", icon: "FileType", accept: "application/pdf" },

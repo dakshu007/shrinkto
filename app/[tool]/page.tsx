@@ -16,6 +16,8 @@ import { getPdfTool } from "@/lib/pdf/registry";
 import { isInteractiveSlug, type InteractiveSlug } from "@/lib/pdf/interactive-slugs";
 import { InteractivePdfTool } from "@/components/pdf/InteractivePdfTool";
 import { getToolContent, getLandingContent } from "@/lib/content/tool-content";
+import { RotateFlip } from "@/components/image-tools/RotateFlip";
+import { Watermark } from "@/components/image-tools/Watermark";
 
 type Params = { params: Promise<{ tool: string }> };
 
@@ -50,6 +52,7 @@ export default async function ToolPage({ params }: Params) {
           initialTargetKb={landing.targetKb ?? 100}
           initialWidth={landing.width}
           initialHeight={landing.height}
+          initialUseCase={landing.useCase}
         />
       ) : (
         <PdfToolShell slug="compress-pdf" cta="Compress PDF" />
@@ -83,7 +86,21 @@ export default async function ToolPage({ params }: Params) {
           : slug === "webp-converter" || slug === "convert-image"
             ? "webp"
             : "auto";
-    interactive = <Compressor initialTargetKb={200} initialFormat={initialFormat} />;
+    if (slug === "increase-image-size-in-kb") {
+      interactive = <Compressor mode="increase" initialTargetKb={50} />;
+    } else if (slug === "rotate-image") {
+      interactive = <RotateFlip />;
+    } else if (slug === "watermark-image") {
+      interactive = <Watermark />;
+    } else if (slug === "resize-image") {
+      interactive = <Compressor initialTargetKb={1024} showDimensions showUseCases={false} />;
+    } else if (slug === "crop-image") {
+      interactive = <Compressor initialTargetKb={500} autoEdit showUseCases={false} />;
+    } else {
+      interactive = (
+        <Compressor initialTargetKb={200} initialFormat={initialFormat} showUseCases={slug === "compress-image"} />
+      );
+    }
   } else if (isInteractiveSlug(slug)) {
     interactive = <InteractivePdfTool slug={slug as InteractiveSlug} />;
   } else {

@@ -145,3 +145,25 @@
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-modal);
 }
+
+/* ---- "What's it for?" use cases ------------------------------------------- */
+.caseHint {
+  margin-left: 10px; padding: 2px 9px; border-radius: 99px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0; text-transform: none;
+  color: var(--color-primary); background: var(--color-primary-light);
+}
+.cases { display: flex; flex-wrap: wrap; gap: 8px; }
+.case {
+  display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 6px;
+  font: inherit; font-size: var(--text-sm); font-weight: 600; color: var(--color-text);
+  background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-full);
+  cursor: pointer; transition: border-color 0.15s, background 0.15s, transform 0.15s, box-shadow 0.2s;
+}
+.case:hover { border-color: var(--a); transform: translateY(-1px); }
+.caseIcon {
+  display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  color: var(--a); background: color-mix(in srgb, var(--a) 12%, #fff);
+  transition: background 0.15s, color 0.15s;
+}
+.caseOn { border-color: var(--a); background: color-mix(in srgb, var(--a) 8%, #fff); box-shadow: 0 6px 18px color-mix(in srgb, var(--a) 22%, transparent); }
+.caseOn .caseIcon { color: #fff; background: var(--a); }

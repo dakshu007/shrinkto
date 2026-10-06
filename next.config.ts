@@ -42,7 +42,23 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
+    // Old static-site URLs Google still shows (e.g. /compress-to-100kb.html).
+    const legacyKb = [10, 15, 20, 30, 40, 50, 100, 150, 200, 300, 500].flatMap((kb) => [
+      { source: `/compress-to-${kb}kb.html`, destination: `/compress-image-to-${kb}kb`, permanent: true },
+      { source: `/compress-to-${kb}kb`, destination: `/compress-image-to-${kb}kb`, permanent: true },
+    ]);
     return [
+      ...legacyKb,
+      { source: "/compress-to-1mb.html", destination: "/compress-image-to-1mb", permanent: true },
+      { source: "/compress-to-2mb.html", destination: "/compress-image-to-2mb", permanent: true },
+      { source: "/compress-to-:size.html", destination: "/compress-image", permanent: true },
+      { source: "/index.html", destination: "/", permanent: true },
+      { source: "/faq.html", destination: "/faq", permanent: true },
+      { source: "/about.html", destination: "/about", permanent: true },
+      { source: "/contact.html", destination: "/contact", permanent: true },
+      { source: "/privacy.html", destination: "/privacy", permanent: true },
+      { source: "/terms.html", destination: "/terms", permanent: true },
+      { source: "/blog.html", destination: "/blog", permanent: true },
       // Post renamed to match its focus keyword (jpeg vs jpg).
       {
         source: "/blog/jpg-vs-png-vs-webp-vs-avif",

@@ -45,7 +45,48 @@ function pdfSteps(verb: string): Step[] {
   ];
 }
 
+// Tools whose flow isn't "pick a size, download" get their own steps + FAQs.
+const OVERRIDES: Record<string, Partial<ToolContent>> = {
+  "increase-image-size-in-kb": {
+    answer:
+      "To increase an image's size in KB, drop it below and pick the size you need (for example 50 KB) - ShrinkTo saves it at top quality and adds invisible padding until it reaches that size, so the picture looks exactly the same.",
+    steps: [
+      { name: "Add your photo", text: "Drop a JPG, PNG, WebP or iPhone HEIC photo, or paste it." },
+      { name: "Pick the size you need", text: "Choose 20, 50, 100 KB or type any size - the minimum your form asks for." },
+      { name: "Download", text: "Your photo now meets the minimum size and looks identical. Upload it." },
+    ],
+    faqs: [
+      { q: "How do I increase a photo from 10 KB to 50 KB?", a: "Drop the photo here, choose 50 KB and download. ShrinkTo re-saves it at top quality and, if it is still too small, adds harmless padding data inside the JPEG so it reaches exactly the size you picked." },
+      { q: "Does increasing the KB change how the photo looks?", a: "No. The pixels are the same; the extra bytes are a comment block inside the JPEG file that every viewer and upload form ignores." },
+      { q: "Why would a form reject a small photo?", a: "Many exam, job and government portals set a size range such as 20-50 KB to make sure photos aren't overly compressed. This tool gets you inside the range in one step." },
+      ...PRIVACY_FAQS,
+    ],
+  },
+  "rotate-image": {
+    answer: "To rotate or flip an image, drop it below, tap Left, Right, Mirror or Flip, and download - free, in bulk, right in your browser.",
+    steps: [
+      { name: "Add your photos", text: "Drop one photo or a whole batch." },
+      { name: "Rotate or flip", text: "Turn left or right in 90° steps, mirror horizontally or flip vertically. The preview updates instantly." },
+      { name: "Download", text: "Save one photo, or the whole batch as a ZIP." },
+    ],
+  },
+  "watermark-image": {
+    answer: "To watermark an image, drop it below, type your name or brand, pick a corner or a tiled pattern, and download - free, in bulk, with no upload.",
+    steps: [
+      { name: "Add your photos", text: "Drop one photo or a whole batch." },
+      { name: "Style your watermark", text: "Type your text, choose a position or tile it across the photo, and set size and opacity. You see the result live." },
+      { name: "Download", text: "The same watermark is applied to every photo. Save them one by one or as a ZIP." },
+    ],
+  },
+};
+
 export function getToolContent(tool: Tool): ToolContent {
+  const base = getGenericContent(tool);
+  const o = OVERRIDES[tool.slug];
+  return o ? { ...base, ...o, faqs: o.faqs ?? base.faqs } : base;
+}
+
+function getGenericContent(tool: Tool): ToolContent {
   const name = tool.label.toLowerCase();
   const isImage = tool.kind === "image";
   return {

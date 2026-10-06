@@ -35,6 +35,24 @@ function sniffFormat(buffer: ArrayBuffer): OutputFormat | null {
   return null;
 }
 
+// ---- Geometry ----------------------------------------------------------------
+
+/** Centre-crop `src` to the given width/height ratio. */
+function cropToAspect(src: ImageData, ratio: number): ImageData {
+  const srcRatio = src.width / src.height;
+  if (Math.abs(srcRatio - ratio) < 0.005) return src;
+  let sw = src.width;
+  let sh = src.height;
+  if (srcRatio > ratio) sw = Math.round(src.height * ratio);
+  else sh = Math.round(src.width / ratio);
+  const sx = Math.round((src.width - sw) / 2);
+  const sy = Math.round((src.height - sh) / 2);
+  const canvas = new OffscreenCanvas(src.width, src.height);
+  const ctx = canvas.getContext("2d")!;
+  ctx.putImageData(src, 0, 0);
+  return ctx.getImageData(sx, sy, sw, sh);
+}
+
 // ---- Decode ----------------------------------------------------------------
 
 async function decode(buffer: ArrayBuffer): Promise<ImageData> {
@@ -281,9 +299,14 @@ export async function compressImage(
   // Exact resize (presets) takes precedence.
   const resized = Boolean(options.width || options.height || options.maxWidth || options.maxHeight);
   if (options.width || options.height) {
-    const w = options.width || imageData.width;
-    const h = options.height || imageData.height;
-    imageData = await drawScaled(imageData, Math.round(w), Math.round(h));
+    // One side given -> keep the aspect ratio. Both given -> centre-crop to the
+    // target aspect first, so faces in passport/exam photos are never stretched.
+    const srcW = imageData.width;
+    const srcH = imageData.height;
+    const w = options.width || Math.round(((options.height as number) * srcW) / srcH);
+    const h = options.height || Math.round(((options.width as number) * srcH) / srcW);
+    if (options.width && options.height) imageData = cropToAspect(imageData, w / h);
+    imageData = await drawScaled(imageData, Math.max(1, Math.round(w)), Math.max(1, Math.round(h)));
   } else if (options.maxWidth || options.maxHeight) {
     const maxW = options.maxWidth || Infinity;
     const maxH = options.maxHeight || Infinity;

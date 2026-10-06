@@ -1,0 +1,18 @@
+.bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 22px;
+  padding: 12px 18px; border-radius: var(--radius-xl);
+  font-size: var(--text-sm); color: var(--color-text-secondary);
+  background: #fff; border: 1px solid var(--color-border-light);
+  animation: rise 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+.item { display: inline-flex; align-items: center; gap: 8px; }
+.item b { color: var(--color-text); font-weight: 700; font-variant-numeric: tabular-nums; }
+.ico { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 9px; }
+.blue { color: #1a73e8; background: #e8f0fe; }
+.amber { color: #b26a00; background: #fff4d6; }
+.red { color: #e5322d; background: #fdeceb; }
+.levelText { display: inline-flex; align-items: center; gap: 10px; }
+.track { display: inline-block; width: 70px; height: 6px; border-radius: 99px; background: var(--color-border-light); overflow: hidden; }
+.track i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #ffaf00, #ff5fa2); transition: width 0.6s ease; }
+@media (prefers-reduced-motion: reduce) { .bar { animation: none; } }

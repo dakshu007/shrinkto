@@ -21,6 +21,7 @@
     "@netlify/blobs": "^10.7.9",
     "docx": "^9.7.1",
     "framer-motion": "^12.42.0",
+    "heic-to": "^1.6.5",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
     "jszip": "^3.10.1",

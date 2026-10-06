@@ -64,6 +64,18 @@ export {
   Square,
   Pencil,
   MousePointer2,
+  Trophy,
+  Flame,
+  Wand2,
+  ImagePlus,
+  PartyPopper,
+  Gauge as GaugeIcon,
+  FlipHorizontal2,
+  FlipVertical2,
+  RotateCcw,
+  Stamp,
+  ArrowUpFromLine,
+  Maximize2 as MaximizeIcon,
 } from "lucide-react";
 
 /** Map registry icon-name strings to components for dynamic rendering. */
@@ -93,6 +105,15 @@ import {
   GitCompare,
   Trash2,
   Sparkles,
+  SquareUser,
+  Contact,
+  MessageCircle,
+  Mail,
+  Globe,
+  Heart,
+  Stamp,
+  ArrowUpFromLine,
+  FlipHorizontal2,
   type LucideIcon,
 } from "lucide-react";
 
@@ -122,6 +143,15 @@ export const ICON_MAP: Record<string, LucideIcon> = {
   GitCompare,
   Trash2,
   Sparkles,
+  SquareUser,
+  Contact,
+  MessageCircle,
+  Mail,
+  Globe,
+  Heart,
+  Stamp,
+  ArrowUpFromLine,
+  FlipHorizontal2,
 };
 
 export type { LucideIcon };

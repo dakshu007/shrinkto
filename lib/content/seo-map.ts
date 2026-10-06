@@ -75,6 +75,35 @@ const EXPLICIT: Record<string, SeoEntry> = {
     secondaryKeywords: ["combine pdf", "merge pdf files", "join pdf", "merge pdf online free", "merge pdf no upload"],
     h1: "Merge PDF",
   },
+  "/increase-image-size-in-kb": {
+    title: "Increase Image Size in KB - Free, No Upload | ShrinkTo",
+    description:
+      "Increase a photo's file size in KB (e.g. 10 KB to 50 KB) to meet an upload form's minimum. The picture looks identical. Free, in your browser, no upload.",
+    focusKeyword: "increase image size in kb",
+    secondaryKeywords: ["increase photo size to 20kb", "increase jpg size in kb", "image size increaser", "increase signature size in kb", "convert 10kb to 50kb"],
+    h1: "Increase Image Size in KB",
+  },
+  "/rotate-image": {
+    title: "Rotate & Flip Image Online - Free, Bulk | ShrinkTo",
+    description: "Rotate photos 90° or 180° and mirror or flip them, in bulk, free in your browser. No upload, no signup, no watermark.",
+    focusKeyword: "rotate image",
+    secondaryKeywords: ["flip image", "mirror image online", "rotate photo", "rotate jpg", "flip photo horizontally"],
+    h1: "Rotate & Flip Image",
+  },
+  "/watermark-image": {
+    title: "Watermark Image Online - Free, No Upload | ShrinkTo",
+    description: "Add a text watermark to photos - in a corner or tiled across the image - in bulk, free in your browser. No upload, no signup.",
+    focusKeyword: "watermark image",
+    secondaryKeywords: ["add watermark to photo", "watermark photos online free", "photo watermark maker", "add text to image"],
+    h1: "Watermark Image",
+  },
+  "/pdf-to-png": {
+    title: "PDF to PNG Converter - Free, High Quality | ShrinkTo",
+    description: "Convert every PDF page into a crisp PNG image, free in your browser. Choose up to print resolution. No upload, no signup.",
+    focusKeyword: "pdf to png",
+    secondaryKeywords: ["convert pdf to png", "pdf to png converter", "pdf page to image", "pdf to png high quality"],
+    h1: "PDF to PNG Converter",
+  },
 };
 
 // Exact-size & niche landing pages (high-traffic long-tail).
@@ -85,10 +114,12 @@ export interface LandingPage extends SeoEntry {
   width?: number;
   height?: number;
   kind: "image" | "pdf";
+  /** One-tap use case to preselect (lib/content/use-cases.ts). */
+  useCase?: string;
 }
 
 export const LANDING_PAGES: LandingPage[] = [
-  ...[20, 50, 100, 200, 500].map((kb) => ({
+  ...[10, 15, 20, 30, 40, 50, 100, 150, 200, 300, 500].map((kb) => ({
     slug: `compress-image-to-${kb}kb`,
     targetKb: kb,
     kind: "image" as const,
@@ -98,6 +129,38 @@ export const LANDING_PAGES: LandingPage[] = [
     secondaryKeywords: [`reduce image to ${kb}kb`, `${kb}kb photo compressor`, `compress jpg to ${kb}kb`, `image to ${kb}kb online`],
     h1: `Compress Image to ${kb} KB`,
   })),
+  {
+    slug: "compress-image-to-2mb",
+    targetKb: 2048,
+    kind: "image",
+    title: "Compress Image to 2MB Online Free | ShrinkTo",
+    description: "Compress any photo down to 2MB in your browser. Exact-size targeting, no upload, no signup, unlimited.",
+    focusKeyword: "compress image to 2mb",
+    secondaryKeywords: ["reduce image to 2mb", "compress photo to 2mb", "2mb image compressor"],
+    h1: "Compress Image to 2 MB",
+  },
+  {
+    slug: "exam-photo-resizer",
+    targetKb: 48,
+    kind: "image",
+    useCase: "exam",
+    title: "Exam Photo Resizer - 200x230, 20-50 KB, Free | ShrinkTo",
+    description: "Resize your photo for exam and government job application forms: 200x230 pixels, between 20 and 50 KB. Free, in your browser, no upload.",
+    focusKeyword: "exam photo resizer",
+    secondaryKeywords: ["photo resize for exam form", "resize photo to 50kb", "photo 200x230 20kb to 50kb", "government job photo resize"],
+    h1: "Exam Photo Resizer (20-50 KB)",
+  },
+  {
+    slug: "signature-resizer",
+    targetKb: 19,
+    kind: "image",
+    useCase: "signature",
+    title: "Signature Resizer - 140x60, 10-20 KB, Free | ShrinkTo",
+    description: "Resize your signature for online application forms: 140x60 pixels, 10 to 20 KB. Free, private, in your browser.",
+    focusKeyword: "signature resizer",
+    secondaryKeywords: ["resize signature to 20kb", "signature 140x60", "signature size reducer", "signature resize for exam form"],
+    h1: "Signature Resizer (10-20 KB)",
+  },
   {
     slug: "compress-image-to-1mb",
     targetKb: 1024,
