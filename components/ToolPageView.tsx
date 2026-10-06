@@ -10,6 +10,7 @@ import {
 import { SITE } from "@/lib/content/seo-map";
 import { relatedTools } from "@/lib/content/tools";
 import type { QA, Step } from "@/lib/content/tool-content";
+import { MyKavoSpotlight } from "@/components/partners/MyKavoSpotlight";
 import styles from "./ToolPageView.module.css";
 
 export function ToolPageView({
@@ -81,6 +82,10 @@ export function ToolPageView({
         <section className={styles.faqSection}>
           <Faq items={faqs} />
         </section>
+
+        {/(image|jpg|jpeg|png|webp|kb|photo|resize|crop|heic|gif)/.test(slug) && (
+          <MyKavoSpotlight variant="compact" placement={`tool-${slug}`} />
+        )}
 
         {related.length > 0 && (
           <section className={styles.related} aria-labelledby="related-title">

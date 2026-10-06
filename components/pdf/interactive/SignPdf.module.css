@@ -253,7 +253,7 @@
   background: var(--color-primary-50);
 }
 .btnPrimary {
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
@@ -279,7 +279,7 @@
   height: 28px;
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: #FFFFFF;
 }
 
 .hintLine {
@@ -326,7 +326,7 @@
   padding: 2px 8px;
   font-size: var(--text-xs);
   font-weight: 600;
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-overlay);
   border-radius: var(--radius-full);
   pointer-events: none;
@@ -357,9 +357,9 @@
   width: 24px;
   height: 24px;
   padding: 0;
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-danger);
-  border: 2px solid #fff;
+  border: 2px solid #FFFFFF;
   border-radius: var(--radius-full);
   cursor: pointer;
   line-height: 0;
@@ -370,7 +370,7 @@
   height: 16px;
   bottom: -8px;
   right: -8px;
-  background: #fff;
+  background: #FFFFFF;
   border: 2px solid var(--color-primary);
   border-radius: var(--radius-full);
   cursor: nwse-resize;
@@ -391,7 +391,7 @@
   padding: 12px 22px;
   font-size: var(--text-base);
   font-weight: 600;
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-primary);
   border: none;
   border-radius: var(--radius-md);
@@ -433,7 +433,7 @@
   padding: 11px 20px;
   font-size: var(--text-base);
   font-weight: 600;
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-primary);
   border-radius: var(--radius-md);
   text-decoration: none;

@@ -18,6 +18,8 @@ import {
   Download,
   Minimize2,
 } from "@/components/icons";
+import { ExtensionBand } from "@/components/extension/ExtensionBand";
+import { MyKavoSpotlight } from "@/components/partners/MyKavoSpotlight";
 import styles from "./home.module.css";
 
 export const metadata: Metadata = metadataFor("/");
@@ -94,7 +96,7 @@ export default function HomePage() {
         <div className="container">
           <div className={styles.heroHead}>
             <span className={styles.eyebrow}>
-              <Sparkles size={14} aria-hidden /> ✨ 100% Private · In-Browser · Lightning Fast &amp; Unlimited
+              <Sparkles size={14} aria-hidden /> 100% Private · In-Browser · Lightning Fast &amp; Unlimited
             </span>
             <h1 className={styles.h1}>{seo.h1}</h1>
             <p className={styles.lede}>
@@ -202,10 +204,20 @@ export default function HomePage() {
         <ToolGrid only={["organize", "optimize", "convert"]} />
       </section>
 
+      {/* Chrome extension */}
+      <section className={`container ${styles.section}`} aria-label="ShrinkTo for Chrome">
+        <ExtensionBand />
+      </section>
+
       {/* FAQ */}
       <section className={`container ${styles.section}`}>
         <Faq items={FAQS} />
       </section>
+
+      {/* Partner */}
+      <div className="container">
+        <MyKavoSpotlight placement="home" />
+      </div>
 
       {/* CTA */}
       <section className={`container ${styles.section}`}>

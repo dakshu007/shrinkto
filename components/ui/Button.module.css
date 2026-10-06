@@ -49,7 +49,7 @@
 /* Variants */
 .primary {
   background: var(--color-primary);
-  color: #fff;
+  color: #FFFFFF;
   box-shadow: var(--shadow-1);
 }
 .primary:hover {
@@ -81,8 +81,8 @@
 
 .danger {
   background: var(--color-danger);
-  color: #fff;
+  color: #FFFFFF;
 }
 .danger:hover {
-  background: #b3261e;
+  background: #1A73E8;
 }

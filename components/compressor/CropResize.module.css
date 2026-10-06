@@ -6,7 +6,7 @@
   display: grid;
   place-items: center;
   padding: var(--space-4);
-  background: rgba(32, 33, 36, 0.55);
+  background: rgba(26, 115, 232, 0.55);
   backdrop-filter: blur(2px);
   animation: fade 0.16s ease;
 }
@@ -93,13 +93,13 @@
 /* The four shaded regions outside the crop box dim the rest of the image. */
 .shade {
   position: absolute;
-  background: rgba(32, 33, 36, 0.5);
+  background: rgba(26, 115, 232, 0.5);
   pointer-events: none;
 }
 .cropBox {
   position: absolute;
   border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0 1px rgba(26, 115, 232, 0.15);
   cursor: move;
 }
 .cropBox::before,
@@ -292,7 +292,7 @@
   background: var(--color-bg-subtle);
 }
 .btnPrimary {
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-primary);
   border-color: var(--color-primary);
 }

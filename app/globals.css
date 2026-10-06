@@ -1,39 +1,47 @@
 /* ShrinkTo - design tokens + base styles (light mode only) */
 
 :root {
+  /* Two-colour system: #1A73E8 + #FFFFFF only. Tints below are #1A73E8 at
+     low alpha over white - the same two colours, used for hairlines and panels. */
+  --blue: #1A73E8;
+  --white: #FFFFFF;
+  --blue-04: rgba(26, 115, 232, 0.04);
+  --blue-08: rgba(26, 115, 232, 0.08);
+  --blue-14: rgba(26, 115, 232, 0.14);
+  --blue-22: rgba(26, 115, 232, 0.22);
+
   /* Brand */
-  --color-primary: #1a73e8;
-  --color-primary-hover: #1765cc;
-  --color-primary-active: #185abc;
-  --color-primary-light: #e8f0fe;
-  --color-primary-50: #f8fbff;
+  --color-primary: #1A73E8;
+  --color-primary-hover: #1A73E8;
+  --color-primary-active: #1A73E8;
+  --color-primary-light: rgba(26, 115, 232, 0.08);
+  --color-primary-50: rgba(26, 115, 232, 0.04);
 
-  /* Tool-category accents (iLovePDF-style color coding) */
-  --c-organize: #e5322d;
-  --c-optimize: #ffaf00;
-  --c-convert: #00bd6f;
-  --c-edit: #a033ff;
-  --c-security: #0f7bff;
-  --c-image: #ff5fa2;
+  /* Tool-category accents - one colour everywhere */
+  --c-organize: #1A73E8;
+  --c-optimize: #1A73E8;
+  --c-convert: #1A73E8;
+  --c-edit: #1A73E8;
+  --c-security: #1A73E8;
+  --c-image: #1A73E8;
 
-  /* Semantic */
-  --color-success: #1e8e3e;
-  --color-success-light: #e6f4ea;
-  --color-warning: #f9ab00;
-  --color-warning-light: #fef7e0;
-  --color-danger: #d93025;
-  --color-danger-light: #fce8e6;
+  /* Semantic (shape + icon carry the meaning, colour stays on-brand) */
+  --color-success: #1A73E8;
+  --color-success-light: rgba(26, 115, 232, 0.08);
+  --color-warning: #1A73E8;
+  --color-warning-light: rgba(26, 115, 232, 0.08);
+  --color-danger: #1A73E8;
+  --color-danger-light: rgba(26, 115, 232, 0.08);
 
-  /* Neutrals */
-  --color-text: #202124;
-  --color-text-secondary: #5f6368;
-  /* Darkened from #80868b to meet WCAG AA (4.5:1) on white and subtle bg. */
-  --color-text-tertiary: #646a72;
-  --color-border: #dadce0;
-  --color-border-light: #e8eaed;
-  --color-bg: #ffffff;
-  --color-bg-subtle: #f8f9fa;
-  --color-overlay: rgba(32, 33, 36, 0.6);
+  /* Neutrals -> the blue (text) and white (surfaces) */
+  --color-text: #1A73E8;
+  --color-text-secondary: #1A73E8;
+  --color-text-tertiary: #1A73E8;
+  --color-border: rgba(26, 115, 232, 0.22);
+  --color-border-light: rgba(26, 115, 232, 0.14);
+  --color-bg: #FFFFFF;
+  --color-bg-subtle: rgba(26, 115, 232, 0.04);
+  --color-overlay: rgba(26, 115, 232, 0.6);
 
   /* Type scale */
   --text-xs: 12px;
@@ -56,11 +64,11 @@
   --radius-full: 9999px;
 
   /* Elevation */
-  --shadow-1: 0 1px 2px rgba(60, 64, 67, 0.08), 0 1px 3px 1px rgba(60, 64, 67, 0.04);
-  --shadow-2: 0 1px 2px rgba(60, 64, 67, 0.1), 0 2px 6px 2px rgba(60, 64, 67, 0.05);
-  --shadow-3: 0 4px 8px 3px rgba(60, 64, 67, 0.08), 0 1px 3px rgba(60, 64, 67, 0.07);
-  --shadow-modal: 0 24px 48px rgba(60, 64, 67, 0.2), 0 0 0 1px rgba(60, 64, 67, 0.05);
-  --shadow-focus: 0 0 0 3px rgba(26, 115, 232, 0.2);
+  --shadow-1: 0 1px 2px rgba(26, 115, 232, 0.08), 0 1px 3px 1px rgba(26, 115, 232, 0.04);
+  --shadow-2: 0 1px 2px rgba(26, 115, 232, 0.1), 0 2px 6px 2px rgba(26, 115, 232, 0.06);
+  --shadow-3: 0 4px 8px 3px rgba(26, 115, 232, 0.08), 0 1px 3px rgba(26, 115, 232, 0.08);
+  --shadow-modal: 0 24px 48px rgba(26, 115, 232, 0.18), 0 0 0 1px rgba(26, 115, 232, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(26, 115, 232, 0.25);
 
   /* Spacing scale */
   --space-1: 4px;

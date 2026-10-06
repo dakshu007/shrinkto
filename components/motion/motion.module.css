@@ -1,0 +1,11 @@
+.reveal {
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms),
+    filter 0.8s ease var(--reveal-delay, 0ms);
+}
+.reveal[data-reveal="armed"] { opacity: 0; filter: blur(6px); }
+.reveal.up[data-reveal="armed"] { transform: translateY(34px); }
+.reveal.scale[data-reveal="armed"] { transform: translateY(20px) scale(0.96); }
+.reveal.left[data-reveal="armed"] { transform: translateX(-40px); }
+.reveal.right[data-reveal="armed"] { transform: translateX(40px); }
+.reveal[data-reveal="in"] { opacity: 1; transform: none; filter: none; }

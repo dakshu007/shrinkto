@@ -142,7 +142,7 @@
   width: 56px;
   height: 56px;
   border-radius: var(--radius-full);
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-success);
 }
 .success p {

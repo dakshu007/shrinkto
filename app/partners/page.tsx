@@ -3,6 +3,7 @@ import { BecomePartnerCta } from "@/components/partners/BecomePartnerCta";
 import { ExternalLink } from "@/components/icons";
 import { listPartners } from "@/lib/partners/store";
 import { metadataFor } from "@/lib/seo/metadata";
+import { MyKavoSpotlight } from "@/components/partners/MyKavoSpotlight";
 import styles from "./partners.module.css";
 
 export const metadata: Metadata = metadataFor("/partners");
@@ -28,10 +29,12 @@ export default async function PartnersPage() {
         <BecomePartnerCta size="md" label="Become a partner" />
       </header>
 
+      <MyKavoSpotlight placement="partners-directory" />
+
       {partners.length === 0 ? (
         <div className={styles.empty}>
-          <p>Our partner directory is just getting started.</p>
-          <p className={styles.emptySub}>Be one of the first - apply above.</p>
+          <p>More partners are joining soon.</p>
+          <p className={styles.emptySub}>Want your brand here? Apply above.</p>
         </div>
       ) : (
         <div className={styles.grid}>

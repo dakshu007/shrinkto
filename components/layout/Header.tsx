@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CATEGORIES, toolsByCategory } from "@/lib/content/tools";
-import { ICON_MAP, Menu, X, ChevronDown, Sparkles } from "@/components/icons";
+import { ICON_MAP, Menu, X, ChevronDown } from "@/components/icons";
+import { ArrowRight } from "lucide-react";
 import { BrandMark } from "@/components/BrandMark";
+import { ProMark } from "@/components/extension/ProMark";
 import { Button } from "@/components/ui/Button";
 import styles from "./Header.module.css";
 
@@ -49,16 +51,12 @@ export function Header() {
       {/* Site-wide promo banner - hidden on the extension page itself. */}
       {pathname !== "/chrome-extension-shrinkto-pro" && (
         <Link href="/chrome-extension-shrinkto-pro" className={styles.promo}>
-          <span className={styles.promoMark} aria-hidden>
-            <Sparkles size={12} strokeWidth={2.5} />
-          </span>
+          <ProMark size={22} className={styles.promoMark} />
           <span className={styles.promoText}>
-            <strong>New:</strong> Try our Chrome extension
-            <span className={styles.promoLong}> - compress images to exact KB from your toolbar</span>
+            <strong>ShrinkTo for Chrome 2.0</strong>
+            <span className={styles.promoLong}> - exact-KB compression from your toolbar · Pro $1 lifetime</span>
           </span>
-          <span className={styles.promoArrow} aria-hidden>
-            →
-          </span>
+          <ArrowRight size={15} className={styles.promoArrow} aria-hidden />
         </Link>
       )}
       <div className={`container ${styles.bar}`}>
@@ -155,8 +153,14 @@ export function Header() {
           <Link href="/become-a-partner" className={styles.mobileLink}>
             Become a Partner
           </Link>
+          <Link href="/chrome-extension-shrinkto-pro" className={styles.mobileLink}>
+            Chrome extension
+          </Link>
           <Link href="/partners" className={styles.mobileLink}>
             Our Partners
+          </Link>
+          <Link href="/partners/mykavo" className={styles.mobileLink}>
+            ShrinkTo × MyKavo
           </Link>
           <Link href="/about" className={styles.mobileLink}>
             About

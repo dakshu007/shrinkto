@@ -1,0 +1,70 @@
+/* ShrinkTo × MyKavo partner page - two colours only (#1A73E8 / #FFFFFF). */
+.page { overflow-x: clip; color: #1A73E8; }
+
+.hero { position: relative; isolation: isolate; overflow: hidden; padding: 90px 0 80px; text-align: center; color: #FFFFFF; background: #1A73E8; }
+.glowA, .glowB { position: absolute; z-index: -1; width: 700px; height: 600px; border-radius: 50%; filter: blur(80px); }
+.glowA { left: -240px; top: -260px; background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 65%); animation: driftA 16s ease-in-out infinite alternate; }
+.glowB { right: -240px; bottom: -280px; background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 62%); animation: driftB 18s ease-in-out infinite alternate; }
+@keyframes driftA { to { transform: translate(120px, 60px); } }
+@keyframes driftB { to { transform: translate(-120px, -40px); } }
+.heroInner { display: flex; flex-direction: column; align-items: center; }
+.kicker { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 99px; font-size: 12.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4); }
+
+.marks { display: flex; align-items: center; margin: 40px 0 34px; }
+.bigSt, .bigMk { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 28px; color: #1A73E8; background: #FFFFFF; box-shadow: 0 20px 50px rgba(255, 255, 255, 0.2); animation: in 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+.bigSt { --from: -60px; }
+.bigMk { --from: 60px; animation-delay: 0.1s; }
+@keyframes in { from { opacity: 0; transform: translateX(var(--from)) scale(0.8); } }
+.link { position: relative; width: 90px; height: 2px; background: rgba(255, 255, 255, 0.3); overflow: hidden; }
+.link span { position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, #FFFFFF, transparent); animation: flow 2.2s linear infinite; }
+@keyframes flow { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+
+.h1 { color: #FFFFFF; font-size: clamp(44px, 7vw, 84px); line-height: 1.02; letter-spacing: -0.05em; font-weight: 700; }
+.h1 span { padding: 0 0.12em; border-radius: 0.12em; color: #1A73E8; background: #FFFFFF; }
+.lede { max-width: 640px; margin-top: 24px; font-size: 18px; line-height: 1.6; color: #FFFFFF; }
+.ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+.gold, .ghost { display: inline-flex; align-items: center; gap: 9px; height: 54px; padding: 0 26px; border-radius: 15px; font-weight: 700; font-size: 16px; transition: transform 0.15s, background 0.2s; }
+.gold { color: #1A73E8; background: #FFFFFF; box-shadow: 0 14px 34px rgba(255, 255, 255, 0.22); }
+.gold:hover { text-decoration: none; transform: translateY(-2px); }
+.ghost { color: #FFFFFF; border: 1.5px solid #FFFFFF; background: transparent; }
+.ghost:hover { text-decoration: none; background: rgba(255, 255, 255, 0.12); }
+.lockRow { margin-top: 44px; color: #FFFFFF; }
+
+.section { padding-block: 88px 0; }
+.head { max-width: 720px; margin: 0 auto 44px; text-align: center; }
+.head h2 { color: #1A73E8; font-size: clamp(30px, 4.2vw, 48px); letter-spacing: -0.045em; line-height: 1.06; text-wrap: balance; }
+.head p { margin-top: 12px; font-size: 18px; color: #1A73E8; }
+
+.flow { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.flowCard { position: relative; padding: 28px; border-radius: 24px; color: #1A73E8; background: #FFFFFF; border: 1.5px solid rgba(26, 115, 232, 0.2); transition: transform 0.3s, box-shadow 0.3s; }
+.flowCard:hover { transform: translateY(-4px); box-shadow: 0 24px 60px rgba(26, 115, 232, 0.16); }
+.flowNum { position: absolute; top: 18px; right: 22px; font-size: 13px; font-weight: 800; }
+.flowIcon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 16px; border-radius: 16px; color: #FFFFFF; background: #1A73E8; }
+.mk { color: #FFFFFF; background: #1A73E8; border-color: #1A73E8; }
+.mk .flowIcon { color: #1A73E8; background: #FFFFFF; }
+.mk h3 { color: #FFFFFF; }
+.flowBrand { display: block; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.flowCard h3 { font-size: 21px; letter-spacing: -0.025em; margin-bottom: 6px; color: inherit; }
+.flowCard p { font-size: 15px; line-height: 1.6; }
+
+.checks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.check { padding: 26px; border-radius: 22px; color: #1A73E8; border: 1.5px solid rgba(26, 115, 232, 0.2); background: #FFFFFF; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+.check:hover { transform: translateY(-4px); border-color: #1A73E8; box-shadow: 0 24px 60px rgba(26, 115, 232, 0.14); }
+.checkIcon { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 14px; border-radius: 14px; color: #FFFFFF; background: #1A73E8; }
+.check h3 { font-size: 18px; letter-spacing: -0.02em; margin-bottom: 4px; color: inherit; }
+.check p { font-size: 14.5px; line-height: 1.55; }
+.tools { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; font-size: 15px; color: #1A73E8; }
+.tools div { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.tools a { height: 38px; padding: 0 15px; display: inline-grid; place-items: center; border-radius: 10px; font-weight: 650; font-size: 14px; color: #1A73E8; background: #FFFFFF; border: 1.5px solid rgba(26, 115, 232, 0.3); transition: background 0.2s, color 0.2s; }
+.tools a:hover { text-decoration: none; color: #FFFFFF; background: #1A73E8; border-color: #1A73E8; }
+.faq { max-width: 860px; padding-block: 20px 80px; }
+
+@media (max-width: 860px) {
+  .flow, .checks { grid-template-columns: 1fr; }
+  .marks { margin: 30px 0 26px; }
+  .bigSt, .bigMk { width: 72px; height: 72px; border-radius: 22px; }
+  .link { width: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glowA, .glowB, .link span, .bigSt, .bigMk { animation: none; }
+}

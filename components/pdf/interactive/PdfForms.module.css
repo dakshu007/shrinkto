@@ -109,8 +109,8 @@
   width: 56px;
   height: 56px;
   border-radius: var(--radius-xl);
-  color: #fff;
-  background: linear-gradient(135deg, var(--color-primary), #6a5cff);
+  color: #FFFFFF;
+  background: linear-gradient(135deg, var(--color-primary), #1A73E8);
 }
 .emptySub {
   color: var(--color-text-secondary);

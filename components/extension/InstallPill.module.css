@@ -1,0 +1,26 @@
+.pill {
+  position: fixed; left: 50%; bottom: 20px; z-index: 90;
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 8px 8px 10px; border-radius: 18px;
+  color: #FFFFFF; background: #1A73E8;
+  box-shadow: 0 20px 60px rgba(26, 115, 232, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+  transform: translate(-50%, 140%); opacity: 0; pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.15), opacity 0.3s ease;
+}
+.show { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+.pill > svg { border-radius: 9px; box-shadow: 0 0 0 2px #FFFFFF; }
+.txt { display: flex; flex-direction: column; line-height: 1.2; padding-right: 6px; }
+.txt b { font-size: 14px; font-weight: 700; }
+.txt span { font-size: 12px; }
+.cta {
+  display: inline-flex; align-items: center; gap: 7px; height: 42px; padding: 0 16px; border-radius: 12px;
+  font-size: 14px; font-weight: 700; color: #1A73E8; white-space: nowrap; background: #FFFFFF;
+  transition: transform 0.15s;
+}
+.cta:hover { text-decoration: none; transform: translateY(-1px); }
+@media (max-width: 520px) {
+  .pill { left: 12px; right: 12px; transform: translateY(140%); }
+  .show { transform: none; }
+  .txt span { display: none; }
+  .cta { margin-left: auto; }
+}

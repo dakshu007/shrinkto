@@ -42,12 +42,12 @@
   color: var(--color-primary);
 }
 .toolActive {
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
 .toolActive:hover {
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-primary-hover);
 }
 .toolText {
@@ -139,7 +139,7 @@
   color: var(--color-primary);
 }
 .pageTabActive {
-  color: #fff;
+  color: #FFFFFF;
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
@@ -172,7 +172,7 @@
   box-shadow: var(--shadow-2);
   touch-action: none;
   user-select: none;
-  background: #fff;
+  background: #FFFFFF;
 }
 .pageImg {
   position: absolute;
