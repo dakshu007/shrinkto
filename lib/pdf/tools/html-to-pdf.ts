@@ -17,6 +17,27 @@ function escapeHtml(s: string): string {
     .replace(/>/g, "&gt;");
 }
 
+/**
+ * We only render markup: drop scripts/frames/embeds, inline event handlers
+ * (onerror=, onload=...) and javascript: URLs before the HTML touches the page.
+ */
+function sanitizeHtml(input: string): string {
+  const doc = new DOMParser().parseFromString(input, "text/html");
+  doc.querySelectorAll("script, iframe, frame, frameset, object, embed, base, meta, link[rel=import]").forEach((el) => el.remove());
+  doc.querySelectorAll("*").forEach((el) => {
+    for (const attr of Array.from(el.attributes)) {
+      const name = attr.name.toLowerCase();
+      const value = attr.value.trim().toLowerCase();
+      if (name.startsWith("on")) el.removeAttribute(attr.name);
+      else if ((name === "href" || name === "src" || name === "xlink:href" || name === "action" || name === "formaction") && value.startsWith("javascript:")) {
+        el.removeAttribute(attr.name);
+      }
+    }
+  });
+  const styles = Array.from(doc.head.querySelectorAll("style")).map((s) => s.outerHTML).join("");
+  return styles + doc.body.innerHTML;
+}
+
 export const def: ToolModule = {
   accept: ".html,.htm,.txt",
   multiple: false,
@@ -32,8 +53,7 @@ export const def: ToolModule = {
         html,
       )}</pre>`;
     } else {
-      // Defensively strip scripts (and their content) - we only render markup.
-      html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+      html = sanitizeHtml(html);
     }
 
     const { jsPDF } = await import("jspdf");

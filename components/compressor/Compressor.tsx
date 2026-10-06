@@ -614,7 +614,11 @@ export function Compressor({
           key={editingItem.id}
           file={editingItem.file}
           onApply={(edited) => applyEdit(editingItem.id, edited)}
-          onClose={() => setEditingId(null)}
+          onClose={() => {
+            setEditingId(null);
+            // Crop page: closing the editor without cropping still compresses the photo.
+            if (editingItem.status === "queued") enqueue([editingItem]);
+          }}
         />
       )}
 

@@ -340,7 +340,7 @@ export const REGISTRY: Record<string, PdfToolDef> = {
     accept: PDF_MIME,
     multiple: false,
     cta: "Compress PDF",
-    note: "Pages are re-rendered as optimized images, which dramatically reduces size for image-heavy and scanned PDFs.",
+    note: "ShrinkTo tries a lossless rewrite (keeps text selectable) and an optimized-image version, then keeps whichever is smallest - never bigger than your original.",
     options: [
       {
         key: "quality",
@@ -362,14 +362,38 @@ export const REGISTRY: Record<string, PdfToolDef> = {
         high: { scale: 1.7, q: 0.82 },
       };
       const { scale, q } = presets[String(opts.quality ?? "medium")] ?? presets.medium;
-      const images = await renderPdfToJpegs(await files[0].arrayBuffer(), scale, q);
+      const input = await files[0].arrayBuffer();
+      const name = `${baseName(files[0].name)}-compressed.pdf`;
+
+      // 1) Lossless: rewrite with object streams - keeps text selectable.
+      let lossless: Uint8Array | null = null;
+      try {
+        const src = await PDFDocument.load(input, { ignoreEncryption: true });
+        lossless = await src.save({ useObjectStreams: true });
+      } catch {
+        lossless = null;
+      }
+
+      // 2) Re-render pages as JPEGs (big wins for scans and photo-heavy PDFs),
+      //    keeping each page at its original physical size.
+      // pdf.js detaches the buffer it is given - hand it a copy.
+      const images = await renderPdfToJpegs(input.slice(0), scale, q);
       const doc = await PDFDocument.create();
       for (const img of images) {
         const jpg = await doc.embedJpg(await img.blob.arrayBuffer());
-        const page = doc.addPage([img.width, img.height]);
-        page.drawImage(jpg, { x: 0, y: 0, width: img.width, height: img.height });
+        const w = img.width / scale;
+        const h = img.height / scale;
+        const page = doc.addPage([w, h]);
+        page.drawImage(jpg, { x: 0, y: 0, width: w, height: h });
       }
-      return [{ name: `${baseName(files[0].name)}-compressed.pdf`, blob: pdfBlob(await doc.save()) }];
+      const raster = await doc.save();
+
+      // Smallest wins - and never hand back more bytes than we were given.
+      const candidates: Uint8Array[] = [raster];
+      if (lossless) candidates.push(lossless);
+      let best = candidates.reduce((a, b) => (b.byteLength < a.byteLength ? b : a));
+      if (best.byteLength >= input.byteLength) best = new Uint8Array(input);
+      return [{ name, blob: pdfBlob(best) }];
     },
   },
 
