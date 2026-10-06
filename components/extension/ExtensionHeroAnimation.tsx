@@ -20,16 +20,17 @@ import { ProMark } from "./ProMark";
  */
 
 const BLUE = "#1A73E8";
-const INK = BLUE;
-const DIM = BLUE;
-const FAINT = BLUE;
-const LINE = "rgba(26,115,232,0.18)";
-const SURFACE = "rgba(26,115,232,0.06)";
-const OK = BLUE;
-const OK_SOFT = "rgba(26,115,232,0.1)";
-const BAD = BLUE;
+const INK = "#0e1525";
+const DIM = "#5b6478";
+const FAINT = "#8b93a7";
+const LINE = "#e4e7f0";
+const SURFACE = "#f3f5fa";
+const OK = "#0f9f62";
+const OK_SOFT = "#e7f7ef";
+const BAD = "#dc2626";
+const BAD_SOFT = "#fdeeed";
 const GRAD = BLUE;
-const GRAD_SOFT = "rgba(26,115,232,0.08)";
+const GRAD_SOFT = "#e8f0fe";
 
 export const CYCLE = 18;
 const STILL_T = 15.8;
@@ -157,10 +158,10 @@ function Rail({ f, compact }: { f: Frame; compact: boolean }) {
               height: compact ? 34 : 40,
               padding: compact ? (on ? "0 12px 0 5px" : "0 5px") : "0 15px 0 6px",
               borderRadius: 99,
-              background: on ? "#FFFFFF" : "rgba(255,255,255,0.1)",
-              border: `1px solid ${on ? "#FFFFFF" : "rgba(255,255,255,0.35)"}`,
-              color: on ? BLUE : "#FFFFFF",
-              boxShadow: on ? "0 10px 30px rgba(255,255,255,0.28)" : "none",
+              background: on ? BLUE : "#FFFFFF",
+              border: `1px solid ${on ? BLUE : LINE}`,
+              color: on ? "#FFFFFF" : INK,
+              boxShadow: on ? "0 10px 26px rgba(26,115,232,0.3)" : "0 1px 2px rgba(20,30,70,0.05)",
               backdropFilter: "blur(8px)",
             }}
           >
@@ -170,8 +171,8 @@ function Rail({ f, compact }: { f: Frame; compact: boolean }) {
                 height: compact ? 24 : 28,
                 padding: "0 7px",
                 borderRadius: 99,
-                background: on ? BLUE : done ? "#FFFFFF" : "rgba(255,255,255,0.18)",
-                color: on ? "#FFFFFF" : done ? BLUE : "#FFFFFF",
+                background: on ? "#FFFFFF" : done ? OK : SURFACE,
+                color: on ? BLUE : done ? "#FFFFFF" : DIM,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -201,7 +202,7 @@ function Caption({ f, compact }: { f: Frame; compact: boolean }) {
         fontSize: compact ? 15 : 17,
         lineHeight: 1.4,
         fontWeight: 500,
-        color: "rgba(255,255,255,0.86)",
+        color: DIM,
         opacity: f.step === 0 && f.u < 0.4 ? 1 : o,
         transform: `translateY(${(1 - o) * 4}px)`,
         minHeight: compact ? 44 : 24,
@@ -213,24 +214,23 @@ function Caption({ f, compact }: { f: Frame; compact: boolean }) {
 }
 
 /** Stylised passport-style portrait, drawn with gradients (no photo needed). */
-function Portrait({ w, h, radius = 8, inverse = false }: { w: number; h: number; radius?: number; inverse?: boolean }) {
-  const bg = inverse ? "rgba(255,255,255,0.22)" : "rgba(26,115,232,0.12)";
-  const fg = inverse ? "#FFFFFF" : BLUE;
+function Portrait({ w, h, radius = 8 }: { w: number; h: number; radius?: number; inverse?: boolean }) {
   return (
-    <div style={{ position: "relative", width: w, height: h, borderRadius: radius, overflow: "hidden", background: bg, flexShrink: 0 }}>
-      <div style={abs({ left: "50%", bottom: "-34%", width: "86%", height: "70%", transform: "translateX(-50%)", borderRadius: "50% 50% 0 0", background: fg })} />
-      <div style={abs({ left: "43.5%", top: "50%", width: "13%", height: "16%", background: fg })} />
-      <div style={abs({ left: "50%", top: "22%", width: "36%", height: "34%", transform: "translateX(-50%)", borderRadius: "50%", background: fg })} />
+    <div style={{ position: "relative", width: w, height: h, borderRadius: radius, overflow: "hidden", background: "linear-gradient(180deg,#dbe7ff,#bfd3f8)", flexShrink: 0 }}>
+      <div style={abs({ left: "50%", bottom: "-34%", width: "86%", height: "70%", transform: "translateX(-50%)", borderRadius: "50% 50% 0 0", background: "linear-gradient(180deg,#2f4a7d,#1f3157)" })} />
+      <div style={abs({ left: "43.5%", top: "52%", width: "13%", height: "14%", background: "#e2ae86" })} />
+      <div style={abs({ left: "50%", top: "24%", width: "36%", height: "34%", transform: "translateX(-50%)", borderRadius: "50%", background: "radial-gradient(circle at 45% 40%,#f2c49f,#dca07a)" })} />
+      <div style={abs({ left: "50%", top: "18%", width: "39%", height: "19%", transform: "translateX(-50%)", borderRadius: "50% 50% 35% 35%", background: "#2b211b" })} />
     </div>
   );
 }
 
 function BrowserBar({ f, compact }: { f: Frame; compact: boolean }) {
   return (
-    <div style={{ background: "rgba(26,115,232,0.06)", borderBottom: `1px solid ${LINE}` }}>
+    <div style={{ background: SURFACE, borderBottom: `1px solid ${LINE}` }}>
       <div style={{ height: 32, display: "flex", alignItems: "flex-end", gap: 4, padding: "0 10px" }}>
         <div style={{ display: "flex", gap: 6, alignSelf: "center", marginRight: 8 }}>
-          {["rgba(26,115,232,0.25)", "rgba(26,115,232,0.25)", "rgba(26,115,232,0.25)"].map((c, i) => (
+          {["#ff6159", "#ffbd2e", "#28c941"].map((c, i) => (
             <span key={i} style={{ width: 10, height: 10, borderRadius: 5, background: c }} />
           ))}
         </div>
@@ -305,18 +305,17 @@ function FormPage({ f, L, compact }: { f: Frame; L: Layout; compact: boolean }) 
             width: L.upload.w,
             height: L.upload.h,
             borderRadius: 10,
-            border: `${state === "bad" ? 2 : 1.5}px ${state === "idle" ? "dashed" : "solid"} ${state === "idle" ? "rgba(26,115,232,0.35)" : BLUE}`,
-            background: state === "ok" ? BLUE : "#FFFFFF",
-            color: state === "ok" ? "#FFFFFF" : BLUE,
+            border: `1.5px ${state === "idle" ? "dashed" : "solid"} ${state === "ok" ? OK : state === "bad" ? BAD : "#cbd2e1"}`,
+            background: state === "ok" ? OK_SOFT : state === "bad" ? BAD_SOFT : "#fafbfe",
             display: "flex",
             alignItems: "center",
             gap: 12,
             padding: "0 12px",
             transform: `translateX(${f.shake}px)${state === "ok" ? ` scale(${0.97 + 0.03 * Math.min(1, f.acceptIn)})` : ""}`,
-            boxShadow: state === "ok" ? `0 0 0 ${4 * (1 - f.burst)}px rgba(26,115,232,0.2)` : "none",
+            boxShadow: state === "ok" ? `0 0 0 ${4 * (1 - f.burst)}px rgba(15,159,98,0.18)` : "none",
           })}
         >
-          {f.picked ? <Portrait w={46} h={54} radius={6} inverse={state === "ok"} /> : <div style={{ width: 46, height: 54, borderRadius: 6, border: `1.5px dashed rgba(26,115,232,0.35)` }} />}
+          {f.picked ? <Portrait w={46} h={54} radius={6} /> : <div style={{ width: 46, height: 54, borderRadius: 6, border: `1.5px dashed rgba(26,115,232,0.35)` }} />}
           <div style={{ flex: 1, minWidth: 0 }}>
             {state === "idle" && <div style={{ fontSize: 12.5, color: DIM }}>No file chosen</div>}
             {state === "bad" && (
@@ -327,8 +326,8 @@ function FormPage({ f, L, compact }: { f: Frame; L: Layout; compact: boolean }) 
             )}
             {state === "ok" && (
               <div style={{ transform: `scale(${0.9 + 0.1 * Math.min(1, f.acceptIn)})`, transformOrigin: "left center" }}>
-                <div style={{ fontSize: 12.5, fontWeight: 700, color: "#FFFFFF", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>IMG_2041-shrinkto.jpg · 48 KB</div>
-                <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: "#FFFFFF", marginTop: 2 }}><Check size={12} strokeWidth={3} />Accepted · 200×230 px</div>
+                <div style={{ fontSize: 12.5, fontWeight: 700, color: INK, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>IMG_2041-shrinkto.jpg · 48 KB</div>
+                <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 800, color: OK, marginTop: 2 }}><Check size={12} strokeWidth={3} />Accepted · 200×230 px</div>
               </div>
             )}
           </div>
@@ -345,7 +344,7 @@ function FormPage({ f, L, compact }: { f: Frame; L: Layout; compact: boolean }) 
             height: 36,
             width: 150,
             borderRadius: 9,
-            background: f.accepted ? "#1A73E8" : "rgba(26,115,232,0.3)",
+            background: f.accepted ? BLUE : "#c9d1df",
             color: "#fff",
             display: "flex",
             alignItems: "center",
@@ -371,7 +370,7 @@ function FormPage({ f, L, compact }: { f: Frame; L: Layout; compact: boolean }) 
                   width: 6,
                   height: 6,
                   borderRadius: i % 2 ? 2 : 6,
-                  background: [BLUE, "#1A73E8", "#1A73E8", "#1A73E8"][i % 4],
+                  background: [BLUE, "#ff5fa2", "#ffaf00", "#00bd6f"][i % 4],
                   opacity: 1 - f.burst,
                   transform: `rotate(${i * 30 + f.burst * 180}deg)`,
                 })}
@@ -550,7 +549,7 @@ function Compare({ f, L, compact }: { f: Frame; L: Layout; compact: boolean }) {
         <div style={abs({ top: 0, bottom: 0, left: `${f.slider * 100}%`, width: 2, marginLeft: -1, background: "#fff", boxShadow: "0 0 12px rgba(26,115,232,0.35)" })}>
           <span style={abs({ top: "50%", left: "50%", width: 34, height: 34, marginLeft: -17, marginTop: -17, borderRadius: 17, background: "#fff", boxShadow: "0 4px 14px rgba(26,115,232,0.35)", display: "grid", placeItems: "center", color: BLUE })}><ChevronsLeftRight size={18} strokeWidth={2.5} /></span>
         </div>
-        <span style={abs({ left: 10, top: 10, padding: "3px 8px", borderRadius: 7, background: "#FFFFFF", color: BLUE, fontSize: 10.5, fontWeight: 750 })}>Original · 4.2 MB</span>
+        <span style={abs({ left: 10, top: 10, padding: "3px 8px", borderRadius: 7, background: "rgba(14,21,37,0.66)", color: "#FFFFFF", fontSize: 10.5, fontWeight: 750 })}>Original · 4.2 MB</span>
         <span style={abs({ right: 10, top: 10, padding: "3px 8px", borderRadius: 7, background: "#1A73E8", color: "#fff", fontSize: 10.5, fontWeight: 750 })}>ShrinkTo · 48 KB</span>
       </div>
     </div>
@@ -612,7 +611,7 @@ function Window({ f, w, h, compact }: { f: Frame; w: number; h: number; compact:
         borderRadius: 16,
         background: "#fff",
         overflow: "hidden",
-        boxShadow: "0 0 0 1px rgba(255,255,255,0.6), 0 40px 100px rgba(255,255,255,0.14)",
+        boxShadow: "0 30px 80px rgba(20,30,70,0.16), 0 0 0 1px rgba(20,30,70,0.08)",
       }}
     >
       <BrowserBar f={f} compact={compact} />

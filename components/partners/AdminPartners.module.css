@@ -90,7 +90,7 @@
   border-radius: var(--radius-full);
   text-transform: capitalize;
 }
-.pending { background: var(--color-warning-light); color: #1A73E8; }
+.pending { background: var(--color-warning-light); color: #8a4b00; }
 .approved { background: var(--color-success-light); color: var(--color-success); }
 .rejected { background: var(--color-danger-light); color: var(--color-danger); }
 .link {
@@ -121,8 +121,8 @@
   border: 1px solid transparent;
   cursor: pointer;
 }
-.approve { background: var(--color-success); color: #FFFFFF; }
-.approve:hover { background: #1A73E8; }
+.approve { background: var(--color-success); color: #fff; }
+.approve:hover { background: #16753a; }
 .reject { background: var(--color-bg); color: var(--color-danger); border-color: var(--color-border); }
 .reject:hover { background: var(--color-danger-light); }
 .approve:disabled, .reject:disabled { opacity: 0.5; cursor: not-allowed; }

@@ -1,9 +1,8 @@
 /**
  * MyKavo logomark (partner brand) - the spark leaving the page. Single colour
- * from currentColor. Shown in ShrinkTo's own two colours (#1A73E8 / #FFFFFF)
- * so the partnership reads as native to the site. Geometry is MyKavo's own.
+ * from currentColor; MyKavo gold by default. Geometry is MyKavo's own.
  */
-export function MyKavoMark({ size = 28, className, color = "#1A73E8" }: { size?: number; className?: string; color?: string }) {
+export function MyKavoMark({ size = 28, className, color = "#FFD400" }: { size?: number; className?: string; color?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden className={className} style={{ color }}>
       <path

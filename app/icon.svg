@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="ShrinkTo">
   <defs><linearGradient id="stg" x1="0" y1="0" x2="0.35" y2="1">
-    <stop offset="0" stop-color="#1A73E8"/>
-    <stop offset="1" stop-color="#1A73E8"/>
+    <stop offset="0" stop-color="#5a9cf8"/>
+    <stop offset="1" stop-color="#1a73e8"/>
   </linearGradient></defs>
   <rect width="512" height="512" rx="120.32" fill="url(#stg)"/>
-  <path d="M256 102.4C269.824 188.416 323.584 242.176 409.6 256C323.584 269.824 269.824 323.584 256 409.6C242.176 323.584 188.416 269.824 102.4 256C188.416 242.176 242.176 188.416 256 102.4Z" fill="#FFFFFF"/>
+  <path d="M256 102.4C269.824 188.416 323.584 242.176 409.6 256C323.584 269.824 269.824 323.584 256 409.6C242.176 323.584 188.416 269.824 102.4 256C188.416 242.176 242.176 188.416 256 102.4Z" fill="#ffffff"/>
 </svg>

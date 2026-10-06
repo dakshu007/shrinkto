@@ -1,7 +1,8 @@
 .hero {
   /* Compact hero: the dropzone must sit above the fold. */
   padding: var(--space-5) 0 var(--space-8);
-  background: radial-gradient(80% 60% at 50% -10%, var(--color-primary-light), transparent 70%);
+  background:
+    radial-gradient(80% 60% at 50% -10%, var(--color-primary-light), transparent 70%);
 }
 .heroHead {
   text-align: center;
@@ -133,8 +134,8 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-lg);
-  color: #FFFFFF;
-  background: linear-gradient(135deg, var(--color-primary), #1A73E8);
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary), #6a5cff);
 }
 
 .tableWrap {

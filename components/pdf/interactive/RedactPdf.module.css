@@ -114,14 +114,14 @@
 
 .rect {
   position: absolute;
-  background: #1A73E8;
+  background: #000;
   outline: 2px solid var(--color-danger);
   outline-offset: -1px;
 }
 
 .rectDraft {
   position: absolute;
-  background: rgba(26, 115, 232, 0.55);
+  background: rgba(0, 0, 0, 0.55);
   outline: 2px dashed var(--color-danger);
   pointer-events: none;
 }
@@ -137,15 +137,15 @@
   height: 22px;
   padding: 0;
   background: var(--color-danger);
-  color: #FFFFFF;
-  border: 2px solid #FFFFFF;
+  color: #fff;
+  border: 2px solid #fff;
   border-radius: var(--radius-full);
   cursor: pointer;
   box-shadow: var(--shadow-2);
 }
 
 .rectDel:hover {
-  background: #1A73E8;
+  background: #b3261e;
 }
 
 .error {
@@ -196,7 +196,7 @@
   gap: var(--space-2);
   padding: var(--space-3) var(--space-5);
   background: var(--color-success);
-  color: #FFFFFF;
+  color: #fff;
   border-radius: var(--radius-md);
   font-weight: 600;
   font-size: var(--text-sm);
@@ -204,7 +204,7 @@
 }
 
 .dlLink:hover {
-  background: #1A73E8;
+  background: #176c30;
   text-decoration: none;
 }
 

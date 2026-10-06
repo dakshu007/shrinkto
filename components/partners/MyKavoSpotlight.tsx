@@ -100,7 +100,7 @@ export function MyKavoSpotlight({ variant = "full", placement = "spotlight" }: {
         <Reveal className={styles.visual} variant="scale" delay={120}>
           <div className={styles.monitor} aria-hidden>
             <div className={styles.monHead}>
-              <MyKavoMark size={16} color="#FFFFFF" />
+              <MyKavoMark size={16} color="#151515" />
               <span className={styles.monSite}>yourstore.com</span>
               <span className={styles.monOk}>
                 <i /> Protected
@@ -127,8 +127,8 @@ export function MyKavoSpotlight({ variant = "full", placement = "spotlight" }: {
             <svg className={styles.spark} viewBox="0 0 300 60" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="mkfill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.35" />
-                  <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+                  <stop offset="0" stopColor="#F5B800" stopOpacity="0.28" />
+                  <stop offset="1" stopColor="#F5B800" stopOpacity="0" />
                 </linearGradient>
               </defs>
               <path className={styles.sparkFill} d="M0 40 L30 34 L60 38 L90 22 L120 28 L150 18 L180 24 L210 12 L240 18 L270 10 L300 14 L300 60 L0 60 Z" fill="url(#mkfill)" />

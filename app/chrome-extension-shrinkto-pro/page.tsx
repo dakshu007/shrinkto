@@ -339,7 +339,7 @@ export default function ChromeExtensionPage() {
             <p>Palette compression like TinyPNG: 60-80% smaller, transparency kept.</p>
             <div className={styles.palette} aria-hidden>
               {Array.from({ length: 24 }).map((_, i) => (
-                <span key={i} style={{ "--o": `${0.25 + ((i * 37) % 75) / 100}`, "--q": `${(i * 37) % 75 > 37 ? 1 : 0.35}`, "--d": `${(i % 6) * 0.12}s` } as React.CSSProperties} />
+                <span key={i} style={{ "--h": `${(i * 37) % 360}`, "--d": `${(i % 6) * 0.12}s` } as React.CSSProperties} />
               ))}
             </div>
           </Reveal>
@@ -451,6 +451,32 @@ export default function ChromeExtensionPage() {
             );
           })}
         </ol>
+      </section>
+
+      {/* ================= REAL SCREENS ================= */}
+      <section className={styles.screens} aria-labelledby="screens-title">
+        <div className="container">
+          <Reveal className={styles.head}>
+            <p className={styles.eyebrow}>
+              <Eye size={14} aria-hidden /> The real extension
+            </p>
+            <h2 id="screens-title" className={styles.h2}>Looks this good in your toolbar, too.</h2>
+          </Reveal>
+        </div>
+        <Reveal variant="scale" className={styles.screenRail}>
+          {[
+            ["1-exact-kb", "ShrinkTo popup compressing three photos to under 100 KB"],
+            ["2-presets", "Exam photo preset producing a 200 by 230 pixel photo under 50 KB"],
+            ["3-studio-batch", "ShrinkTo Studio compressing six photos in a batch"],
+            ["4-compare", "Before and after slider comparing the original and compressed photo"],
+            ["5-right-click", "Right-click menu with Shrink to 50 KB on a web page image"],
+          ].map(([f, alt]) => (
+            <div key={f} className={styles.screen}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/extension/v2/${f}.webp`} alt={alt} width={1280} height={800} loading="lazy" />
+            </div>
+          ))}
+        </Reveal>
       </section>
 
       {/* ================= PRESETS ================= */}

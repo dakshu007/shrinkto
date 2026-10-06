@@ -32,13 +32,13 @@
   text-decoration: none;
 }
 .gpt {
-  background: #1A73E8;
+  background: #0d0d0d;
 }
 .claude {
-  background: #1A73E8;
+  background: #d97757;
 }
 .pplx {
-  background: #1A73E8;
+  background: #20808d;
 }
 .gai {
   background: var(--color-bg);
@@ -69,14 +69,14 @@
   padding: 11px 18px;
   font-size: var(--text-sm);
   font-weight: 600;
-  color: #FFFFFF;
-  background: #1A73E8;
+  color: #fff;
+  background: #1f1f1f;
   border-radius: var(--radius-full);
   transition: background-color 0.15s ease, transform 0.12s ease;
 }
 .sourceBtn:hover {
-  background: #1A73E8;
-  color: #FFFFFF;
+  background: #000;
+  color: #fff;
   text-decoration: none;
   transform: translateY(-1px);
 }

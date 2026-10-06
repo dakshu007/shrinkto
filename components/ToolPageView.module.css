@@ -90,7 +90,7 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
-  color: #FFFFFF;
+  color: #fff;
   font-weight: 700;
 }
 .stepName {

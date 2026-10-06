@@ -8,7 +8,8 @@
   min-height: 280px;
   padding: var(--space-8) var(--space-5);
   text-align: center;
-  background: radial-gradient(120% 120% at 50% 0%, var(--color-primary-50), var(--color-bg) 60%);
+  background:
+    radial-gradient(120% 120% at 50% 0%, var(--color-primary-50), var(--color-bg) 60%);
   border: 2px dashed var(--color-border);
   border-radius: var(--radius-2xl);
   cursor: pointer;
@@ -28,8 +29,8 @@
   height: 64px;
   margin-bottom: var(--space-2);
   border-radius: var(--radius-xl);
-  color: #FFFFFF;
-  background: linear-gradient(135deg, var(--color-primary), #1A73E8);
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary), #6a5cff);
   box-shadow: var(--shadow-2);
 }
 .title {
@@ -59,7 +60,7 @@
   padding: 12px 22px;
   font-size: var(--text-base);
   font-weight: 600;
-  color: #FFFFFF;
+  color: #fff;
   background: var(--color-primary);
   border: none;
   border-radius: var(--radius-full);

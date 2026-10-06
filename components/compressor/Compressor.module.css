@@ -53,19 +53,19 @@
 }
 .pillActive {
   background: var(--color-primary);
-  color: #FFFFFF;
+  color: #fff;
   border-color: var(--color-primary);
 }
 .pillActive:hover {
   background: var(--color-primary-hover);
-  color: #FFFFFF;
+  color: #fff;
 }
 .kbd {
   font-size: 10px;
   font-weight: 700;
   padding: 1px 5px;
   border-radius: var(--radius-sm);
-  background: rgba(26, 115, 232, 0.08);
+  background: rgba(0, 0, 0, 0.08);
   color: inherit;
 }
 .pillActive .kbd {

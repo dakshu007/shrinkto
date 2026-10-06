@@ -30,13 +30,13 @@
   border-radius: var(--radius-full);
   font-size: var(--text-xs);
   font-weight: 700;
-  color: #FFFFFF;
+  color: #fff;
 }
 .badgeA {
   background: var(--color-primary);
 }
 .badgeB {
-  background: #1A73E8;
+  background: #6a5cff;
 }
 .fileMeta {
   display: flex;
@@ -137,11 +137,11 @@
   color: var(--color-text);
 }
 .segActive {
-  color: #FFFFFF;
+  color: #fff;
   background: var(--color-primary);
 }
 .segActive:hover {
-  color: #FFFFFF;
+  color: #fff;
 }
 
 .summary {
@@ -196,7 +196,7 @@
   background: var(--color-success-light);
 }
 .diffLow {
-  color: #1A73E8;
+  color: #8a6d00;
   background: var(--color-warning-light);
 }
 .diffHigh {
@@ -292,7 +292,7 @@
   width: 12px;
   height: 12px;
   border-radius: 3px;
-  background: rgba(26, 115, 232, 0.85);
+  background: rgba(217, 48, 37, 0.85);
 }
 
 .spin {

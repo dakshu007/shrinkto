@@ -57,7 +57,8 @@
 .postHero {
   padding: var(--space-8) 0;
   text-align: center;
-  background: radial-gradient(80% 70% at 50% -10%, var(--color-primary-light), transparent 70%),
+  background:
+    radial-gradient(80% 70% at 50% -10%, var(--color-primary-light), transparent 70%),
     var(--color-primary-50);
   border-bottom: 1px solid var(--color-border-light);
 }
@@ -248,7 +249,7 @@
 }
 .table th {
   background: var(--color-primary);
-  color: #FFFFFF;
+  color: #fff;
   font-weight: 600;
   text-align: left;
   padding: 12px 16px;
@@ -298,20 +299,20 @@
   gap: 8px;
   padding: 14px 32px;
   background: var(--color-primary);
-  color: #FFFFFF;
+  color: #fff;
   font-weight: 600;
   font-size: var(--text-base);
   border-radius: var(--radius-full);
   text-decoration: none;
-  box-shadow: 0 6px 16px rgba(26, 115, 232, 0.168);
+  box-shadow: 0 6px 16px rgba(26, 115, 232, 0.28);
   transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 .body .ctaBtn:hover {
   background: var(--color-primary-active);
-  color: #FFFFFF;
+  color: #fff;
   text-decoration: none;
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(26, 115, 232, 0.204);
+  box-shadow: 0 8px 20px rgba(26, 115, 232, 0.34);
 }
 
 .authorBox {
@@ -331,10 +332,10 @@
   height: 52px;
   flex-shrink: 0;
   border-radius: var(--radius-full);
-  color: #FFFFFF;
+  color: #fff;
   font-weight: 700;
   font-size: var(--text-lg);
-  background: linear-gradient(135deg, var(--color-primary), #1A73E8);
+  background: linear-gradient(135deg, var(--color-primary), #6a5cff);
 }
 .authorName {
   font-weight: 700;
