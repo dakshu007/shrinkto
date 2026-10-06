@@ -88,10 +88,12 @@ export function Dropzone({
               <span className={styles.small}>200 KB</span>
             </b>
           </span>
-          <span className={styles.icon}>
-            <Upload size={26} strokeWidth={2} />
-          </span>
         </div>
+      ) : null}
+      {playful ? (
+        <span className={`${styles.icon} ${styles.playIcon}`} aria-hidden>
+          <Upload size={24} strokeWidth={2} />
+        </span>
       ) : (
         <span className={styles.icon} aria-hidden>
           <Upload size={28} strokeWidth={1.75} />

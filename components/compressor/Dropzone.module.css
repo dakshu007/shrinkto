@@ -82,8 +82,9 @@
 .playful {
   position: relative;
   overflow: hidden;
-  min-height: 330px;
+  min-height: 340px;
   padding-top: var(--space-6);
+  gap: 6px;
   background:
     radial-gradient(60% 80% at 15% 0%, rgba(26, 115, 232, 0.08), transparent 60%),
     radial-gradient(50% 70% at 90% 10%, rgba(255, 95, 162, 0.07), transparent 60%),
@@ -94,12 +95,13 @@
 .playful.over { transform: scale(1.01); }
 .playful .title { font-size: clamp(22px, 2.6vw, 28px); }
 
-.art { position: relative; width: 300px; height: 118px; margin-bottom: var(--space-3); }
-.art .icon { position: absolute; left: 50%; top: 32px; margin: 0 0 0 -32px; z-index: 3; transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.4); }
-.zone:hover .art .icon, .over .art .icon { transform: translateY(-6px); }
+/* Three photos in a tidy row; nothing sits on top of them. */
+.art { position: relative; width: 320px; height: 96px; margin-bottom: var(--space-4); }
+.playIcon { width: 52px; height: 52px; margin-bottom: var(--space-2); border-radius: 16px; transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.4); }
+.zone:hover .playIcon, .over .playIcon { transform: translateY(-4px); }
 
 .photo {
-  position: absolute; top: 18px; width: 92px; height: 74px; border-radius: 12px; overflow: hidden;
+  position: absolute; top: 8px; width: 92px; height: 74px; border-radius: 12px; overflow: hidden;
   background: #fff; border: 3px solid #fff;
   box-shadow: 0 10px 26px rgba(32, 33, 36, 0.14), 0 0 0 1px rgba(32, 33, 36, 0.06);
   animation: squeeze 4.2s cubic-bezier(0.6, 0, 0.2, 1) infinite;
@@ -108,12 +110,12 @@
 .sky { background: linear-gradient(180deg, #ffb48a, #f472b6 55%, #7c3aed 56%, #4c1d95); }
 .sky2 { background: linear-gradient(180deg, #7dd3fc, #e0f2fe 55%, #34d399 56%, #047857); }
 .sky3 { background: linear-gradient(180deg, #fde68a, #fdba74 55%, #fb7185 56%, #9f1239); }
-.p1 { left: 0; transform: rotate(-9deg); animation-delay: 0s; }
-.p2 { left: 104px; top: 0; z-index: 2; animation-delay: 0.35s; }
-.p3 { right: 0; transform: rotate(9deg); animation-delay: 0.7s; }
+.p1 { left: 8px; transform: rotate(-7deg); animation-delay: 0s; }
+.p2 { left: 114px; top: 2px; z-index: 2; animation-delay: 0.35s; }
+.p3 { right: 8px; transform: rotate(7deg); animation-delay: 0.7s; }
 .p2 { --r: 0deg; }
-.p1 { --r: -9deg; }
-.p3 { --r: 9deg; }
+.p1 { --r: -7deg; }
+.p3 { --r: 7deg; }
 @keyframes squeeze {
   0%, 30% { transform: rotate(var(--r)) scale(1); }
   45%, 85% { transform: rotate(var(--r)) scale(0.72); }
