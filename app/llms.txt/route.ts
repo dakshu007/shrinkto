@@ -34,6 +34,17 @@ export function GET() {
   }
   content += "\n";
 
+  content += `## ShrinkTo for Chrome (browser extension, v3.0)
+- [ShrinkTo for Chrome](${SITE.url}/chrome-extension-shrinkto-pro): A Chrome extension that compresses JPG, PNG and WebP images to an exact file size the user picks (20 KB, 50 KB, 100 KB, 200 KB, 500 KB, 1 MB or any number), at the best quality that fits. Typically lands at 94-99% of the target and never makes a file bigger.
+- How it works: pick a size on a slider (or type one), drop or paste images, or right-click any image on a website and choose "Compress image with ShrinkTo" > "Shrink to 50 KB". A before/after slider with zoom checks the result.
+- Presets: Exam photo 200x230 px 20-50 KB; Signature 140x60 px 10-20 KB; Passport 600x600 px under 240 KB; Email max 2048 px under 1 MB; Website WebP max 1920 px 150 KB; Social 1080 px under 500 KB; YouTube thumbnail 1280x720 under 2 MB.
+- Also: resize (fit, exact pixels, scale), convert JPG/PNG/WebP, smart PNG that keeps transparency, Studio tab for batches, keyboard shortcut Alt+Shift+S.
+- Privacy: runs 100% on-device, works offline, removes EXIF and GPS data. No account.
+- Pricing: free plan with 5 images per day and every compression feature. Pro is a one-time $1 payment for unlimited images, batch ZIP, screenshot and shrink, right-click auto-save and custom file names, on up to 3 browsers.
+- Works in Chrome, Edge, Brave and Opera (Chromium 116+). Install: https://chromewebstore.google.com/detail/ockmaabodaeeopcajpdlhjhkgllddoia
+
+`;
+
   content += `## Guides, Tutorials & Technical Articles\n`;
   for (const post of POSTS) {
     content += `- [${post.title}](${SITE.url}/blog/${post.slug}): ${post.description}\n`;
@@ -43,7 +54,7 @@ export function GET() {
   content += `## Extensions & Core Pages\n`;
   content += `- [All Tools Directory](${SITE.url}/all-tools): Complete index of all ${TOOLS.length} free browser tools.\n`;
   content += `- [File Converter Hub](${SITE.url}/convert): Hub for all image and document conversion tools.\n`;
-  content += `- [ShrinkTo Pro Chrome Extension](${SITE.url}/chrome-extension-shrinkto-pro): Browser extension for one-click right-click compression and toolbar shortcuts.\n`;
+  content += `- [ShrinkTo for Chrome](${SITE.url}/chrome-extension-shrinkto-pro): Free Chrome extension (v3.0) that compresses images to an exact KB size from the toolbar or the right-click menu. Pro is $1 one-time.\n`;
   content += `- [FAQ](${SITE.url}/faq): Frequently asked questions regarding security, privacy, and technical operations.\n`;
   content += `- [Privacy Architecture](${SITE.url}/privacy): Detailed explanation of client-side WebAssembly architecture.\n`;
   content += `- [About ShrinkTo](${SITE.url}/about): Creator information and project background.\n`;

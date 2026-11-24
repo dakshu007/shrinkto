@@ -410,12 +410,190 @@ const POSTS = [
         </g>`;
     },
   },
+  // ---- November 2026 posts -----------------------------------------------------
+  {
+    slug: "compress-image-to-100kb",
+    still: 0.9,
+    title: ["Compress an", "image to", "100 KB"],
+    draw(t) {
+      const p = seg(t, 0.05, 0.7);
+      const done = t > 0.78;
+      const r = 74, circ = 2 * Math.PI * r;
+      return `
+        <rect x="86" y="46" width="228" height="150" rx="16" fill="${C.pale}"/>
+        <circle cx="140" cy="94" r="20" fill="${C.gold}"/>
+        <path d="M98 184 L170 120 L214 160 L254 128 L304 184 Z" fill="${C.blue}"/>
+        <circle cx="200" cy="300" r="${r}" fill="none" stroke="${C.bg2}" stroke-width="14"/>
+        <circle cx="200" cy="300" r="${r}" fill="none" stroke="${done ? C.green : C.blue}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${circ * p} ${circ}" transform="rotate(-90 200 300)"/>
+        <text x="200" y="294" font-family="${FONT}" font-size="34" font-weight="800" fill="${C.white}" text-anchor="middle">${kb(lerp(3800, 98, p))}</text>
+        <text x="200" y="324" font-family="${FONT}" font-size="17" font-weight="600" fill="${C.mute}" text-anchor="middle">target: 100 KB</text>`;
+    },
+  },
+  {
+    slug: "compress-image-to-200kb-500kb",
+    still: 0.9,
+    title: ["Compress a JPG", "to 200 KB", "or 500 KB"],
+    draw(t) {
+      const p = seg(t, 0.1, 0.75);
+      const bar = (y, label, target, from) => `
+        <text x="56" y="${y - 12}" font-family="${FONT}" font-size="18" font-weight="700" fill="${C.mute}">${label}</text>
+        <rect x="56" y="${y}" width="288" height="26" rx="13" fill="${C.bg2}"/>
+        <rect x="56" y="${y}" width="${lerp(288, 288 * (target / from), p)}" height="26" rx="13" fill="${C.blue}"/>
+        <text x="344" y="${y + 58}" font-family="${FONT}" font-size="22" font-weight="800" fill="${t > 0.8 ? C.green : C.white}" text-anchor="end">${kb(lerp(from, target - 4, p))}</text>`;
+      return `${bar(100, "JOB PORTAL · 200 KB", 200, 4200)}${bar(250, "VISA FORM · 500 KB", 500, 4200)}`;
+    },
+  },
+  {
+    slug: "reduce-image-size-in-kb",
+    still: 0.9,
+    title: ["Reduce image", "size in KB", "on any device"],
+    draw(t) {
+      const p = seg(t, 0.15, 0.75);
+      const dev = (x, w, h, label) => `
+        <rect x="${x}" y="${300 - h}" width="${w}" height="${h}" rx="12" fill="${C.bg2}" stroke="${C.sky}" stroke-width="3"/>
+        <text x="${x + w / 2}" y="${300 - h / 2 + 7}" font-family="${FONT}" font-size="17" font-weight="800" fill="${C.green}" text-anchor="middle" opacity="${p}">${label}</text>`;
+      return `
+        ${dev(40, 150, 120, "−96%")}${dev(206, 60, 110, "KB")}${dev(282, 78, 120, "KB")}
+        <rect x="40" y="306" width="150" height="10" rx="5" fill="${C.sky}"/>
+        <text x="200" y="372" font-family="${FONT}" font-size="20" font-weight="700" fill="${C.pale}" text-anchor="middle">Windows · Mac · iPhone · Android</text>
+        <text x="200" y="110" font-family="${FONT}" font-size="40" font-weight="800" fill="${C.white}" text-anchor="middle">${kb(lerp(4100, 96, p))}</text>`;
+    },
+  },
+  {
+    slug: "resize-signature-for-online-form",
+    still: 0.9,
+    title: ["Resize your", "signature to", "10-20 KB"],
+    draw(t) {
+      const p = seg(t, 0.05, 0.6);
+      return `
+        <rect x="50" y="90" width="300" height="130" rx="14" fill="${C.white}"/>
+        <path d="M80 180 C110 120 130 200 160 150 S210 110 230 170 S280 160 320 130" fill="none" stroke="${C.bg}" stroke-width="5" stroke-linecap="round" stroke-dasharray="520" stroke-dashoffset="${520 * (1 - p)}"/>
+        <line x1="70" y1="198" x2="330" y2="198" stroke="${C.mute}" stroke-width="2" stroke-dasharray="6 6"/>
+        <rect x="120" y="262" width="160" height="40" rx="20" fill="${C.bg2}"/>
+        <text x="200" y="289" font-family="${FONT}" font-size="19" font-weight="700" fill="${C.sky}" text-anchor="middle">140 × 60 px</text>
+        <rect x="120" y="318" width="160" height="40" rx="20" fill="${C.green}" opacity="${seg(t, 0.6, 0.85)}"/>
+        <text x="200" y="345" font-family="${FONT}" font-size="19" font-weight="800" fill="#fff" text-anchor="middle" opacity="${seg(t, 0.6, 0.85)}">16 KB ✓</text>`;
+    },
+  },
+  {
+    slug: "passport-photo-size-online",
+    still: 0.9,
+    title: ["Passport photo", "size for online", "applications"],
+    draw(t) {
+      const p = seg(t, 0.1, 0.6);
+      const s = lerp(230, 190, p);
+      return `
+        <rect x="${200 - s / 2}" y="${160 - s / 2}" width="${s}" height="${s}" rx="10" fill="${C.pale}"/>
+        <circle cx="200" cy="${160 - s * 0.12}" r="${s * 0.2}" fill="${C.sky}"/>
+        <path d="M${200 - s * 0.32} ${160 + s / 2} C${200 - s * 0.32} ${160 + s * 0.12} ${200 + s * 0.32} ${160 + s * 0.12} ${200 + s * 0.32} ${160 + s / 2} Z" fill="${C.blue}"/>
+        <rect x="${200 - s / 2}" y="${160 - s / 2}" width="${s}" height="${s}" rx="10" fill="none" stroke="${C.gold}" stroke-width="4" stroke-dasharray="10 8"/>
+        <text x="200" y="320" font-family="${FONT}" font-size="22" font-weight="800" fill="${C.white}" text-anchor="middle">600 × 600 px · 2 × 2 in</text>
+        <text x="200" y="356" font-family="${FONT}" font-size="18" font-weight="700" fill="${C.mute}" text-anchor="middle">square · plain background · small file</text>`;
+    },
+  },
+  {
+    slug: "best-image-compressor-chrome-extension",
+    still: 0.9,
+    title: ["Best image", "compressor for", "Chrome"],
+    draw(t) {
+      const items = ["On-device, no upload", "Exact KB targeting", "Right-click any image", "One-time price"];
+      return `
+        <rect x="56" y="40" width="288" height="56" rx="14" fill="${C.bg2}"/>
+        <rect x="72" y="52" width="32" height="32" rx="9" fill="${C.blue}"/>
+        ${sparkleMark(88, 68, 10)}
+        <text x="118" y="76" font-family="${FONT}" font-size="20" font-weight="800" fill="${C.white}">What to look for</text>
+        ${items.map((label, i) => {
+          const o = seg(t, 0.1 + i * 0.15, 0.3 + i * 0.15);
+          return `<g opacity="${o}"><circle cx="82" cy="${146 + i * 60}" r="15" fill="${C.green}"/>
+          <text x="82" y="${153 + i * 60}" font-family="${FONT}" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">✓</text>
+          <text x="110" y="${153 + i * 60}" font-family="${FONT}" font-size="20" font-weight="700" fill="${C.pale}">${label}</text></g>`;
+        }).join("")}`;
+    },
+  },
+  {
+    slug: "compress-images-in-chrome-right-click",
+    still: 0.95,
+    title: ["Right-click", "any image,", "shrink it"],
+    draw(t) {
+      const o = seg(t, 0.2, 0.45), o2 = seg(t, 0.45, 0.7);
+      return `
+        <rect x="40" y="40" width="190" height="150" rx="12" fill="${C.pale}"/>
+        <circle cx="90" cy="86" r="18" fill="${C.gold}"/>
+        <path d="M50 178 L110 120 L150 156 L180 132 L222 178 Z" fill="${C.blue}"/>
+        <g opacity="${o}">
+          <rect x="130" y="150" width="238" height="150" rx="12" fill="${C.white}"/>
+          <text x="158" y="184" font-family="${FONT}" font-size="15" fill="#3a3a40">Save image as…</text>
+          <text x="158" y="214" font-family="${FONT}" font-size="15" fill="#3a3a40">Copy image</text>
+          <rect x="138" y="232" width="222" height="34" rx="8" fill="#eef2ff"/>
+          <rect x="156" y="240" width="18" height="18" rx="5" fill="${C.blue}"/>
+          ${sparkleMark(165, 249, 6)}
+          <text x="182" y="255" font-family="${FONT}" font-size="14" font-weight="700" fill="${C.bg}">Compress with ShrinkTo ›</text>
+        </g>
+        <g opacity="${o2}">
+          <rect x="196" y="300" width="170" height="44" rx="10" fill="${C.blue}"/>
+          <text x="281" y="328" font-family="${FONT}" font-size="17" font-weight="800" fill="#fff" text-anchor="middle">Shrink to 50 KB</text>
+        </g>`;
+    },
+  },
+  {
+    slug: "convert-png-to-jpg-without-losing-quality",
+    still: 0.9,
+    title: ["PNG to JPG", "without losing", "quality"],
+    draw(t) {
+      const p = seg(t, 0.2, 0.7);
+      const card = (x, label, size, color) => `
+        <rect x="${x}" y="70" width="140" height="170" rx="14" fill="${C.pale}"/>
+        <circle cx="${x + 46}" cy="118" r="18" fill="${C.gold}"/>
+        <path d="M${x + 10} 228 L${x + 64} 160 L${x + 100} 196 L${x + 130} 170 L${x + 130} 228 Z" fill="${C.blue}"/>
+        <rect x="${x + 30}" y="256" width="80" height="34" rx="12" fill="${color}"/>
+        <text x="${x + 70}" y="280" font-family="${FONT}" font-size="18" font-weight="800" fill="#fff" text-anchor="middle">${label}</text>
+        <text x="${x + 70}" y="326" font-family="${FONT}" font-size="20" font-weight="700" fill="${C.pale}" text-anchor="middle">${size}</text>`;
+      return `${card(40, "PNG", "3.4 MB", C.bg2)}
+        <path d="M196 150 L218 150 M208 140 L220 150 L208 160" stroke="${C.sky}" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <g opacity="${0.35 + 0.65 * p}">${card(226, "JPG", kb(lerp(3400, 420, p)), C.green)}</g>`;
+    },
+  },
+  {
+    slug: "image-upload-size-limits-cheat-sheet",
+    still: 0.9,
+    title: ["Image upload", "size limits:", "cheat sheet"],
+    draw(t) {
+      const rows = [["Email attachment", "25 MB"], ["Form photo", "20-50 KB"], ["Signature", "10-20 KB"], ["Video thumbnail", "2 MB"], ["Visa photo", "240 KB"]];
+      return `
+        <rect x="40" y="40" width="320" height="320" rx="16" fill="${C.bg2}"/>
+        ${rows.map(([a, b], i) => {
+          const o = seg(t, 0.05 + i * 0.12, 0.25 + i * 0.12);
+          return `<g opacity="${o}"><text x="64" y="${100 + i * 58}" font-family="${FONT}" font-size="19" font-weight="600" fill="${C.pale}">${a}</text>
+          <text x="336" y="${100 + i * 58}" font-family="${FONT}" font-size="19" font-weight="800" fill="${C.sky}" text-anchor="end">${b}</text>
+          ${i < rows.length - 1 ? `<line x1="64" y1="${120 + i * 58}" x2="336" y2="${120 + i * 58}" stroke="${C.bg3}" stroke-width="2"/>` : ""}</g>`;
+        }).join("")}`;
+    },
+  },
+  {
+    slug: "compress-screenshot-file-size",
+    still: 0.9,
+    title: ["Shrink huge", "screenshots", "keep text sharp"],
+    draw(t) {
+      const p = seg(t, 0.2, 0.75);
+      return `
+        <rect x="40" y="50" width="320" height="210" rx="14" fill="${C.pale}"/>
+        <rect x="40" y="50" width="320" height="30" rx="14" fill="${C.sky}"/>
+        <circle cx="62" cy="65" r="5" fill="${C.white}"/><circle cx="80" cy="65" r="5" fill="${C.white}"/><circle cx="98" cy="65" r="5" fill="${C.white}"/>
+        ${[0, 1, 2, 3].map((i) => `<rect x="64" y="${104 + i * 34}" width="${[250, 200, 230, 150][i]}" height="12" rx="6" fill="${C.blue}" opacity="${0.8 - i * 0.12}"/>`).join("")}
+        <rect x="80" y="292" width="110" height="40" rx="14" fill="${C.bg2}"/>
+        <text x="135" y="318" font-family="${FONT}" font-size="18" font-weight="700" fill="${C.mute}" text-anchor="middle" text-decoration="line-through">2.8 MB</text>
+        <rect x="210" y="292" width="110" height="40" rx="14" fill="${C.green}" opacity="${p}"/>
+        <text x="265" y="318" font-family="${FONT}" font-size="18" font-weight="800" fill="#fff" text-anchor="middle" opacity="${p}">${kb(lerp(2800, 180, p))}</text>`;
+    },
+  },
 ];
 
 // ---- render -----------------------------------------------------------------------
 // Default mode: one clean static PNG per post at its `still` frame.
 const mode = process.argv[2] ?? "png";
-for (const post of POSTS) {
+// Optional slugs after the mode limit the run to those posts.
+const only = new Set(process.argv.slice(3));
+for (const post of POSTS.filter((p) => !only.size || only.has(p.slug))) {
   if (mode === "preview") {
     const svg = shell(post.title, post.draw(post.still ?? 0.9));
     await sharp(Buffer.from(svg)).png().toFile(`${PREVIEW}/${post.slug}.png`);

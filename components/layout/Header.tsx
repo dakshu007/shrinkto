@@ -53,7 +53,7 @@ export function Header() {
         <Link href="/chrome-extension-shrinkto-pro" className={styles.promo}>
           <ProMark size={22} className={styles.promoMark} />
           <span className={styles.promoText}>
-            <strong>ShrinkTo for Chrome 2.0</strong>
+            <strong>ShrinkTo for Chrome 3.0</strong>
             <span className={styles.promoLong}> - exact-KB compression from your toolbar · Pro $1 lifetime</span>
           </span>
           <ArrowRight size={15} className={styles.promoArrow} aria-hidden />

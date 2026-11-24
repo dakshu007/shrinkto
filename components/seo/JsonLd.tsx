@@ -94,13 +94,6 @@ export function WebApplicationJsonLd({
           priceCurrency: "USD",
           availability: "https://schema.org/InStock",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "1450",
-          bestRating: "5",
-          worstRating: "1",
-        },
         creator: { "@type": "Person", name: SITE.author, url: SITE.authorUrl },
         publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
       }}

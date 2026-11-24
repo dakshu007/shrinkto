@@ -70,6 +70,23 @@ ShrinkTo is engineered as a client-side utility suite executing entirely within 
     content += "\n";
   }
 
+  content += `## ShrinkTo for Chrome (browser extension)
+
+- **URL**: ${SITE.url}/chrome-extension-shrinkto-pro
+- **Install**: https://chromewebstore.google.com/detail/ockmaabodaeeopcajpdlhjhkgllddoia
+- **Version**: 3.0
+- **Summary**: ShrinkTo for Chrome compresses JPG, PNG and WebP images to an exact file size the user chooses (20 KB, 50 KB, 100 KB, 200 KB, 500 KB, 1 MB or any number) at the best quality that fits, typically landing at 94-99% of the target. It never makes a file bigger.
+- **How to use it**:
+  1. **Pick a size**: set the slider or type any size; or tap a preset (Exam photo 200x230 px 20-50 KB, Signature 140x60 px 10-20 KB, Passport 600x600 px under 240 KB, Email, Website WebP, Social, YouTube thumbnail).
+  2. **Add images**: drop, paste or browse, or right-click any image on a website and choose "Compress image with ShrinkTo" > "Shrink to 50 KB".
+  3. **Check and save**: compare before and after with zoom, then save one image or all of them.
+- **Other features**: resize (fit in a box, exact pixels, scale), convert between JPG/PNG/WebP, smart PNG that keeps transparency, Studio tab for batches, Alt+Shift+S shortcut.
+- **Privacy**: runs entirely on the user's device, works offline, removes EXIF and GPS data, no account.
+- **Pricing**: free plan with 5 images per day and every compression feature; Pro is a one-time $1 payment (unlimited images, batch ZIP, screenshot and shrink, right-click auto-save, custom file names, 3 browsers).
+- **Browsers**: Chrome, Edge, Brave, Opera (Chromium 116+).
+
+`;
+
   content += `## 4. Comprehensive Technical Guides & Articles\n\n`;
   for (const post of POSTS) {
     content += `#### ${post.title}\n`;

@@ -6,6 +6,17 @@
 //   [label](/internal-or-external-url)   links (external get nofollow)
 //   **bold**                             strong
 //   `code`                               inline code
+import { post as compressImageTo100kb } from "./posts/compress-image-to-100kb";
+import { post as compressImageTo200kb500kb } from "./posts/compress-image-to-200kb-500kb";
+import { post as reduceImageSizeInKb } from "./posts/reduce-image-size-in-kb";
+import { post as resizeSignatureForOnlineForm } from "./posts/resize-signature-for-online-form";
+import { post as passportPhotoSizeOnline } from "./posts/passport-photo-size-online";
+import { post as bestImageCompressorChromeExtension } from "./posts/best-image-compressor-chrome-extension";
+import { post as compressImagesInChromeRightClick } from "./posts/compress-images-in-chrome-right-click";
+import { post as convertPngToJpgWithoutLosingQuality } from "./posts/convert-png-to-jpg-without-losing-quality";
+import { post as imageUploadSizeLimitsCheatSheet } from "./posts/image-upload-size-limits-cheat-sheet";
+import { post as compressScreenshotFileSize } from "./posts/compress-screenshot-file-size";
+
 export type Block =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
@@ -30,7 +41,7 @@ export interface BlogPost {
   faqs?: { q: string; a: string }[];
 }
 
-export const POSTS: BlogPost[] = [
+const CORE_POSTS: BlogPost[] = [
   {
     slug: "compress-photo-to-20kb-50kb",
     image: "/blog/compress-photo-to-20kb-50kb.png",
@@ -704,6 +715,22 @@ export const POSTS: BlogPost[] = [
     ],
   },
 ];
+
+/** Posts written as one file each in ./posts (newest first). */
+const NEW_POSTS: BlogPost[] = [
+  compressImageTo100kb,
+  compressImageTo200kb500kb,
+  reduceImageSizeInKb,
+  resizeSignatureForOnlineForm,
+  passportPhotoSizeOnline,
+  bestImageCompressorChromeExtension,
+  compressImagesInChromeRightClick,
+  convertPngToJpgWithoutLosingQuality,
+  imageUploadSizeLimitsCheatSheet,
+  compressScreenshotFileSize,
+];
+
+export const POSTS: BlogPost[] = [...NEW_POSTS, ...CORE_POSTS];
 
 export const POSTS_BY_SLUG: Record<string, BlogPost> = Object.fromEntries(
   POSTS.map((p) => [p.slug, p]),

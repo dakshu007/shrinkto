@@ -19,6 +19,7 @@ import {
   Minimize2,
 } from "@/components/icons";
 import { ExtensionBand } from "@/components/extension/ExtensionBand";
+import { ProMark } from "@/components/extension/ProMark";
 import { MyKavoSpotlight } from "@/components/partners/MyKavoSpotlight";
 import styles from "./home.module.css";
 
@@ -80,6 +81,10 @@ const FAQS = [
     a: "You can compress and convert between JPG, PNG, WebP and AVIF. HEIC photos from iPhones are supported too. PNGs use smart optimization for big savings without visible quality loss.",
   },
   {
+    q: "Is there a ShrinkTo Chrome extension?",
+    a: "Yes. ShrinkTo for Chrome puts exact-size compression in your toolbar and right-click menu: right-click any image on a website and choose Shrink to 50 KB. It runs on your device, is free for 5 images a day, and Pro is a one-time $1.",
+  },
+  {
     q: "Is there a limit on file size or how many images I can do?",
     a: "No limits. Compress one image or hundreds at once, of any size your device can handle - there's no daily cap and no per-file ceiling.",
   },
@@ -110,7 +115,19 @@ export default function HomePage() {
             <span><Check size={16} aria-hidden /> No signup</span>
             <span><Zap size={16} aria-hidden /> Unlimited &amp; free</span>
           </div>
+          <Link href="/chrome-extension-shrinkto-pro" className={styles.extLink}>
+            <ProMark size={24} />
+            <span>
+              <b>Do this every day?</b> Get ShrinkTo for Chrome and shrink any image from the right-click menu.
+            </span>
+            <span className={styles.extLinkCta}>Add to Chrome, free</span>
+          </Link>
         </div>
+      </section>
+
+      {/* Chrome extension */}
+      <section className={`container ${styles.section}`} aria-label="ShrinkTo for Chrome">
+        <ExtensionBand />
       </section>
 
       {/* Features */}
@@ -202,11 +219,6 @@ export default function HomePage() {
           </Button>
         </div>
         <ToolGrid only={["organize", "optimize", "convert"]} />
-      </section>
-
-      {/* Chrome extension */}
-      <section className={`container ${styles.section}`} aria-label="ShrinkTo for Chrome">
-        <ExtensionBand />
       </section>
 
       {/* FAQ */}

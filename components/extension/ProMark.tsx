@@ -1,13 +1,13 @@
 import { useId } from "react";
+import { SPARKLE_PATH } from "@/components/BrandMark";
 
 /**
- * ShrinkTo Pro (Chrome extension) mark: a photo shrinking down from its
- * original size (dashed frame) into a compact card, with an arrow pulling
- * the corner in and the ShrinkTo sparkle. Same drawing as the extension's
- * toolbar icon (shrinkto-extension/store/src/icon.html).
+ * ShrinkTo for Chrome mark: the ShrinkTo sparkle on a blue gradient tile.
+ * Same drawing as the extension's toolbar and store icon
+ * (shrinkto-extension/store/src/icon.html).
  *
  * variant="tile"  - full app-icon tile (gradient square)
- * variant="glyph" - white glyph only, for placing on a gradient you draw yourself
+ * variant="glyph" - white sparkle only, for placing on a tile you draw yourself
  */
 export function ProMark({
   size = 40,
@@ -21,81 +21,36 @@ export function ProMark({
   title?: string;
 }) {
   const id = useId().replace(/:/g, "");
-  const small = size <= 24;
+  const a11y = { "aria-hidden": !title, role: title ? "img" : undefined } as const;
 
   if (variant === "glyph") {
     return (
-      <svg width={size} height={size} viewBox="8 14 106 106" aria-hidden={!title} role={title ? "img" : undefined} className={className}>
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="#FFFFFF" className={className} {...a11y}>
         {title && <title>{title}</title>}
-        <rect x="16" y="46" width="66" height="66" rx="14" fill="#FFFFFF" />
-        <circle cx="37" cy="67" r="8.5" fill="#f59e0b" />
-        <path d="M25 103 L42 83 L53 95 L61 87 L74 103 Z" fill="#6d4aff" />
-        <g fill="none" stroke="#FFFFFF" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M108 20 L88 40" />
-          <path d="M87 22 L87 41 L106 41" />
-        </g>
+        <path d={SPARKLE_PATH} />
       </svg>
     );
   }
 
+  // Small sizes (toolbar, pills) get a bigger sparkle so it stays legible.
+  const scale = size <= 24 ? 3.5 : 2.3;
   return (
-    <svg width={size} height={size} viewBox="0 0 128 128" aria-hidden={!title} role={title ? "img" : undefined} className={className}>
+    <svg width={size} height={size} viewBox="0 0 128 128" className={className} {...a11y}>
       {title && <title>{title}</title>}
       <defs>
-        <linearGradient id={`${id}bg`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#2563eb" />
-          <stop offset="0.55" stopColor="#6d4aff" />
-          <stop offset="1" stopColor="#a855f7" />
+        <linearGradient id={`${id}bg`} x1="0.2" y1="0" x2="0.8" y2="1">
+          <stop offset="0" stopColor="#64a3f8" />
+          <stop offset="0.48" stopColor="#3d8af1" />
+          <stop offset="1" stopColor="#2276ea" />
         </linearGradient>
-        <radialGradient id={`${id}hl`} cx="0.22" cy="0.12" r="0.75">
-          <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.42" />
-          <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id={`${id}hill`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#6d4aff" />
-          <stop offset="1" stopColor="#2563eb" />
+        <linearGradient id={`${id}hl`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.22" />
+          <stop offset="0.5" stopColor="#FFFFFF" stopOpacity="0" />
         </linearGradient>
-        <linearGradient id={`${id}sun`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#fbbf24" />
-          <stop offset="1" stopColor="#f97316" />
-        </linearGradient>
-        <clipPath id={`${id}clip`}>
-          {small ? <rect x="16" y="46" width="66" height="66" rx="14" /> : <rect x="22" y="50" width="56" height="56" rx="12" />}
-        </clipPath>
       </defs>
       <rect width="128" height="128" rx="30" fill={`url(#${id}bg)`} />
       <rect width="128" height="128" rx="30" fill={`url(#${id}hl)`} />
-      {small ? (
-        <>
-          <rect x="16" y="46" width="66" height="66" rx="14" fill="#FFFFFF" />
-          <g clipPath={`url(#${id}clip)`}>
-            <circle cx="37" cy="66" r="8.5" fill={`url(#${id}sun)`} />
-            <path d="M10 116 L39 81 L52 96 L62 86 L90 116 Z" fill={`url(#${id}hill)`} />
-          </g>
-          <g fill="none" stroke="#FFFFFF" strokeWidth="12" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M108 20 L88 40" />
-            <path d="M87 22 L87 41 L106 41" />
-          </g>
-        </>
-      ) : (
-        <>
-          <rect x="22" y="22" width="84" height="84" rx="14" fill="none" stroke="#FFFFFF" strokeWidth="5" strokeDasharray="11 8" strokeLinecap="round" opacity="0.6" />
-          <path
-            transform="translate(39 36) scale(0.95) translate(-12 -12)"
-            fill="#FFFFFF"
-            d="M12 3.6c.67 4.62 3.78 7.73 8.4 8.4-4.62.67-7.73 3.78-8.4 8.4-.67-4.62-3.78-7.73-8.4-8.4 4.62-.67 7.73-3.78 8.4-8.4Z"
-          />
-          <rect x="22" y="50" width="56" height="56" rx="12" fill="#FFFFFF" />
-          <g clipPath={`url(#${id}clip)`}>
-            <circle cx="40" cy="67" r="6.5" fill={`url(#${id}sun)`} />
-            <path d="M18 108 L41 80 L52 92 L60 84 L82 108 Z" fill={`url(#${id}hill)`} />
-          </g>
-          <g fill="none" stroke="#FFFFFF" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M102 26 L84 44" />
-            <path d="M83 30 L83 45 L98 45" />
-          </g>
-        </>
-      )}
+      <path d={SPARKLE_PATH} fill="#FFFFFF" transform={`translate(64 64) scale(${scale}) translate(-12 -12)`} />
     </svg>
   );
 }
