@@ -5,87 +5,88 @@ import { LANDING_PAGES } from "@/lib/content/seo-map";
 import { POSTS } from "@/lib/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // Date of the last real content change. Bump it when pages change so lastmod stays truthful.
+  const updated = new Date("2026-11-24");
 
   const entries: MetadataRoute.Sitemap = [
     // Homepage
     {
       url: SITE.url,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "daily",
       priority: 1.0,
     },
     // Core Hubs
     {
       url: `${SITE.url}/all-tools`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
       url: `${SITE.url}/convert`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
       url: `${SITE.url}/chrome-extension-shrinkto-pro`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${SITE.url}/blog`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "weekly",
       priority: 0.85,
     },
     // Static Information Pages
     {
       url: `${SITE.url}/about`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE.url}/faq`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE.url}/contact`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE.url}/privacy`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${SITE.url}/terms`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${SITE.url}/partners`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE.url}/partners/mykavo`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${SITE.url}/become-a-partner`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "monthly",
       priority: 0.7,
     },
@@ -95,7 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const tool of TOOLS) {
     entries.push({
       url: `${SITE.url}/${tool.slug}`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "weekly",
       priority: tool.beta ? 0.8 : 0.95,
     });
@@ -105,7 +106,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const landing of LANDING_PAGES) {
     entries.push({
       url: `${SITE.url}/${landing.slug}`,
-      lastModified: now,
+      lastModified: updated,
       changeFrequency: "weekly",
       priority: 0.9,
     });

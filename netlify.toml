@@ -7,3 +7,9 @@
 [functions]
   # Allow bundling the heavier server deps used by route handlers.
   node_bundler = "esbuild"
+
+# Ping IndexNow (Bing, Yandex, etc.) with every sitemap URL after each production deploy.
+[[plugins]]
+  package = "./netlify/plugins/indexnow"
+  [plugins.inputs]
+    key = "0fe04bdf0e1c7cf973d23d5945fe6e3a"

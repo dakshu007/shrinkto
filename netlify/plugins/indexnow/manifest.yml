@@ -1,0 +1,4 @@
+name: indexnow
+inputs:
+  - name: key
+    description: IndexNow key. A file named <key>.txt holding the key must be served from the site root.
